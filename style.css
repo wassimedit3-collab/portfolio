@@ -1,0 +1,256 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --accent: #1A1A2E;
+    --highlight: #E94560;
+    --muted: #555555;
+    --lightgray: #F5F5F5;
+    --bg: #ffffff;
+    --text: #333333;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.6;
+    color: var(--text);
+    background: var(--bg);
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.header {
+    background: var(--accent);
+    color: white;
+    padding: 48px 0 32px;
+    text-align: center;
+}
+
+.name {
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.title {
+    font-size: 18px;
+    color: var(--highlight);
+    margin-bottom: 16px;
+}
+
+.contact-info {
+    font-size: 14px;
+    color: #aaa;
+}
+
+.contact-info a {
+    color: #aaa;
+    text-decoration: none;
+}
+
+.contact-info a:hover {
+    color: var(--highlight);
+}
+
+.section {
+    padding: 32px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.section:last-of-type {
+    border-bottom: none;
+}
+
+.section-title {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--highlight);
+    display: inline-block;
+}
+
+.job {
+    margin-bottom: 24px;
+}
+
+.job-header {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: baseline;
+}
+
+.job-title {
+    font-weight: 600;
+    color: var(--accent);
+    font-size: 16px;
+}
+
+.job-org a {
+    color: var(--highlight);
+    text-decoration: none;
+}
+
+.job-meta {
+    font-size: 13px;
+    color: var(--muted);
+    margin: 4px 0 8px;
+}
+
+.job-list {
+    margin: 8px 0 0 20px;
+    font-size: 14px;
+}
+
+.job-list li {
+    margin-bottom: 4px;
+}
+
+.education-desc {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 4px;
+}
+
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.skill-category h3 {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 4px;
+}
+
+.skill-category p {
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 12px;
+    background: var(--lightgray);
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 13px;
+    color: var(--accent);
+}
+
+.portfolio-links {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.portfolio-link {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px 16px;
+    background: var(--lightgray);
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background 0.2s;
+}
+
+.portfolio-link:hover {
+    background: #eee;
+}
+
+.portfolio-link .platform {
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.portfolio-link .link {
+    color: var(--highlight);
+}
+
+.languages-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-bottom: 12px;
+}
+
+.languages-table th,
+.languages-table td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid #eee;
+}
+
+.languages-table th {
+    font-weight: 600;
+    color: var(--accent);
+    background: var(--lightgray);
+}
+
+.languages-table td:first-child {
+    font-weight: 600;
+    color: var(--accent);
+}
+
+.cefr-note {
+    font-size: 12px;
+    color: var(--muted);
+    font-style: italic;
+}
+
+.footer {
+    background: var(--accent);
+    color: #aaa;
+    padding: 24px 0;
+    text-align: center;
+    font-size: 13px;
+    margin-top: 32px;
+}
+
+.footer p {
+    margin: 4px 0;
+}
+
+@media (max-width: 600px) {
+    .name {
+        font-size: 24px;
+    }
+
+    .title {
+        font-size: 16px;
+    }
+
+    .contact-info {
+        font-size: 12px;
+    }
+
+    .skills-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .languages-table {
+        font-size: 12px;
+    }
+
+    .languages-table th,
+    .languages-table td {
+        padding: 6px 8px;
+    }
+}
