@@ -47,9 +47,35 @@ body {
     color: var(--text);
     background-color: var(--bg-dark);
     background-image: 
-        radial-gradient(ellipse at 20% 20%, rgba(0, 255, 170, 0.03) 0%, transparent 50%),
-        radial-gradient(ellipse at 80% 80%, rgba(255, 45, 106, 0.03) 0%, transparent 50%);
+        radial-gradient(ellipse at 20% 20%, rgba(0, 255, 170, 0.05) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 80%, rgba(255, 45, 106, 0.05) 0%, transparent 50%),
+        radial-gradient(ellipse at 50% 50%, rgba(0, 255, 170, 0.02) 0%, transparent 70%);
     min-height: 100vh;
+    position: relative;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0, 255, 170, 0.01) 2px,
+        rgba(0, 255, 170, 0.01) 4px
+    );
+    pointer-events: none;
+    z-index: 1000;
+    animation: scanlines 0.1s linear infinite;
+}
+
+@keyframes scanlines {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(4px); }
 }
 
 .grid-overlay {
@@ -59,12 +85,50 @@ body {
     width: 100%;
     height: 100%;
     background-image: 
-        linear-gradient(rgba(0, 255, 170, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(0, 255, 170, 0.03) 1px, transparent 1px);
+        linear-gradient(rgba(0, 255, 170, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 170, 0.04) 1px, transparent 1px);
     background-size: 50px 50px;
     pointer-events: none;
     z-index: -1;
     animation: gridMove 20s linear infinite;
+}
+
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 2px;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 50%;
+    opacity: 0.5;
+    animation: float 15s infinite;
+}
+
+.particle:nth-child(1) { left: 10%; animation-delay: 0s; animation-duration: 12s; }
+.particle:nth-child(2) { left: 20%; animation-delay: 2s; animation-duration: 18s; }
+.particle:nth-child(3) { left: 30%; animation-delay: 4s; animation-duration: 14s; }
+.particle:nth-child(4) { left: 40%; animation-delay: 1s; animation-duration: 16s; }
+.particle:nth-child(5) { left: 50%; animation-delay: 3s; animation-duration: 20s; }
+.particle:nth-child(6) { left: 60%; animation-delay: 5s; animation-duration: 13s; }
+.particle:nth-child(7) { left: 70%; animation-delay: 2s; animation-duration: 17s; }
+.particle:nth-child(8) { left: 80%; animation-delay: 4s; animation-duration: 15s; }
+.particle:nth-child(9) { left: 90%; animation-delay: 1s; animation-duration: 19s; }
+
+@keyframes float {
+    0% { transform: translateY(100vh) scale(0); opacity: 0; }
+    10% { opacity: 0.8; }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(-100vh) scale(1); opacity: 0; }
 }
 
 @keyframes gridMove {
@@ -85,6 +149,50 @@ body {
     position: relative;
     border-bottom: 1px solid var(--border);
     overflow: hidden;
+}
+
+.header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--accent), var(--highlight), transparent);
+    animation: borderGlow 3s ease-in-out infinite;
+}
+
+.header-corners {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+    border: 1px solid transparent;
+}
+
+.header-corners::before,
+.header-corners::after {
+    content: '';
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    border-color: var(--accent);
+    border-style: solid;
+    opacity: 0.3;
+}
+
+.header-corners::before {
+    top: 10px;
+    left: 10px;
+    border-width: 2px 0 0 2px;
+}
+
+.header-corners::after {
+    bottom: 10px;
+    right: 10px;
+    border-width: 0 2px 2px 0;
 }
 
 .header::before {
@@ -223,18 +331,70 @@ body {
 .navbar {
     display: flex;
     justify-content: center;
-    gap: 8px;
-    margin-top: 20px;
-    padding-top: 20px;
+    gap: 16px;
+    margin-top: 24px;
+    padding-top: 24px;
     border-top: 1px solid var(--border);
+    position: relative;
+}
+
+.navbar::before {
+    content: '// NAVIGATE';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 10px;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    background: var(--bg-dark);
+    padding: 0 12px;
 }
 
 .navbar .nav-link {
-    font-size: 14px;
-    padding: 8px 24px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    padding: 12px 28px;
     border: 1px solid var(--border);
     border-radius: 4px;
     background: var(--bg-card);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.navbar .nav-link::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, var(--accent-dim), transparent);
+    transition: left 0.5s;
+}
+
+.navbar .nav-link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 20px var(--accent-glow), inset 0 0 20px var(--accent-dim);
+    transform: translateY(-2px);
+}
+
+.navbar .nav-link:hover::before {
+    left: 100%;
+}
+
+.navbar .nav-link.active {
+    color: var(--bg-dark);
+    background: var(--accent);
+    border-color: var(--accent);
+    box-shadow: 0 0 25px var(--accent-glow);
+    font-weight: 700;
 }
 
 .terminal-bar {
@@ -362,14 +522,17 @@ body {
 }
 
 .job:hover {
-    border-color: var(--accent-dim);
-    transform: translateX(8px);
-    box-shadow: 0 0 20px var(--accent-dim);
+    border-color: var(--accent);
+    transform: translateX(12px);
+    box-shadow: 
+        0 0 30px var(--accent-glow),
+        inset 0 0 30px var(--accent-dim);
 }
 
 .job:hover::before {
     opacity: 1;
-    width: 5px;
+    width: 6px;
+    box-shadow: 0 0 20px var(--accent);
 }
 
 .job:hover::after {
@@ -779,8 +942,8 @@ body {
 
 .social-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
 }
 
 .social-card {
@@ -788,10 +951,10 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 24px;
+    padding: 32px 24px;
     background: var(--bg-card);
     border: 1px solid var(--border);
-    border-radius: 4px;
+    border-radius: 8px;
     text-decoration: none;
     transition: all 0.4s ease;
     position: relative;
@@ -809,10 +972,29 @@ body {
     transition: left 0.6s;
 }
 
+.social-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--highlight), var(--accent));
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
 .social-card:hover {
     border-color: var(--accent);
-    transform: translateY(-4px);
-    box-shadow: 0 0 25px var(--accent-glow);
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 
+        0 0 30px var(--accent-glow),
+        0 20px 40px rgba(0, 0, 0, 0.3);
 }
 
 .social-card:hover::before {
@@ -820,22 +1002,32 @@ body {
 }
 
 .social-icon {
-    font-size: 32px;
+    font-size: 40px;
     color: var(--highlight);
-    margin-bottom: 12px;
+    margin-bottom: 16px;
+    text-shadow: 0 0 20px var(--highlight-glow);
 }
 
 .social-name {
     font-family: 'Orbitron', sans-serif;
-    font-size: 16px;
+    font-size: 18px;
     color: var(--accent);
     text-transform: uppercase;
-    letter-spacing: 1px;
-    margin-bottom: 4px;
+    letter-spacing: 2px;
+    margin-bottom: 8px;
 }
 
 .social-handle {
     font-family: 'Share Tech Mono', monospace;
-    font-size: 13px;
+    font-size: 14px;
     color: var(--text-muted);
+    padding: 4px 12px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: all 0.3s;
+}
+
+.social-card:hover .social-handle {
+    border-color: var(--accent);
+    color: var(--accent);
 }
