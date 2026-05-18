@@ -220,6 +220,23 @@ body {
     justify-content: center;
 }
 
+.navbar {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+
+.navbar .nav-link {
+    font-size: 14px;
+    padding: 8px 24px;
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    background: var(--bg-card);
+}
+
 .terminal-bar {
     display: flex;
     align-items: center;
