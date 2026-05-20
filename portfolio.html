@@ -30,8 +30,15 @@
             <h2 class="section-title">Select Category</h2>
             <p class="section-desc">Explore my creative work across different disciplines</p>
 
+            <div class="filter-bar">
+                <button class="filter-btn active" data-filter="all">All</button>
+                <button class="filter-btn" data-filter="videos">Videos</button>
+                <button class="filter-btn" data-filter="photography">Photography</button>
+                <button class="filter-btn" data-filter="logos">Logos</button>
+            </div>
+
             <div class="category-grid">
-                <a href="portfolio-videos.html" class="category-card">
+                <a href="portfolio-videos.html" class="category-card" data-category="videos">
                     <div class="category-visual">
                         <div class="visual-icon">&#9654;</div>
                         <div class="visual-overlay"></div>
@@ -42,7 +49,7 @@
                     </div>
                 </a>
 
-                <a href="portfolio-photography.html" class="category-card">
+                <a href="portfolio-photography.html" class="category-card" data-category="photography">
                     <div class="category-visual photography">
                         <div class="visual-icon">&#128247;</div>
                         <div class="visual-overlay"></div>
@@ -53,7 +60,7 @@
                     </div>
                 </a>
 
-                <a href="portfolio-logos.html" class="category-card">
+                <a href="portfolio-logos.html" class="category-card" data-category="logos">
                     <div class="category-visual logos">
                         <div class="visual-icon">&#9672;</div>
                         <div class="visual-overlay"></div>
@@ -73,5 +80,6 @@
             <p>&copy; 2025 Wassim Vision</p>
         </div>
     </footer>
+    <script src="script.js"></script>
 </body>
 </html>
