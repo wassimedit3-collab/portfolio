@@ -159,54 +159,39 @@ body::after {
     border-left: 6px solid transparent;
     border-right: 6px solid transparent;
     border-bottom: 10px solid;
-    opacity: 0.5;
+    opacity: 0.33;
     animation: floatTriangle ease-in-out infinite;
 }
 
 .triangle:nth-child(odd) { border-bottom-color: var(--accent); }
 .triangle:nth-child(even) { border-bottom-color: var(--highlight); }
 
-.triangle:nth-child(1) { left: 5%; top: 65%; animation-duration: 14s; animation-delay: 0s; }
-.triangle:nth-child(2) { left: 12%; top: 70%; animation-duration: 18s; animation-delay: 1s; width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-bottom: 7px solid; }
-.triangle:nth-child(3) { left: 18%; top: 75%; animation-duration: 16s; animation-delay: 2s; }
-.triangle:nth-child(4) { left: 25%; top: 68%; animation-duration: 20s; animation-delay: 0.5s; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 8px solid; }
-.triangle:nth-child(5) { left: 32%; top: 80%; animation-duration: 15s; animation-delay: 1.5s; }
-.triangle:nth-child(6) { left: 38%; top: 60%; animation-duration: 19s; animation-delay: 3s; width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-bottom: 5px solid; }
-.triangle:nth-child(7) { left: 45%; top: 72%; animation-duration: 17s; animation-delay: 2.5s; }
-.triangle:nth-child(8) { left: 52%; top: 85%; animation-duration: 21s; animation-delay: 0.8s; width: 0; height: 0; border-left: 7px solid transparent; border-right: 7px solid transparent; border-bottom: 12px solid; }
-.triangle:nth-child(9) { left: 58%; top: 62%; animation-duration: 13s; animation-delay: 1.2s; }
-.triangle:nth-child(10) { left: 65%; top: 78%; animation-duration: 22s; animation-delay: 2.2s; width: 0; height: 0; border-left: 4px solid transparent; border-right: 4px solid transparent; border-bottom: 6px solid; }
-.triangle:nth-child(11) { left: 72%; top: 55%; animation-duration: 18s; animation-delay: 0.3s; }
-.triangle:nth-child(12) { left: 78%; top: 67%; animation-duration: 16s; animation-delay: 3.5s; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 9px solid; }
-.triangle:nth-child(13) { left: 85%; top: 82%; animation-duration: 20s; animation-delay: 1.8s; }
-.triangle:nth-child(14) { left: 90%; top: 58%; animation-duration: 14s; animation-delay: 2.8s; width: 0; height: 0; border-left: 6px solid transparent; border-right: 6px solid transparent; border-bottom: 10px solid; }
-.triangle:nth-child(15) { left: 95%; top: 73%; animation-duration: 17s; animation-delay: 0.6s; }
-.triangle:nth-child(16) { left: 8%; top: 88%; animation-duration: 19s; animation-delay: 3.2s; width: 0; height: 0; border-left: 3px solid transparent; border-right: 3px solid transparent; border-bottom: 5px solid; }
-.triangle:nth-child(17) { left: 48%; top: 52%; animation-duration: 15s; animation-delay: 1.4s; }
-.triangle:nth-child(18) { left: 62%; top: 90%; animation-duration: 21s; animation-delay: 2.4s; width: 0; height: 0; border-left: 5px solid transparent; border-right: 5px solid transparent; border-bottom: 8px solid; }
-.triangle:nth-child(19) { left: 28%; top: 92%; animation-duration: 23s; animation-delay: 3.8s; }
+.triangle:nth-child(1) { left: 5%; top: 65%; animation-duration: 5s; animation-delay: 0s; }
+.triangle:nth-child(2) { left: 12%; top: 70%; animation-duration: 6s; animation-delay: 1s; border-left-width: 4px; border-right-width: 4px; border-bottom-width: 7px; }
+.triangle:nth-child(3) { left: 18%; top: 75%; animation-duration: 7s; animation-delay: 2s; }
+.triangle:nth-child(4) { left: 25%; top: 68%; animation-duration: 5s; animation-delay: 0.5s; border-left-width: 5px; border-right-width: 5px; border-bottom-width: 8px; }
+.triangle:nth-child(5) { left: 32%; top: 80%; animation-duration: 6s; animation-delay: 1.5s; }
+.triangle:nth-child(6) { left: 38%; top: 60%; animation-duration: 8s; animation-delay: 3s; border-left-width: 3px; border-right-width: 3px; border-bottom-width: 5px; }
+.triangle:nth-child(7) { left: 45%; top: 72%; animation-duration: 5s; animation-delay: 2.5s; }
+.triangle:nth-child(8) { left: 52%; top: 85%; animation-duration: 7s; animation-delay: 0.8s; border-left-width: 7px; border-right-width: 7px; border-bottom-width: 12px; }
+.triangle:nth-child(9) { left: 58%; top: 62%; animation-duration: 6s; animation-delay: 1.2s; }
+.triangle:nth-child(10) { left: 65%; top: 78%; animation-duration: 8s; animation-delay: 2.2s; border-left-width: 4px; border-right-width: 4px; border-bottom-width: 6px; }
+.triangle:nth-child(11) { left: 72%; top: 55%; animation-duration: 5s; animation-delay: 0.3s; }
+.triangle:nth-child(12) { left: 78%; top: 67%; animation-duration: 6s; animation-delay: 3.5s; border-left-width: 5px; border-right-width: 5px; border-bottom-width: 9px; }
+.triangle:nth-child(13) { left: 85%; top: 82%; animation-duration: 7s; animation-delay: 1.8s; }
+.triangle:nth-child(14) { left: 90%; top: 58%; animation-duration: 5s; animation-delay: 2.8s; border-left-width: 6px; border-right-width: 6px; border-bottom-width: 10px; }
+.triangle:nth-child(15) { left: 95%; top: 73%; animation-duration: 6s; animation-delay: 0.6s; }
+.triangle:nth-child(16) { left: 8%; top: 88%; animation-duration: 8s; animation-delay: 3.2s; border-left-width: 3px; border-right-width: 3px; border-bottom-width: 5px; }
+.triangle:nth-child(17) { left: 48%; top: 52%; animation-duration: 5s; animation-delay: 1.4s; }
+.triangle:nth-child(18) { left: 62%; top: 90%; animation-duration: 7s; animation-delay: 2.4s; border-left-width: 5px; border-right-width: 5px; border-bottom-width: 8px; }
+.triangle:nth-child(19) { left: 28%; top: 92%; animation-duration: 6s; animation-delay: 3.8s; }
 
 @keyframes floatTriangle {
-    0% {
-        transform: translateY(0) translateX(0) rotate(0deg);
-        opacity: 0.4;
-    }
-    25% {
-        transform: translateY(-6px) translateX(2px) rotate(90deg);
-        opacity: 0.7;
-    }
-    50% {
-        transform: translateY(-10px) translateX(0) rotate(180deg);
-        opacity: 0.5;
-    }
-    75% {
-        transform: translateY(-6px) translateX(-2px) rotate(270deg);
-        opacity: 0.7;
-    }
-    100% {
-        transform: translateY(0) translateX(0) rotate(360deg);
-        opacity: 0.4;
-    }
+    0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0.33; }
+    25% { transform: translateY(-8px) translateX(4px) rotate(90deg); opacity: 0.4; }
+    50% { transform: translateY(-12px) translateX(0) rotate(180deg); opacity: 0.35; }
+    75% { transform: translateY(-8px) translateX(-4px) rotate(270deg); opacity: 0.4; }
+    100% { transform: translateY(0) translateX(0) rotate(360deg); opacity: 0.33; }
 }
 
 .header {
@@ -309,34 +294,11 @@ body::after {
     letter-spacing: 4px;
     margin-bottom: 8px;
     position: relative;
-    animation: glitch 3s infinite;
 }
 
-@keyframes glitch {
-    0%, 90%, 100% {
-        transform: translate(0);
-        text-shadow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-glow), 0 0 40px var(--accent-glow), 0 0 80px var(--accent-glow);
-    }
-    91% {
-        transform: translate(-2px, 1px);
-        text-shadow: -2px 0 var(--highlight), 2px 0 var(--accent);
-    }
-    92% {
-        transform: translate(2px, -1px);
-        text-shadow: 2px 0 var(--highlight), -2px 0 var(--accent);
-    }
-    93% {
-        transform: translate(0);
-        text-shadow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-glow), 0 0 40px var(--accent-glow), 0 0 80px var(--accent-glow);
-    }
-    94% {
-        transform: translate(-1px, 2px);
-        text-shadow: -1px 0 var(--highlight), 1px 0 var(--accent);
-    }
-    95% {
-        transform: translate(0);
-        text-shadow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-glow), 0 0 40px var(--accent-glow), 0 0 80px var(--accent-glow);
-    }
+.name .char {
+    display: inline-block;
+    min-width: 0.5em;
 }
 
 .subtitle {
@@ -349,8 +311,11 @@ body::after {
     text-transform: uppercase;
     margin: 4px 0 20px;
     position: relative;
-    animation: glitch 3s infinite;
-    animation-delay: 0.2s;
+}
+
+.subtitle .char {
+    display: inline-block;
+    min-width: 0.5em;
 }
 
 .title {
@@ -362,8 +327,11 @@ body::after {
     letter-spacing: 4px;
     text-transform: uppercase;
     display: inline-block;
-    animation: glitch 3s infinite;
-    animation-delay: 0.4s;
+}
+
+.title .char {
+    display: inline-block;
+    min-width: 0.5em;
 }
 
 .title::before,
