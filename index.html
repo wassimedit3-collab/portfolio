@@ -35,15 +35,7 @@
             <div class="triangle"></div><div class="triangle"></div>
         </div>
         <div class="container">
-            <h1 class="name">
-                <span class="name-static">Wassim</span>
-                <span class="name-rotating">
-                    <span class="word">Vision</span>
-                    <span class="word">Chikhaoui</span>
-                    <span class="word">Visual</span>
-                    <span class="word">Vision</span>
-                </span>
-            </h1>
+            <h1 class="name">Wassim Vision</h1>
             <p class="subtitle">Triple V</p>
             <p class="title">Audiovisual Director & Visual Artist</p>
             <div class="contact-info">
@@ -256,123 +248,79 @@
     </footer>
 
     <script>
-    class HeaderAnimation {
-        constructor() {
-            this.words = ['Vision', 'Chikhaoui', 'Visual', 'Vision'];
-            this.currentIndex = 1;
-            this.phase = 1;
-            this.nameRotating = document.querySelector('.name-rotating');
-            this.subtitle = document.querySelector('.subtitle');
-            this.header = document.querySelector('.header');
+    class DecodeText {
+        constructor(element) {
+            this.element = element;
+            this.text = element.textContent.trim();
+            this.chars = '!@#$%&*?ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            this.isResolved = false;
+            
             this.init();
         }
 
         init() {
-            const words = this.nameRotating.querySelectorAll('.word');
-            words.forEach((w, i) => {
-                if (i === 0) {
-                    w.classList.add('active');
-                } else {
-                    w.classList.add('next');
-                }
-            });
-            setTimeout(() => this.startRotation(), 500);
-        }
-
-        startRotation() {
-            if (this.phase !== 1) return;
-            this.rotateNext();
-        }
-
-        rotateNext() {
-            if (this.phase !== 1) return;
-            
-            const words = this.nameRotating.querySelectorAll('.word');
-            const currentWord = this.nameRotating.querySelector('.word.active');
-            const nextWord = this.nameRotating.querySelector('.word.next');
-
-            if (this.currentIndex >= this.words.length) {
-                setTimeout(() => {
-                    this.phase = 2;
-                    setTimeout(() => this.startDecode(), 300);
-                }, 500);
-                return;
-            }
-
-            currentWord.classList.remove('active');
-            currentWord.classList.add('prev');
-
-            nextWord.classList.remove('next');
-            nextWord.classList.add('active');
-
-            const newNext = Array.from(words).find(w => w.classList.contains('prev'));
-            if (newNext) {
-                newNext.classList.remove('prev');
-                newNext.classList.add('next');
-            }
-
-            this.currentIndex++;
-
-            setTimeout(() => this.rotateNext(), 1200);
-        }
-
-        startDecode() {
-            if (this.phase !== 2) return;
-            
-            const chars = '!@#$%&*?ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
-            const text = 'Triple V';
-            const charSpans = [];
-
-            this.subtitle.innerHTML = '';
-            for (let i = 0; i < text.length; i++) {
+            this.element.textContent = '';
+            for (let i = 0; i < this.text.length; i++) {
                 const span = document.createElement('span');
-                span.className = 'decode-char';
-                span.textContent = chars[Math.floor(Math.random() * chars.length)];
-                this.subtitle.appendChild(span);
-                charSpans.push(span);
+                span.className = 'char';
+                span.textContent = this.randomChar();
+                this.element.appendChild(span);
             }
+            this.startScramble();
+        }
 
-            const duration = 2000;
+        randomChar() {
+            return this.chars[Math.floor(Math.random() * this.chars.length)];
+        }
+
+        startScramble() {
+            const duration = 2500;
             const startTime = Date.now();
-
+            
             const scramble = () => {
-                if (this.phase !== 2) return;
-
+                if (this.isResolved) return;
+                
                 const elapsed = Date.now() - startTime;
                 const progress = Math.min(elapsed / duration, 1);
+                
+                const charSpans = this.element.querySelectorAll('.char');
                 const resolveCount = Math.floor(progress * charSpans.length);
-
+                
                 for (let i = 0; i < charSpans.length; i++) {
                     if (i < resolveCount) {
-                        charSpans[i].textContent = text[i];
+                        charSpans[i].textContent = this.text[i];
+                        charSpans[i].style.color = '';
                     } else {
-                        charSpans[i].textContent = chars[Math.floor(Math.random() * chars.length)];
+                        charSpans[i].textContent = this.randomChar();
                     }
                 }
-
+                
                 if (progress < 1) {
                     requestAnimationFrame(scramble);
                 } else {
-                    this.subtitle.innerHTML = text;
-                    setTimeout(() => {
-                        this.phase = 3;
-                        setTimeout(() => this.startGlitch(), 300);
-                    }, 500);
+                    this.isResolved = true;
+                    for (let i = 0; i < charSpans.length; i++) {
+                        charSpans[i].textContent = this.text[i];
+                    }
                 }
             };
-
-            scramble();
-        }
-
-        startGlitch() {
-            if (this.phase !== 3) return;
             
-            this.header.classList.add('glitch-active');
+            scramble();
         }
     }
 
     document.addEventListener('DOMContentLoaded', () => {
-        new HeaderAnimation();
+        const decodeElements = document.querySelectorAll('.name, .subtitle, .title');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !entry.target.classList.contains('decoded')) {
+                    entry.target.classList.add('decoded');
+                    new DecodeText(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        decodeElements.forEach(el => observer.observe(el));
     });
     </script>
 </body>
