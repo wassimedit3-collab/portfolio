@@ -303,6 +303,10 @@ body::after {
     letter-spacing: 4px;
     margin-bottom: 8px;
     position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: baseline;
+    gap: 0;
 }
 
 .name-static {
@@ -314,16 +318,41 @@ body::after {
         0 0 80px var(--accent-glow);
 }
 
-.name-animated {
+.name-rotating {
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+    height: 1em;
+}
+
+.word {
+    position: absolute;
+    left: 0;
+    width: 100%;
     color: var(--accent);
     text-shadow: 
         0 0 10px var(--accent-glow),
         0 0 20px var(--accent-glow),
         0 0 40px var(--accent-glow),
         0 0 80px var(--accent-glow);
-    display: inline-block;
-    transform-style: preserve-3d;
-    perspective: 500px;
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.4s ease-out;
+}
+
+.word.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.word.next {
+    opacity: 0;
+    transform: translateY(-50px);
+}
+
+.word.prev {
+    opacity: 0;
+    transform: translateY(100px);
 }
 
 .subtitle {
@@ -350,69 +379,42 @@ body::after {
 }
 
 .header.glitch-active .name-static,
-.header.glitch-active .name-animated,
+.header.glitch-active .name-rotating,
 .header.glitch-active .subtitle,
 .header.glitch-active .title {
-    animation: headerGlitch 3s infinite;
+    animation: headerGlitch 1.5s infinite;
 }
 
 @keyframes headerGlitch {
-    0%, 90%, 100% {
+    0%, 85%, 100% {
         transform: translate(0);
         text-shadow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-glow), 0 0 40px var(--accent-glow), 0 0 80px var(--accent-glow);
     }
-    91% {
+    86% {
+        transform: translate(-3px, 2px);
+        text-shadow: -3px 0 var(--highlight), 3px 0 var(--accent);
+    }
+    87% {
+        transform: translate(3px, -2px);
+        text-shadow: 3px 0 var(--highlight), -3px 0 var(--accent);
+    }
+    88% {
+        transform: translate(0);
+        text-shadow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-glow), 0 0 40px var(--accent-glow), 0 0 80px var(--accent-glow);
+    }
+    89% {
         transform: translate(-2px, 1px);
         text-shadow: -2px 0 var(--highlight), 2px 0 var(--accent);
     }
-    92% {
-        transform: translate(2px, -1px);
-        text-shadow: 2px 0 var(--highlight), -2px 0 var(--accent);
-    }
-    93% {
-        transform: translate(0);
-        text-shadow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-glow), 0 0 40px var(--accent-glow), 0 0 80px var(--accent-glow);
-    }
-    94% {
-        transform: translate(-1px, 2px);
-        text-shadow: -1px 0 var(--highlight), 1px 0 var(--accent);
-    }
-    95% {
+    90% {
         transform: translate(0);
         text-shadow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-glow), 0 0 40px var(--accent-glow), 0 0 80px var(--accent-glow);
     }
 }
 
 .header.glitch-active .title {
-    animation: titleGlitch 3s infinite;
-    animation-delay: 0.1s;
-}
-
-@keyframes titleGlitch {
-    0%, 90%, 100% {
-        transform: translate(0);
-        text-shadow: 0 0 15px var(--highlight-glow);
-    }
-    91% {
-        transform: translate(-2px, 1px);
-        text-shadow: -2px 0 var(--accent), 2px 0 var(--highlight);
-    }
-    92% {
-        transform: translate(2px, -1px);
-        text-shadow: 2px 0 var(--accent), -2px 0 var(--highlight);
-    }
-    93% {
-        transform: translate(0);
-        text-shadow: 0 0 15px var(--highlight-glow);
-    }
-    94% {
-        transform: translate(-1px, 2px);
-        text-shadow: -1px 0 var(--accent), 1px 0 var(--highlight);
-    }
-    95% {
-        transform: translate(0);
-        text-shadow: 0 0 15px var(--highlight-glow);
-    }
+    animation: headerGlitch 1.5s infinite;
+    animation-delay: 0.05s;
 }
 
 .title::before,
