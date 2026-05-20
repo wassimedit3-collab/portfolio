@@ -1,0 +1,77 @@
+backend:
+  name: github
+  repo: wassimedit3-collab/portfolio
+  branch: main
+
+publish_mode: editorial_workflow
+
+media_folder: "media"
+public_folder: "/media"
+
+collections:
+  - name: "projects"
+    label: "Projects"
+    folder: "_projects"
+    create: true
+    slug: "{{slug}}"
+    fields:
+      - label: "Title"
+        name: "title"
+        widget: "string"
+      - label: "Description"
+        name: "description"
+        widget: "text"
+      - label: "Video URL"
+        name: "video"
+        widget: "string"
+        required: false
+      - label: "Thumbnail"
+        name: "thumbnail"
+        widget: "image"
+        required: false
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        required: false
+      - label: "Year"
+        name: "year"
+        widget: "string"
+        required: false
+      - label: "Category"
+        name: "category"
+        widget: "select"
+        options: ["music-video", "commercial", "portrait", "personal", "logos"]
+        required: false
+
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - name: "general"
+        label: "General"
+        file: "_settings/general.json"
+        fields:
+          - label: "Site Title"
+            name: "site_title"
+            widget: "string"
+          - label: "Owner Name"
+            name: "owner_name"
+            widget: "string"
+          - label: "Email"
+            name: "email"
+            widget: "string"
+          - label: "YouTube URL"
+            name: "youtube"
+            widget: "string"
+
+  - name: "media"
+    label: "Media Library"
+    folder: "media"
+    create: true
+    fields:
+      - label: "File"
+        name: "file"
+        widget: "file"
+      - label: "Caption"
+        name: "caption"
+        widget: "string"
+        required: false
