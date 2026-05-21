@@ -1112,7 +1112,48 @@ body {
         letter-spacing: 4px;
     }
 
-    .hero-scroll {
+.hero-nav {
+    position: absolute;
+    top: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 32px;
+    z-index: 2;
+    animation: heroFade 1.5s ease forwards;
+    animation-delay: 0.3s;
+    opacity: 0;
+}
+
+.hero-nav-link {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    transition: color 0.3s;
+}
+
+.hero-nav-link:hover,
+.hero-nav-link.active {
+    color: var(--accent);
+}
+
+.timeline-link {
+    color: var(--text-muted);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border);
+    transition: color 0.3s, border-color 0.3s;
+}
+
+.timeline-link:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+}
+
+.hero-scroll {
         margin-top: 40px;
     }
 
