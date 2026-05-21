@@ -71,7 +71,8 @@ body {
     background: var(--bg);
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
+    align-items: center;
 }
 
 .hero::after {
@@ -121,7 +122,10 @@ body {
 }
 
 .hero-top {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
     z-index: 3;
     display: flex;
     justify-content: flex-start;
@@ -205,15 +209,18 @@ body {
     font-variant-numeric: tabular-nums;
 }
 
-.hero-main {
-    flex: 1;
+.hero-center {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    z-index: 3;
+}
+
+.hero-main {
     z-index: 3;
     padding: 0 48px;
     text-align: center;
-    align-self: center;
 }
 
 .hero-name {
@@ -288,14 +295,11 @@ body {
 /* ===== HERO BOTTOM CTA ===== */
 
 .hero-bottom {
-    position: relative;
     z-index: 3;
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 14px;
-    align-self: center;
-    margin-bottom: 48px;
 }
 
 .hero-cta-logo {
@@ -1629,9 +1633,12 @@ body {
         padding: 8px 16px;
     }
 
+    .hero-center {
+        gap: 28px;
+    }
+
     .hero-bottom {
         gap: 10px;
-        margin-bottom: 28px;
     }
 
     .hero-cta-logo img {
