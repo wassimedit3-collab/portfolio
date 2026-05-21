@@ -116,15 +116,16 @@ body {
 
 .hero-logo img {
     display: block;
-    height: 220px;
-    width: auto;
+    width: 572px;
+    height: 192px;
+    object-fit: contain;
 }
 
 .hero-text {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
+    align-items: center;
+    text-align: center;
 }
 
 .hero-label {
@@ -139,6 +140,10 @@ body {
 }
 
 .hero-name {
+    align-self: flex-start;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
     font-family: 'Playfair Display', serif;
     font-size: 96px;
     font-weight: 800;
@@ -146,6 +151,12 @@ body {
     letter-spacing: 2px;
     line-height: 1;
     margin-bottom: 20px;
+}
+
+.hero-name-line1,
+.hero-name-line2 {
+    display: block;
+    line-height: 0.9;
 }
 
 .hero-subtitle {
@@ -216,17 +227,21 @@ body {
 .glitch-word {
     display: inline-block;
     color: var(--highlight);
-    animation: glitchOnce 0.8s ease forwards;
+    animation: glitchOnce 3s ease forwards;
 }
 
 @keyframes glitchOnce {
     0% { color: var(--highlight); transform: translate(0); }
-    4% { color: var(--accent); transform: translate(-2px, 1px) skewX(-2deg); }
-    8% { color: var(--accent); transform: translate(2px, -1px) skewX(2deg); }
-    12% { color: var(--accent); transform: translate(-1px, -1px) skewX(-1deg); }
-    16% { color: var(--accent); transform: translate(1px, 1px) skewX(1deg); }
-    20% { color: var(--accent); transform: translate(0); }
-    25% { color: var(--highlight); }
+    5% { color: var(--accent); transform: translate(-2px, 1px) skewX(-2deg); }
+    10% { color: var(--accent); transform: translate(2px, -1px) skewX(2deg); }
+    15% { color: var(--accent); transform: translate(-1px, -1px) skewX(-1deg); }
+    20% { color: var(--accent); transform: translate(1px, 1px) skewX(1deg); }
+    25% { color: var(--accent); transform: translate(0); }
+    35% { color: var(--accent); transform: translate(-2px, 1px) skewX(-2deg); }
+    40% { color: var(--accent); transform: translate(2px, -1px) skewX(2deg); }
+    45% { color: var(--accent); transform: translate(0); }
+    50% { color: var(--accent); }
+    65% { color: var(--highlight); }
     100% { color: var(--highlight); }
 }
 
