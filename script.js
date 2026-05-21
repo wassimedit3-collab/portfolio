@@ -74,6 +74,27 @@ document.addEventListener('DOMContentLoaded', () => {
 
     sections.forEach(s => revealObserver.observe(s));
 
+    // ===== SKILLS & COMPETENCIES COLLAPSE TOGGLE =====
+    document.querySelectorAll('.sec-skills .sec-headline, .sec-comp .sec-headline').forEach(headline => {
+        headline.addEventListener('click', () => {
+            const section = headline.closest('.section');
+            const content = section.querySelector('.collapse-content');
+            const isOpen = content.classList.toggle('open');
+            headline.classList.toggle('open');
+
+            if (isOpen && section.classList.contains('sec-skills')) {
+                section.querySelectorAll('.cloud-tag').forEach((t, i) => {
+                    t.style.transitionDelay = (i * 60) + 'ms';
+                });
+            }
+            if (isOpen && section.classList.contains('sec-comp')) {
+                section.querySelectorAll('.comp-tag').forEach((t, i) => {
+                    t.style.transitionDelay = (i * 40) + 'ms';
+                });
+            }
+        });
+    });
+
     // ===== BACK TO TOP =====
     const backBtn = document.createElement('button');
     backBtn.className = 'back-to-top';
