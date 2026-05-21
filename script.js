@@ -1,5 +1,34 @@
 document.addEventListener('DOMContentLoaded', () => {
 
+    // ===== RECORDING TIMER =====
+    const timerDisplay = document.getElementById('timerDisplay');
+    const recTimeDisplay = document.getElementById('recTime');
+    let startTime = Date.now();
+
+    function updateTimer() {
+        const elapsed = Math.floor((Date.now() - startTime) / 1000);
+        const h = String(Math.floor(elapsed / 3600)).padStart(2, '0');
+        const m = String(Math.floor((elapsed % 3600) / 60)).padStart(2, '0');
+        const s = String(elapsed % 60).padStart(2, '0');
+        const val = h + ':' + m + ':' + s;
+        if (timerDisplay) timerDisplay.textContent = val;
+        if (recTimeDisplay) recTimeDisplay.textContent = val;
+    }
+
+    updateTimer();
+    setInterval(updateTimer, 1000);
+
+    // ===== SCROLL REVEAL =====
+    const sections = document.querySelectorAll('.reveal');
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.1 });
+    sections.forEach(s => revealObserver.observe(s));
+
     // ===== BACK TO TOP =====
     const backBtn = document.createElement('button');
     backBtn.className = 'back-to-top';
@@ -21,17 +50,6 @@ document.addEventListener('DOMContentLoaded', () => {
     backBtn.addEventListener('click', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-
-    // ===== SCROLL REVEAL =====
-    const sections = document.querySelectorAll('.slide-left');
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
-            }
-        });
-    }, { threshold: 0.1 });
-    sections.forEach(s => revealObserver.observe(s));
 
     // ===== LIGHTBOX =====
     const galleryItems = document.querySelectorAll('.gallery-item');
@@ -65,7 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 caption: caption ? caption.textContent : '',
                 bg: thumb ? getComputedStyle(thumb).backgroundImage || '' : ''
             });
-
             item.style.cursor = 'pointer';
             item.addEventListener('click', () => openLightbox(index));
         });
@@ -139,7 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             playBtn.addEventListener('click', () => {
                 currentIframe = document.createElement('iframe');
-                currentIframe.src = `https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0`;
+                currentIframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
                 currentIframe.allow = 'autoplay; encrypted-media';
                 currentIframe.allowFullscreen = true;
                 player.appendChild(currentIframe);
@@ -245,7 +262,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (existing) existing.remove();
 
             const msg = document.createElement('p');
-            msg.className = `form-message form-message-${type}`;
+            msg.className = 'form-message form-message-' + type;
             msg.textContent = text;
             contactForm.appendChild(msg);
 

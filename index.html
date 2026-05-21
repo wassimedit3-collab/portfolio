@@ -20,40 +20,53 @@
     <div class="film-grain"></div>
 
     <header class="hero">
-        <div class="hero-vignette"></div>
-        <div class="container">
-            <a href="portfolio.html" class="hero-logo">
+        <div class="viewfinder-corner viewfinder-tl"></div>
+        <div class="viewfinder-corner viewfinder-tr"></div>
+        <div class="viewfinder-corner viewfinder-bl"></div>
+        <div class="viewfinder-corner viewfinder-br"></div>
+
+        <div class="hero-top">
+            <a href="index.html" class="hero-logo">
                 <img src="hero-logo.svg" alt="Wassim Vision">
             </a>
-            <div class="hero-text">
-                <p class="hero-label"><a href="portfolio.html">Portfolio</a></p>
-                <h1 class="hero-name">
-                    <a href="portfolio.html">
-                        <span class="hero-name-line1">Wassim</span>
-                        <span class="hero-name-line2"><span class="glitch-word">Vision</span></span>
-                    </a>
-                </h1>
-                <p class="hero-subtitle">Triple V</p>
-                <p class="hero-title">Video Editor &amp; Post-Production Specialist</p>
-            </div>
-            <div class="hero-scroll">&#8595; scroll</div>
             <nav class="hero-nav">
                 <a href="index.html" class="hero-nav-link active">Home</a>
                 <a href="portfolio.html" class="hero-nav-link">Portfolio</a>
-                <a href="social.html" class="hero-nav-link">Social Media &amp; Contact</a>
+                <a href="social.html" class="hero-nav-link">Social</a>
             </nav>
+        </div>
+
+        <div class="hero-rec">
+            <span class="rec-dot"></span>
+            <span class="rec-text">REC</span>
+            <span class="rec-time" id="recTime">00:00:00</span>
+        </div>
+
+        <div class="hero-main">
+            <h1 class="hero-name">
+                <span class="hero-name-line1">Wassim</span>
+                <span class="hero-name-line2"><span class="glitch-word">Vision</span></span>
+            </h1>
+            <p class="hero-label">
+                <a href="portfolio.html">Portfolio</a>
+            </p>
+        </div>
+
+        <div class="hero-timer" id="heroTimer">
+            <span class="timer-dot"></span>
+            <span class="timer-value" id="timerDisplay">00:00:00</span>
         </div>
     </header>
 
     <main>
-        <section class="section fade-in">
-            <div class="container">
+        <section class="section reveal">
+            <div class="section-content section-content-wide">
                 <p class="about-text">Video editor &amp; post-production specialist with 2+ years of hands-on experience cutting music videos, managing full post-production pipelines, and delivering broadcast-quality content under tight deadlines. Proficient in DaVinci Resolve, Adobe Premiere Pro, After Effects, and VFX compositing. Based in Tunisia &middot; Available worldwide</p>
             </div>
         </section>
 
-        <section class="section fade-in">
-            <div class="container">
+        <section class="section reveal">
+            <div class="section-content">
                 <h2 class="section-title">Work</h2>
                 <div class="timeline">
                     <div class="timeline-item">
@@ -81,31 +94,58 @@
             </div>
         </section>
 
-        <section class="section fade-in">
-            <div class="container">
+        <section class="section reveal">
+            <div class="section-content">
                 <h2 class="section-title">Skills</h2>
-                <p class="skill-line">DaVinci Resolve &middot; Adobe Premiere Pro &middot; After Effects &middot; Photoshop &middot; Lightroom &middot; Illustrator &middot; Colour Grading &middot; VFX Compositing &middot; Motion Graphics &middot; Sound Design</p>
-            </div>
-        </section>
-
-        <section class="section fade-in">
-            <div class="container">
-                <h2 class="section-title">Competencies</h2>
-                <p class="competency-line">Non-linear Editing (NLE) &middot; Beat-sync Montage &middot; Cinematic Colour Grading &middot; VFX Compositing &middot; Motion Graphics &middot; Multi-cam Editing &middot; 4K/HDR Workflow &middot; Social Media Delivery &middot; Storyboarding &middot; AI-Assisted Editing &middot; Cloud Collaboration &middot; Deadline Management</p>
-            </div>
-        </section>
-
-        <section class="section fade-in">
-            <div class="container">
-                <h2 class="section-title">Portfolio</h2>
-                <div class="port-links">
-                    <a href="https://www.youtube.com/@WASSIMVISUAL" target="_blank" class="port-link">YouTube @WASSIMVISUAL &rarr;</a>
+                <div class="tag-grid">
+                    <span class="tag">DaVinci Resolve</span>
+                    <span class="tag">Adobe Premiere Pro</span>
+                    <span class="tag">After Effects</span>
+                    <span class="tag">Photoshop</span>
+                    <span class="tag">Lightroom</span>
+                    <span class="tag">Illustrator</span>
+                    <span class="tag">Colour Grading</span>
+                    <span class="tag">VFX Compositing</span>
+                    <span class="tag">Motion Graphics</span>
+                    <span class="tag">Sound Design</span>
                 </div>
             </div>
         </section>
 
-        <section class="section fade-in">
-            <div class="container">
+        <section class="section reveal">
+            <div class="section-content">
+                <h2 class="section-title">Competencies</h2>
+                <div class="tag-grid">
+                    <span class="tag">Non-linear Editing (NLE)</span>
+                    <span class="tag">Beat-sync Montage</span>
+                    <span class="tag">Cinematic Colour Grading</span>
+                    <span class="tag">VFX Compositing</span>
+                    <span class="tag">Motion Graphics</span>
+                    <span class="tag">Multi-cam Editing</span>
+                    <span class="tag">4K/HDR Workflow</span>
+                    <span class="tag">Social Media Delivery</span>
+                    <span class="tag">Storyboarding</span>
+                    <span class="tag">AI-Assisted Editing</span>
+                    <span class="tag">Cloud Collaboration</span>
+                    <span class="tag">Deadline Management</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="section reveal">
+            <div class="section-content">
+                <h2 class="section-title">Portfolio</h2>
+                <div class="port-links">
+                    <a href="https://www.youtube.com/@WASSIMVISUAL" target="_blank" class="port-link">
+                        <span class="port-link-icon">&rarr;</span>
+                        YouTube @WASSIMVISUAL
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section reveal">
+            <div class="section-content">
                 <h2 class="section-title">Education</h2>
                 <div class="timeline">
                     <div class="timeline-item">
@@ -125,22 +165,27 @@
             </div>
         </section>
 
-        <section class="section fade-in">
-            <div class="container">
+        <section class="section reveal">
+            <div class="section-content">
                 <h2 class="section-title">Languages</h2>
-                <p class="lang-line">Arabic &middot; English &middot; French</p>
+                <div class="lang-row">
+                    <span class="lang-badge">Arabic</span>
+                    <span class="lang-badge">English</span>
+                    <span class="lang-badge">French</span>
+                </div>
             </div>
         </section>
-        <section class="section fade-in">
-            <div class="container">
+
+        <section class="section reveal">
+            <div class="section-content">
                 <h2 class="section-title">Contact</h2>
-                <p class="about-text" style="font-size: 18px;"><a href="mailto:wassimedit3@gmail.com" style="color: var(--accent); text-decoration: none;">wassimedit3@gmail.com</a></p>
+                <p class="contact-email"><a href="mailto:wassimedit3@gmail.com">wassimedit3@gmail.com</a></p>
             </div>
         </section>
     </main>
 
     <footer class="footer">
-        <div class="container">
+        <div class="footer-inner">
             <p>Tunisia &middot; <a href="mailto:wassimedit3@gmail.com">wassimedit3@gmail.com</a></p>
             <p>&copy; 2025 Wassim Vision</p>
         </div>
