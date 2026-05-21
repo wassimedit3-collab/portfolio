@@ -102,19 +102,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 40px;
 }
 
-.hero-logo {
-    flex-shrink: 0;
-    margin-bottom: 16px;
-}
-
-.hero-logo img {
-    display: block;
-    height: 172px;
-    width: auto;
-}
 
 .hero-text {
     display: flex;
@@ -1196,15 +1185,6 @@ body {
 /* ===== RESPONSIVE ===== */
 
 @media (max-width: 600px) {
-    .hero-logo {
-        margin-bottom: 12px;
-    }
-
-    .hero-logo img {
-        height: 120px;
-        width: auto;
-    }
-
     .hero-name {
         font-size: 48px;
     }
