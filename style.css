@@ -210,6 +210,8 @@ body {
     z-index: 3;
     padding: 0 48px;
     margin-bottom: auto;
+    text-align: center;
+    align-self: center;
 }
 
 .hero-name {
@@ -217,32 +219,10 @@ body {
     font-size: clamp(56px, 10vw, 130px);
     font-weight: 800;
     color: var(--text);
-    line-height: 0.8;
-    letter-spacing: -2px;
-}
-
-.hero-name-line1 {
-    display: block;
-    animation: heroSlideLeft 1s 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    line-height: 1.1;
+    letter-spacing: -1px;
+    animation: heroFadeDown 1s 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     opacity: 0;
-    transform: translateX(-40px);
-}
-
-.hero-name-line2 {
-    display: block;
-    animation: heroSlideRight 1s 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    opacity: 0;
-    transform: translateX(40px);
-}
-
-@keyframes heroSlideLeft {
-    0% { opacity: 0; transform: translateX(-40px); }
-    100% { opacity: 1; transform: translateX(0); }
-}
-
-@keyframes heroSlideRight {
-    0% { opacity: 0; transform: translateX(40px); }
-    100% { opacity: 1; transform: translateX(0); }
 }
 
 .hero-label {
@@ -327,7 +307,7 @@ body {
 
 .hero-cta-logo img {
     display: block;
-    height: 56px;
+    height: 100px;
     width: auto;
     margin: 0 auto;
 }
@@ -1653,7 +1633,7 @@ body {
     }
 
     .hero-cta-logo img {
-        height: 44px;
+        height: 72px;
     }
 
     .hero-nav-bottom {
