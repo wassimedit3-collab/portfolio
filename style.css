@@ -99,6 +99,32 @@ body {
 .hero .container {
     position: relative;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.hero-row {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+
+.hero-logo {
+    flex-shrink: 0;
+}
+
+.hero-logo img {
+    display: block;
+    height: 220px;
+    width: auto;
+}
+
+.hero-text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
 }
 
 .hero-label {
@@ -1093,6 +1119,14 @@ body {
 /* ===== RESPONSIVE ===== */
 
 @media (max-width: 600px) {
+    .hero-row {
+        gap: 30px;
+    }
+
+    .hero-logo img {
+        height: 120px;
+    }
+
     .hero-name {
         font-size: 48px;
     }
@@ -1112,49 +1146,49 @@ body {
         letter-spacing: 4px;
     }
 
-.hero-nav {
-    position: absolute;
-    top: 32px;
-    left: 50%;
-    transform: translateX(-50%);
-    display: flex;
-    gap: 32px;
-    z-index: 2;
-    animation: heroFade 1.5s ease forwards;
-    animation-delay: 0.3s;
-    opacity: 0;
-}
-
-.hero-nav-link {
-    font-family: 'Inter', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--text-muted);
-    text-decoration: none;
-    text-transform: uppercase;
-    letter-spacing: 3px;
-    transition: color 0.3s;
-}
-
-.hero-nav-link:hover,
-.hero-nav-link.active {
-    color: var(--accent);
-}
-
-.timeline-link {
-    color: var(--text-muted);
-    text-decoration: none;
-    border-bottom: 1px solid var(--border);
-    transition: color 0.3s, border-color 0.3s;
-}
-
-.timeline-link:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-}
-
-.hero-scroll {
+    .hero-scroll {
         margin-top: 40px;
+    }
+
+    .hero-nav {
+        position: absolute;
+        top: 32px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 32px;
+        z-index: 2;
+        animation: heroFade 1.5s ease forwards;
+        animation-delay: 0.3s;
+        opacity: 0;
+    }
+
+    .hero-nav-link {
+        font-family: 'Inter', sans-serif;
+        font-size: 11px;
+        font-weight: 500;
+        color: var(--text-muted);
+        text-decoration: none;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        transition: color 0.3s;
+    }
+
+    .hero-nav-link:hover,
+    .hero-nav-link.active {
+        color: var(--accent);
+    }
+
+    .timeline-link {
+        color: var(--text-muted);
+        text-decoration: none;
+        border-bottom: 1px solid var(--border);
+        transition: color 0.3s, border-color 0.3s;
+    }
+
+    .timeline-link:hover {
+        color: var(--accent);
+        border-color: var(--accent);
     }
 
     .about-text {
