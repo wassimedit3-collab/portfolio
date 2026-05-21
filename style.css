@@ -213,7 +213,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 40px;
+    gap: 100px;
     z-index: 3;
     margin-top: -3vh;
 }
@@ -1635,7 +1635,7 @@ body {
     }
 
     .hero-center {
-        gap: 28px;
+        gap: 60px;
     }
 
     .hero-bottom {
@@ -1643,7 +1643,7 @@ body {
     }
 
     .hero-cta-logo img {
-        height: 72px;
+        height: 90px;
     }
 
     .hero-nav-bottom {
@@ -1715,7 +1715,7 @@ body {
     }
 
     .lang-scatter {
-        height: 100px;
+    height: 140px;
     }
 
     .lang-pill {
