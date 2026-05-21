@@ -107,7 +107,7 @@ body {
 .hero-row {
     display: flex;
     align-items: center;
-    gap: 60px;
+    gap: 24px;
 }
 
 .hero-logo {
