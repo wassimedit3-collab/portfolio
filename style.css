@@ -111,6 +111,9 @@ body {
 }
 
 .hero-logo {
+    position: absolute;
+    right: calc(100% + 24px);
+    top: 0;
     flex-shrink: 0;
 }
 
@@ -122,6 +125,7 @@ body {
 }
 
 .hero-text {
+    position: relative;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -1180,12 +1184,14 @@ body {
 /* ===== RESPONSIVE ===== */
 
 @media (max-width: 600px) {
-    .hero-row {
-        gap: 30px;
+    .hero-logo {
+        position: static;
+        margin-bottom: 16px;
     }
 
     .hero-logo img {
         height: 120px;
+        width: auto;
     }
 
     .hero-name {
