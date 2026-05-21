@@ -209,18 +209,8 @@ body {
     font-variant-numeric: tabular-nums;
 }
 
-.hero-center {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 100px;
-    z-index: 3;
-    margin-top: -3vh;
-}
-
 .hero-main {
     z-index: 3;
-    padding: 0 48px;
     text-align: center;
 }
 
@@ -296,7 +286,11 @@ body {
 /* ===== HERO BOTTOM CTA ===== */
 
 .hero-bottom {
+    position: absolute;
     z-index: 3;
+    bottom: 120px;
+    left: 50%;
+    transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -314,7 +308,7 @@ body {
 
 .hero-cta-logo img {
     display: block;
-    height: 100px;
+    height: 200px;
     width: auto;
     margin: 0 auto;
 }
@@ -1634,16 +1628,13 @@ body {
         padding: 8px 16px;
     }
 
-    .hero-center {
-        gap: 60px;
-    }
-
     .hero-bottom {
+        bottom: 80px;
         gap: 10px;
     }
 
     .hero-cta-logo img {
-        height: 90px;
+        height: 120px;
     }
 
     .hero-nav-bottom {
