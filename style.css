@@ -215,6 +215,7 @@ body {
     align-items: center;
     gap: 40px;
     z-index: 3;
+    margin-top: -3vh;
 }
 
 .hero-main {
