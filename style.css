@@ -124,7 +124,7 @@ body {
     position: relative;
     z-index: 3;
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: flex-start;
     padding: 32px 48px 0;
     animation: heroFadeDown 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
@@ -154,11 +154,6 @@ body {
     opacity: 0.6;
 }
 
-.hero-nav {
-    display: flex;
-    gap: 32px;
-}
-
 .hero-nav-link {
     font-family: var(--font-sans);
     font-size: 11px;
@@ -168,7 +163,6 @@ body {
     text-transform: uppercase;
     letter-spacing: 4px;
     transition: color 0.3s;
-    padding-top: 6px;
 }
 
 .hero-nav-link:hover,
@@ -216,10 +210,6 @@ body {
     z-index: 3;
     padding: 0 48px;
     margin-bottom: auto;
-    display: grid;
-    grid-template-columns: 1fr auto;
-    align-items: end;
-    gap: 40px;
 }
 
 .hero-name {
@@ -256,11 +246,8 @@ body {
 }
 
 .hero-label {
-    animation: heroFadeIn 1s 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation: heroFadeIn 1s 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     opacity: 0;
-    justify-self: end;
-    align-self: end;
-    margin-bottom: 8px;
 }
 
 @keyframes heroFadeIn {
@@ -287,7 +274,6 @@ body {
     position: relative;
     z-index: 3;
     align-self: center;
-    margin-bottom: 48px;
     display: flex;
     align-items: center;
     gap: 10px;
@@ -315,6 +301,52 @@ body {
 
 .timer-value {
     font-variant-numeric: tabular-nums;
+}
+
+/* ===== HERO BOTTOM CTA ===== */
+
+.hero-bottom {
+    position: relative;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
+    align-self: center;
+    margin-bottom: 48px;
+}
+
+.hero-cta-logo {
+    display: block;
+    line-height: 0;
+    text-decoration: none;
+    transition: opacity 0.3s;
+    animation: heroFadeIn 1s 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+}
+
+.hero-cta-logo img {
+    display: block;
+    height: 56px;
+    width: auto;
+    margin: 0 auto;
+}
+
+.hero-cta-logo:hover {
+    opacity: 0.6;
+}
+
+/* ===== HERO NAV BOTTOM ===== */
+
+.hero-nav-bottom {
+    position: absolute;
+    z-index: 3;
+    bottom: 48px;
+    left: 48px;
+    display: flex;
+    gap: 32px;
+    animation: heroFadeDown 1s 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
 }
 
 /* ===== GLITCH ===== */
@@ -1589,10 +1621,6 @@ body {
         height: 56px;
     }
 
-    .hero-nav {
-        gap: 20px;
-    }
-
     .hero-nav-link {
         font-size: 10px;
         letter-spacing: 3px;
@@ -1607,12 +1635,6 @@ body {
 
     .hero-main {
         padding: 0 24px;
-        grid-template-columns: 1fr;
-        gap: 8px;
-    }
-
-    .hero-label {
-        justify-self: start;
     }
 
     .hero-label a {
@@ -1623,7 +1645,21 @@ body {
     .hero-timer {
         font-size: 13px;
         padding: 8px 16px;
+    }
+
+    .hero-bottom {
+        gap: 10px;
         margin-bottom: 28px;
+    }
+
+    .hero-cta-logo img {
+        height: 44px;
+    }
+
+    .hero-nav-bottom {
+        bottom: 28px;
+        left: 24px;
+        gap: 20px;
     }
 
     .viewfinder-corner {
@@ -1753,10 +1789,6 @@ body {
         margin-top: auto;
     }
 
-    .hero-nav {
-        gap: 14px;
-    }
-
     .hero-nav-link {
         font-size: 9px;
         letter-spacing: 2px;
@@ -1764,6 +1796,15 @@ body {
 
     .hero-rec {
         right: 16px;
+    }
+
+    .hero-nav-bottom {
+        gap: 14px;
+    }
+
+    .hero-nav-bottom .hero-nav-link {
+        font-size: 9px;
+        letter-spacing: 2px;
     }
 
     .about-text {
