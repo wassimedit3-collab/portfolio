@@ -184,6 +184,52 @@ body {
     50% { opacity: 0.8; transform: translateY(6px); }
 }
 
+/* ===== HERO NAV ===== */
+
+.hero-nav {
+    display: flex;
+    gap: 40px;
+    margin-top: 40px;
+    animation: heroFade 1.5s ease forwards;
+    animation-delay: 0.6s;
+    opacity: 0;
+}
+
+.hero-nav-link {
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    transition: color 0.3s;
+}
+
+.hero-nav-link:hover,
+.hero-nav-link.active {
+    color: var(--accent);
+}
+
+/* ===== GLITCH ===== */
+
+.glitch-word {
+    display: inline-block;
+    color: var(--highlight);
+    animation: glitchOnce 0.8s ease forwards;
+}
+
+@keyframes glitchOnce {
+    0% { color: var(--highlight); transform: translate(0); }
+    4% { color: var(--accent); transform: translate(-2px, 1px) skewX(-2deg); }
+    8% { color: var(--accent); transform: translate(2px, -1px) skewX(2deg); }
+    12% { color: var(--accent); transform: translate(-1px, -1px) skewX(-1deg); }
+    16% { color: var(--accent); transform: translate(1px, 1px) skewX(1deg); }
+    20% { color: var(--accent); transform: translate(0); }
+    25% { color: var(--highlight); }
+    100% { color: var(--highlight); }
+}
+
 /* ===== SECTIONS ===== */
 
 .section {
@@ -1151,32 +1197,12 @@ body {
     }
 
     .hero-nav {
-        position: absolute;
-        top: 32px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 32px;
-        z-index: 2;
-        animation: heroFade 1.5s ease forwards;
-        animation-delay: 0.3s;
-        opacity: 0;
+        gap: 24px;
     }
 
     .hero-nav-link {
-        font-family: 'Inter', sans-serif;
         font-size: 11px;
-        font-weight: 500;
-        color: var(--text-muted);
-        text-decoration: none;
-        text-transform: uppercase;
         letter-spacing: 3px;
-        transition: color 0.3s;
-    }
-
-    .hero-nav-link:hover,
-    .hero-nav-link.active {
-        color: var(--accent);
     }
 
     .timeline-link {
