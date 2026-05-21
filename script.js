@@ -18,15 +18,60 @@ document.addEventListener('DOMContentLoaded', () => {
     updateTimer();
     setInterval(updateTimer, 1000);
 
-    // ===== SCROLL REVEAL =====
+    // ===== SCROLL REVEAL - STAGGERED PER SECTION =====
     const sections = document.querySelectorAll('.reveal');
+
     const revealObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
-                entry.target.classList.add('visible');
+                const section = entry.target;
+                section.classList.add('visible');
+
+                // Stagger children based on section type
+                const cls = section.className;
+
+                if (cls.includes('sec-skills')) {
+                    section.querySelectorAll('.cloud-tag').forEach((t, i) => {
+                        t.style.transitionDelay = (i * 60) + 'ms';
+                    });
+                }
+
+                if (cls.includes('sec-comp')) {
+                    section.querySelectorAll('.comp-tag').forEach((t, i) => {
+                        t.style.transitionDelay = (i * 40) + 'ms';
+                    });
+                }
+
+                if (cls.includes('sec-work') || cls.includes('sec-edu')) {
+                    section.querySelectorAll('.timeline-item').forEach((t, i) => {
+                        t.style.transitionDelay = (i * 120) + 'ms';
+                        t.style.opacity = '0';
+                        t.style.transform = i % 2 === 0 ? 'translateX(-20px)' : 'translateX(20px)';
+                        t.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                        requestAnimationFrame(() => {
+                            t.style.opacity = '1';
+                            t.style.transform = 'translateX(0)';
+                        });
+                    });
+                }
+
+                if (cls.includes('sec-lang')) {
+                    section.querySelectorAll('.lang-pill').forEach((t, i) => {
+                        const dirs = ['translateX(-20px)', 'translateY(-20px)', 'translateX(20px)'];
+                        t.style.opacity = '0';
+                        t.style.transform = t.style.transform + ' ' + dirs[i];
+                        t.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                        t.style.transitionDelay = (i * 150) + 'ms';
+                        requestAnimationFrame(() => {
+                            t.style.opacity = '1';
+                            t.style.transform = t.style.transform.replace(dirs[i], '');
+                        });
+                    });
+                }
             }
         });
     }, { threshold: 0.1 });
+
     sections.forEach(s => revealObserver.observe(s));
 
     // ===== BACK TO TOP =====
