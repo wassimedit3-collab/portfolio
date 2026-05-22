@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }, speeds[count] || 50);
         }
 
-        setTimeout(triggerDecode, 1000);
+        triggerDecode();
     }
 
     // ===== LIGHTBOX =====
