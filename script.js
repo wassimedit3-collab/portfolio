@@ -144,10 +144,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         galleryItems.forEach((item, index) => {
             const caption = item.querySelector('.gallery-caption');
-            const thumb = item.querySelector('.gallery-thumb');
+            const img = item.querySelector('.gallery-thumb-img');
             images.push({
                 caption: caption ? caption.textContent : '',
-                bg: thumb ? getComputedStyle(thumb).backgroundImage || '' : ''
+                src: img ? img.getAttribute('src') || '' : ''
             });
             item.style.cursor = 'pointer';
             item.addEventListener('click', () => openLightbox(index));
@@ -161,9 +161,13 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         function updateLightbox() {
-            const img = images[currentIndex];
-            lbImg.style.backgroundImage = img.bg || 'linear-gradient(135deg, #0a0a0a, #111111)';
-            lbCaption.textContent = img.caption;
+            const data = images[currentIndex];
+            if (data.src) {
+                lbImg.style.backgroundImage = 'url(' + data.src + ')';
+            } else {
+                lbImg.style.backgroundImage = 'linear-gradient(135deg, #0a0a0a, #111111)';
+            }
+            lbCaption.textContent = data.caption;
         }
 
         function closeLightbox() {
@@ -197,58 +201,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // ===== VIDEO MODAL =====
-    const videoCards = document.querySelectorAll('.project-card');
-    if (videoCards.length) {
-        const modal = document.createElement('div');
-        modal.className = 'video-modal';
-        modal.innerHTML = `
-            <button class="video-modal-close" aria-label="Close">&times;</button>
-            <div class="video-modal-content">
-                <div class="video-modal-player"></div>
-            </div>
-        `;
-        document.body.appendChild(modal);
-
-        const player = modal.querySelector('.video-modal-player');
-        const closeBtn = modal.querySelector('.video-modal-close');
-
-        let currentIframe = null;
-
-        videoCards.forEach(card => {
-            const playBtn = card.querySelector('.play-btn');
-            const videoId = card.dataset.videoId;
-            if (!playBtn || !videoId) return;
-
-            playBtn.addEventListener('click', () => {
-                currentIframe = document.createElement('iframe');
-                currentIframe.src = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
-                currentIframe.allow = 'autoplay; encrypted-media';
-                currentIframe.allowFullscreen = true;
-                player.appendChild(currentIframe);
-                modal.classList.add('active');
-                document.body.style.overflow = 'hidden';
-            });
-        });
-
-        function closeModal() {
-            modal.classList.remove('active');
-            document.body.style.overflow = '';
-            if (currentIframe) {
-                currentIframe.remove();
-                currentIframe = null;
-            }
-        }
-
-        closeBtn.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
-        });
-        document.addEventListener('keydown', (e) => {
-            if (modal.classList.contains('active') && e.key === 'Escape') closeModal();
-        });
-    }
-
     // ===== PORTFOLIO FILTER =====
     const filterContainer = document.querySelector('.filter-bar');
     const filterCards = document.querySelectorAll('.category-card');
@@ -277,6 +229,42 @@ document.addEventListener('DOMContentLoaded', () => {
 
         filterCards.forEach(c => c.style.transition = 'opacity 0.3s ease');
         filterBtns[0]?.click();
+    }
+
+    // ===== LOGO CAROUSEL =====
+    const carousel = document.getElementById('logoCarousel');
+    if (carousel) {
+        const track = carousel.querySelector('.carousel-track');
+        const slides = carousel.querySelectorAll('.carousel-slide');
+        const prevBtn = carousel.querySelector('.carousel-prev');
+        const nextBtn = carousel.querySelector('.carousel-next');
+        const dotsContainer = carousel.querySelector('.carousel-dots');
+        let currentIndex = 0;
+        const totalSlides = slides.length;
+
+        slides.forEach((_, i) => {
+            const dot = document.createElement('button');
+            dot.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+            dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+            dot.addEventListener('click', () => goToSlide(i));
+            dotsContainer.appendChild(dot);
+        });
+
+        function goToSlide(index) {
+            currentIndex = index;
+            track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+            dotsContainer.querySelectorAll('.carousel-dot').forEach((d, i) => {
+                d.classList.toggle('active', i === currentIndex);
+            });
+        }
+
+        prevBtn.addEventListener('click', () => {
+            goToSlide((currentIndex - 1 + totalSlides) % totalSlides);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            goToSlide((currentIndex + 1) % totalSlides);
+        });
     }
 
     // ===== CONTACT FORM =====
