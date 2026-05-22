@@ -385,6 +385,19 @@ body {
     animation-delay: 1.8s;
 }
 
+.glitch-word.decoding {
+    font-family: var(--font-mono);
+    letter-spacing: 6px;
+    color: #00ffff;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.6), 0 0 60px rgba(0, 255, 255, 0.3);
+    animation: none;
+}
+
+.glitch-word.decoding::before,
+.glitch-word.decoding::after {
+    display: none;
+}
+
 .glitch-word::before,
 .glitch-word::after {
     content: attr(data-text);

@@ -145,6 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
         let decodeTimer;
 
         function triggerDecode() {
+            glitchWord.classList.add('decoding');
             let count = 0;
             const maxSteps = 10;
             const speeds = [80, 70, 60, 50, 40, 30, 25, 20, 15, 10];
@@ -162,6 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (count >= maxSteps) {
                     clearInterval(decodeTimer);
                     glitchWord.textContent = originalText;
+                    glitchWord.classList.remove('decoding');
                 }
             }, speeds[count] || 50);
         }
