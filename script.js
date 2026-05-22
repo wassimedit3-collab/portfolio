@@ -64,7 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     const glitchLink = section.querySelector('.glitch-link');
                     if (glitchLink && !glitchLink.dataset.decoded) {
                         glitchLink.dataset.decoded = 'true';
-                        setTimeout(() => triggerDecode(glitchLink), 400);
+                        setTimeout(() => triggerDecode(glitchLink, 0.4), 400);
                     }
                 }
 
@@ -146,13 +146,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // ===== DECODE EFFECT (reusable) =====
-    function triggerDecode(el) {
+    function triggerDecode(el, speedMul) {
         const originalText = el.getAttribute('data-text') || el.textContent;
         const chars = '!@#$%^&*0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         el.classList.add('decoding');
         let count = 0;
         const maxSteps = 10;
-        const speeds = [80, 70, 60, 50, 40, 30, 25, 20, 15, 10];
+        const baseSpeeds = [80, 70, 60, 50, 40, 30, 25, 20, 15, 10];
+        const speeds = baseSpeeds.map(s => Math.round(s * (speedMul || 1)));
         const decodeTimer = setInterval(() => {
             let scrambled = '';
             for (let i = 0; i < originalText.length; i++) {
