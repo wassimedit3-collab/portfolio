@@ -509,4 +509,3 @@ const categoryImageFolders = {
   'experimental-objects': 'experimental-objects',
   'nature-animals': 'nature-animals',
 };
-};
