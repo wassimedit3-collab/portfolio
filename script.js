@@ -137,20 +137,25 @@ document.addEventListener('DOMContentLoaded', () => {
         window.dispatchEvent(new Event('scroll'));
     }
 
-    // ===== VISION GLITCH — DECODE EFFECT =====
+    // ===== VISION GLITCH — DECODE EFFECT (fires once on load) =====
     const glitchWord = document.querySelector('.glitch-word');
     if (glitchWord) {
         const originalText = glitchWord.getAttribute('data-text') || glitchWord.textContent;
-        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
+        const chars = '!@#$%^&*0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         let decodeTimer;
 
         function triggerDecode() {
             let count = 0;
-            const maxSteps = 6;
+            const maxSteps = 10;
+            const speeds = [80, 70, 60, 50, 40, 30, 25, 20, 15, 10];
             decodeTimer = setInterval(() => {
                 let scrambled = '';
                 for (let i = 0; i < originalText.length; i++) {
-                    scrambled += chars[Math.floor(Math.random() * chars.length)];
+                    if (count > maxSteps - 3 && Math.random() > 0.5) {
+                        scrambled += originalText[i];
+                    } else {
+                        scrambled += chars[Math.floor(Math.random() * chars.length)];
+                    }
                 }
                 glitchWord.textContent = scrambled;
                 count++;
@@ -158,10 +163,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     clearInterval(decodeTimer);
                     glitchWord.textContent = originalText;
                 }
-            }, 50);
+            }, speeds[count] || 50);
         }
 
-        setInterval(triggerDecode, 5000);
+        setTimeout(triggerDecode, 1000);
     }
 
     // ===== LIGHTBOX =====
