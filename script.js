@@ -117,6 +117,21 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
+    // ===== HERO NAV HEADER VISIBLE ON SCROLL =====
+    const heroNavHeader = document.querySelector('.hero-nav-header');
+    if (heroNavHeader) {
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    heroNavHeader.classList.toggle('visible', window.scrollY > 0);
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
+        window.dispatchEvent(new Event('scroll'));
+    }
+
     // ===== LIGHTBOX =====
     const galleryItems = document.querySelectorAll('.gallery-item');
     if (galleryItems.length) {

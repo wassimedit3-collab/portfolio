@@ -185,7 +185,7 @@ body {
 .hero-rec {
     position: absolute;
     z-index: 3;
-    top: 104px;
+    top: 72px;
     right: 48px;
     display: flex;
     align-items: center;
@@ -331,11 +331,29 @@ body {
     position: absolute;
     z-index: 3;
     bottom: 24px;
-    left: 24px;
+    right: 24px;
     display: flex;
     gap: 8px;
-    animation: heroFadeDown 1s 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.hero-nav-header.visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+.hero-nav-header .hero-nav-link {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+}
+
+.hero-nav-header .hero-nav-link.active {
+    background: var(--burgundy);
+    border-color: var(--burgundy);
+    color: #000;
 }
 
 /* ===== HERO NAV BOTTOM ===== */
@@ -1984,13 +2002,14 @@ body {
 
     .hero-nav-header {
         bottom: 12px;
-        left: 12px;
+        right: 12px;
         gap: 6px;
     }
 
     .hero-nav-header .hero-nav-link {
         font-size: 10px;
         padding: 8px 14px;
+        border-width: 1px;
     }
 
     .section {
@@ -2126,7 +2145,7 @@ body {
 
     .hero-nav-header {
         bottom: 10px;
-        left: 10px;
+        right: 10px;
         gap: 4px;
     }
 
