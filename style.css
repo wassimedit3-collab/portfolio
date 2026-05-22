@@ -1613,6 +1613,37 @@ body {
     transform: translateX(4px);
 }
 
+/* ===== SELECTED WORK PREVIEW ===== */
+
+.selected-work-preview {
+    margin-bottom: 48px;
+}
+
+.preview-link {
+    display: inline-block;
+    margin-top: 24px;
+    font-family: var(--font-sans);
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--accent);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    transition: opacity 0.3s;
+}
+
+.preview-link:hover {
+    opacity: 0.7;
+}
+
+/* ===== CATEGORY CARD WITH COVER IMAGE ===== */
+
+.category-card.has-cover .category-info {
+    background: transparent;
+    position: relative;
+    z-index: 1;
+}
+
 /* ===== BACK TO TOP ===== */
 
 .back-to-top {
