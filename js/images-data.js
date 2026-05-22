@@ -127,7 +127,7 @@ const imagesData = {
     const i = this.categories.findIndex(c => c.id === id);
     return this.categories[(i + 1) % this.categories.length];
   }
-,
+};
 // Generated image data — populated from AI classification archive
 
 const selectedWorkImages = [
