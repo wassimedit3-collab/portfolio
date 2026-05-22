@@ -60,6 +60,14 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 }
 
+                if (cls.includes('sec-portfolio')) {
+                    const glitchLink = section.querySelector('.glitch-link');
+                    if (glitchLink && !glitchLink.dataset.decoded) {
+                        glitchLink.dataset.decoded = 'true';
+                        setTimeout(() => triggerDecode(glitchLink), 400);
+                    }
+                }
+
                 if (cls.includes('sec-lang')) {
                     section.querySelectorAll('.lang-pill').forEach((t, i) => {
                         const dirs = ['translateX(-20px)', 'translateY(-20px)', 'translateX(20px)'];
@@ -137,39 +145,36 @@ document.addEventListener('DOMContentLoaded', () => {
         window.dispatchEvent(new Event('scroll'));
     }
 
-    // ===== VISION GLITCH — DECODE EFFECT (fires once on load) =====
-    const glitchWord = document.querySelector('.glitch-word');
-    if (glitchWord) {
-        const originalText = glitchWord.getAttribute('data-text') || glitchWord.textContent;
+    // ===== DECODE EFFECT (reusable) =====
+    function triggerDecode(el) {
+        const originalText = el.getAttribute('data-text') || el.textContent;
         const chars = '!@#$%^&*0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-        let decodeTimer;
-
-        function triggerDecode() {
-            glitchWord.classList.add('decoding');
-            let count = 0;
-            const maxSteps = 10;
-            const speeds = [80, 70, 60, 50, 40, 30, 25, 20, 15, 10];
-            decodeTimer = setInterval(() => {
-                let scrambled = '';
-                for (let i = 0; i < originalText.length; i++) {
-                    if (count > maxSteps - 3 && Math.random() > 0.5) {
-                        scrambled += originalText[i];
-                    } else {
-                        scrambled += chars[Math.floor(Math.random() * chars.length)];
-                    }
+        el.classList.add('decoding');
+        let count = 0;
+        const maxSteps = 10;
+        const speeds = [80, 70, 60, 50, 40, 30, 25, 20, 15, 10];
+        const decodeTimer = setInterval(() => {
+            let scrambled = '';
+            for (let i = 0; i < originalText.length; i++) {
+                if (count > maxSteps - 3 && Math.random() > 0.5) {
+                    scrambled += originalText[i];
+                } else {
+                    scrambled += chars[Math.floor(Math.random() * chars.length)];
                 }
-                glitchWord.textContent = scrambled;
-                count++;
-                if (count >= maxSteps) {
-                    clearInterval(decodeTimer);
-                    glitchWord.textContent = originalText;
-                    glitchWord.classList.remove('decoding');
-                }
-            }, speeds[count] || 50);
-        }
-
-        triggerDecode();
+            }
+            el.textContent = scrambled;
+            count++;
+            if (count >= maxSteps) {
+                clearInterval(decodeTimer);
+                el.textContent = originalText;
+                el.classList.remove('decoding');
+            }
+        }, speeds[count] || 50);
     }
+
+    // ===== VISION GLITCH — fire decode on load =====
+    const glitchWord = document.querySelector('.glitch-word');
+    if (glitchWord) triggerDecode(glitchWord);
 
     // ===== LIGHTBOX =====
     const galleryItems = document.querySelectorAll('.gallery-item');

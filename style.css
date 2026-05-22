@@ -515,6 +515,55 @@ body {
     54% { opacity: 0; }
 }
 
+/* ===== GLITCH LINK (View My Work) ===== */
+
+.glitch-link {
+    position: relative;
+    display: inline-block;
+    animation: hardGlitch 3s steps(1) infinite;
+    animation-delay: 1.8s;
+}
+
+.glitch-link::before,
+.glitch-link::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    opacity: 0;
+    mix-blend-mode: screen;
+}
+
+.glitch-link::before {
+    color: #00ffff;
+    z-index: -1;
+    animation: glitchTopRGB 3s steps(1) infinite;
+    animation-delay: 1.8s;
+}
+
+.glitch-link::after {
+    color: #ff00ff;
+    z-index: -2;
+    animation: glitchBottomRGB 3s steps(1) infinite;
+    animation-delay: 1.8s;
+}
+
+.glitch-link.decoding {
+    font-family: var(--font-mono);
+    letter-spacing: 6px;
+    color: #00ffff;
+    text-shadow: 0 0 20px rgba(0, 255, 255, 0.6), 0 0 60px rgba(0, 255, 255, 0.3);
+    animation: none;
+}
+
+.glitch-link.decoding::before,
+.glitch-link.decoding::after {
+    display: none;
+}
+
 /* ===== SECTIONS BASE ===== */
 
 .section {
@@ -848,37 +897,6 @@ body {
     background: var(--bg-alt);
     color: var(--text);
     border-left-color: var(--accent);
-}
-
-/* ===== PORTFOLIO GLITCH ===== */
-
-.port-link-text {
-    animation: glitchLoop 3s ease-in-out infinite;
-}
-
-@keyframes glitchLoop {
-    0%, 100% { transform: translate(0); color: var(--text-white); }
-    2% { transform: translate(-4px, 2px) skewX(-3deg); color: var(--accent); }
-    4% { transform: translate(4px, -2px) skewX(3deg); color: var(--text-white); }
-    6% { transform: translate(-2px, -1px) skewX(-1deg); }
-    8% { transform: translate(2px, 1px) skewX(1deg); }
-    10% { transform: translate(0); }
-    22% { transform: translate(0); }
-    24% { transform: translate(-3px, 0) skewX(-2deg); color: var(--accent); }
-    26% { transform: translate(0); color: var(--text-white); }
-    38% { transform: translate(0); }
-    40% { transform: translate(3px, -2px) skewX(-2deg); }
-    42% { transform: translate(-2px, 1px) skewX(2deg); }
-    44% { transform: translate(0); }
-    56% { transform: translate(0); }
-    58% { transform: translate(-3px, -1px) skewX(2deg); color: var(--accent); }
-    60% { transform: translate(0); color: var(--text-white); }
-    72% { transform: translate(0); }
-    74% { transform: translate(4px, 2px) skewX(-2deg); }
-    76% { transform: translate(0); }
-    88% { transform: translate(0); }
-    90% { transform: translate(-2px, -2px) skewX(1deg); color: var(--accent); }
-    92% { transform: translate(0); color: var(--text-white); }
 }
 
 /* ===== PORTFOLIO SECTION ===== */
