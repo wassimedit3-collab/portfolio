@@ -1,0 +1,177 @@
+# Session 2 — Sub-Page Construction, SEO & Speed Optimization
+## Date: May 22, 2026
+
+## Git Log (most recent first)
+```
+14b0905 Performance: async non-blocking Google Fonts, reduced font weights, broken image fallback, defer gallery JS
+f436ab7 SEO & performance: canonical URLs, defer JS, preload logo, JSON-LD, robots/sitemap, fixed nav, lazy images, masonry aspect-ratio
+57e5cc0 Portfolio sub-page construction: video thumbnails/links, masonry galleries, logo carousel, media assets folders
+b9bf2c0 UI retouch: enrich CV content, collapsible skills/comp, portfolio glitch, soft gray text, language alignment, sub-page cleanup
+```
+
+## Current File Structure
+```
+portfolio/
+├── index.html                      (home page)
+├── style.css                       (~2120 lines)
+├── script.js                       (~326 lines)
+├── robots.txt                      (NEW — search engine crawl rules)
+├── sitemap.xml                     (NEW — 22 URLs listed)
+├── hero-logo.svg
+├── .nojekyll
+├── .github/workflows/deploy.yml
+│
+├── assets/
+│   ├── images/
+│   │   ├── architecture-place/     (32 images, JS-driven gallery)
+│   │   ├── commercial/             (0 images — awaiting uploads)
+│   │   ├── conceptual-portraits/   (39 images, JS-driven gallery)
+│   │   ├── editorial-still-life/   (36 images, JS-driven gallery)
+│   │   ├── experimental-objects/   (31 images, JS-driven gallery)
+│   │   ├── machines-motion/        (27 images, JS-driven gallery)
+│   │   ├── manipulation/           (0 images — awaiting uploads)
+│   │   ├── nature-animals/         (10 images, JS-driven gallery)
+│   │   ├── night-neon/             (22 images, JS-driven gallery)
+│   │   ├── personal/               (0 images — awaiting uploads)
+│   │   ├── portrait/               (0 images — awaiting uploads)
+│   │   ├── portrait-narratives/    (53 images, JS-driven gallery)
+│   │   ├── posters-key-art/        (23 images, JS-driven gallery)
+│   │   ├── product-commercial/     (11 images, JS-driven gallery)
+│   │   └── selected-work/          (24 images, JS-driven gallery)
+│   ├── videos/                     (0 files — awaiting video thumbnails)
+│   └── logos/                      (10 logo images)
+│
+├── js/
+│   ├── images-data.js              (42KB — all gallery image data)
+│   └── gallery-render.js           (2KB — gallery renderer)
+│
+├── *.html (21 pages total)
+│
+├── *** MAIN PAGES ***
+│   index.html
+│   portfolio.html
+│   portfolio-videos.html
+│   portfolio-photography.html
+│   portfolio-logos.html
+│   social.html
+│
+├── *** PHOTOGRAPHY GALLERIES (inline images — awaiting uploads) ***
+│   photography-portrait.html
+│   photography-commercial.html
+│   photography-personal.html
+│   photography-manipulation.html
+│
+└── *** PHOTOGRAPHY GALLERIES (JS-driven — images loaded) ***
+    photography-architecture-place.html
+    photography-conceptual-portraits.html
+    photography-editorial-still-life.html
+    photography-experimental-objects.html
+    photography-machines-motion.html
+    photography-nature-animals.html
+    photography-night-neon.html
+    photography-portrait-narratives.html
+    photography-posters-key-art.html
+    photography-product-commercial.html
+    photography-selected-work.html
+```
+
+## Page Hierarchy
+```
+index.html (Home — 8-section single page)
+└── portfolio.html (Hub — filter: All / Videos / Photography / Logos)
+    ├── portfolio-videos.html (3 YouTube-linked cards with play overlays)
+    ├── portfolio-photography.html (subcategory cards → 15 galleries)
+    │   ├── photography-portrait.html          [masonry, needs images]
+    │   ├── photography-commercial.html        [masonry, needs images]
+    │   ├── photography-personal.html          [masonry, needs images]
+    │   ├── photography-manipulation.html      [masonry, needs images]
+    │   ├── photography-architecture-place.html [JS gallery, loaded]
+    │   ├── photography-conceptual-portraits.html [JS gallery, loaded]
+    │   ├── photography-editorial-still-life.html [JS gallery, loaded]
+    │   ├── photography-experimental-objects.html [JS gallery, loaded]
+    │   ├── photography-machines-motion.html     [JS gallery, loaded]
+    │   ├── photography-nature-animals.html      [JS gallery, loaded]
+    │   ├── photography-night-neon.html          [JS gallery, loaded]
+    │   ├── photography-portrait-narratives.html [JS gallery, loaded]
+    │   ├── photography-posters-key-art.html     [JS gallery, loaded]
+    │   ├── photography-product-commercial.html  [JS gallery, loaded]
+    │   └── photography-selected-work.html       [JS gallery, loaded]
+    └── portfolio-logos.html (6-slide carousel, 10 logos loaded)
+└── social.html (YouTube links: @WASSIMVISUAL, @ZZ3EF, @ElDhahby)
+```
+
+## CSS Variables
+```
+--bg: #000000
+--bg-alt: #050505
+--bg-card: #0a0a0a
+--accent: #e50914 (Netflix red)
+--accent-dim: rgba(229, 9, 20, 0.15)
+--accent-glow: rgba(229, 9, 20, 0.3)
+--accent-muted: rgba(229, 9, 20, 0.06)
+--burgundy: #800020
+--burgundy-dim: rgba(128, 0, 32, 0.2)
+--text: #c0c0c0 (soft gray)
+--text-white: #f0f0f0
+--text-muted: #6a6a7a
+--text-dim: #333333
+--border: #1a1a1a
+--font-serif: 'Playfair Display', serif
+--font-sans: 'Inter', ...sans-serif
+--font-mono: 'Rajdhani', monospace
+```
+
+## Key Animations
+| Animation | Duration | Element |
+|-----------|----------|---------|
+| `cornerAppear` | 0.8s | Viewfinder corners |
+| `heroFadeDown` | 1s | Hero elements (staggered) |
+| `heroFadeIn` | 1s | CTA logo, label |
+| `recPulse` | 1.5s infinite | REC dot, timer dot |
+| `glitchOnce` | 4s | "Vision" word (hero) |
+| `glitchLoop` | 3s infinite | "View My Work" (portfolio CTA) |
+
+## Responsive Breakpoints
+- 768px: reduced padding, stacked grids, smaller fonts, column-count 2 for masonry
+- 480px: tighter nav, smaller hero pieces, column-count 1 for masonry
+
+## Changes Applied This Session
+
+### 1. Portfolio Sub-Page Construction
+- **Video page** (`portfolio-videos.html`): Cards now wrap in `<a>` linking to YouTube. Added `<img>` thumbnails from `assets/videos/`. Removed old video modal (CSS + JS cleaned out).
+- **4 photography galleries** (portrait, commercial, personal, manipulation): Converted from empty `.gallery-thumb` divs to `<img>` tags with `loading="lazy"`, `width="800"`, `height="600"`. Lightbox updated to read `<img>` src instead of background-image.
+- **Logo page** (`portfolio-logos.html`): Replaced 6-card grid with JS carousel (arrow buttons + dot indicators, smooth cubic-bezier transitions). Carousel module added to `script.js`. Images from `assets/logos/`.
+
+### 2. Photo Gallery Masonry Layout
+- `.gallery-masonry` added to CSS: uses `column-count: 3` (→ 2 at 768px → 1 at 480px).
+- `.gallery-item` uses `break-inside: avoid; margin-bottom: 16px`.
+- Images have `aspect-ratio: 4/3; object-fit: cover` to prevent layout shifts.
+
+### 3. Navigation — Fixed Bottom Red Buttons
+- **All 21 pages**: `.hero-nav-bottom` is now `position: fixed; bottom: 0; width: 100%` with dark bar + blur.
+- `.hero-nav-link`: filled red (`--accent`) background, black text, padding 10px 24px.
+- Active page uses `--burgundy` red.
+- Added `body { padding-bottom: 72px }` to prevent content overlap.
+- On `index.html`, nav moved out of `<header class="hero">` to standalone.
+
+### 4. SEO Foundations
+- **robots.txt**: Allows all crawlers, points to sitemap.
+- **sitemap.xml**: Lists all 22 pages with priority levels.
+- **Canonical URLs**: `<link rel="canonical">` on every page.
+- **JSON-LD Person schema**: Added to `index.html` (name, jobTitle, email, sameAs YouTube channels).
+- **Font weights reduced**: 18→12 variants (dropped italic Playfair, unused Rajdhani 300/400/700, unused Inter 700).
+
+### 5. Performance Optimizations
+- **Async Google Fonts**: Font CSS now loads with `media="print" onload="this.media='all'"` — non-render-blocking. Page paints instantly with fallback fonts.
+- **defer on script.js**: JavaScript no longer blocks rendering.
+- **defer on gallery JS**: `images-data.js` (42KB) and `gallery-render.js` (2KB) now load deferred on all 11 JS-driven gallery pages.
+- **Preload hero-logo.svg**: Critical SVG loads early on `index.html`.
+- **Broken image fallback**: `onerror="this.remove()"` on all gallery images — shows gradient placeholder instead of 404.
+
+## Pending / Next Session Notes
+1. **Upload images** to `assets/images/{category}/` for the 4 inline-gallery pages (portrait, commercial, personal, manipulation) — current placeholder: `<img onerror="this.remove()">` shows gradient background.
+2. **Upload video thumbnails** to `assets/videos/` — filenames expected: `music-video-production.jpg`, `commercial-videos.jpg`, `visual-experiments.jpg`.
+3. **Formspree ID** — Replace `PLACEHOLDER` in `index.html` contact form action URL.
+4. **Logo carousel spotlight** — Optionally add click-to-view-fullsize (uses existing lightbox).
+5. **Portfolio hub filter** — The filter bar on `portfolio.html` works for All/Videos/Photography/Logos.
+6. **images-data.js** — Currently 42KB monolithic file. Could be split per-category for faster loads.
