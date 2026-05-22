@@ -1,0 +1,277 @@
+==============================================================================
+ PAGES BUILDING — Session Progress Record
+==============================================================================
+ Date: Thu May 22 01:59 UTC 2026
+ Project: Wassim Vision Photography Portfolio
+ Repo: github.com/wassimedit3-collab/portfolio.git
+ Local path: /home/dablu/Desktop/my-port/portfolio/
+ External drive: /media/dablu/866CF7876CF76FF3/
+ Archive root: /media/dablu/866CF7876CF76FF3/portfolio triple v/filnal pictures portfolio/AI classification/
+ Prompt files: /media/dablu/866CF7876CF76FF3/portfolio triple v/opencode-prompts/
+==============================================================================
+
+==============================================================================
+ PHASE 1 — BUILD STRUCTURE (completed)
+==============================================================================
+ Prompt file: images-section-build.md
+ Description: Create Images section page structure, routing, gallery components,
+              data placeholders. No image imports.
+
+ Files created/modified:
+ ┌──────────────────────────────────────────────────────────────────────────┐
+ │ FILE                              │ ACTION    │ DESCRIPTION              │
+ ├──────────────────────────────────────────────────────────────────────────┤
+ │ js/images-data.js                 │ CREATED   │ Data layer with all      │
+ │                                   │           │ category metadata from   │
+ │                                   │           │ 12 page-description.txt  │
+ │                                   │           │ files. Helper methods:   │
+ │                                   │           │ getCategory, getPrimary, │
+ │                                   │           │ getSecondary, getPrev,   │
+ │                                   │           │ getNext                  │
+ ├──────────────────────────────────────────────────────────────────────────┤
+ │ portfolio-photography.html        │ REWRITTEN │ New Images hub with:     │
+ │                                   │           │ - Hero framing work as   │
+ │                                   │           │   client-facing          │
+ │                                   │           │ - Selected Work preview  │
+ │                                   │           │   block                  │
+ │                                   │           │ - Primary category cards │
+ │                                   │           │   (dynamically rendered) │
+ │                                   │           │ - Secondary category     │
+ │                                   │           │   cards                  │
+ │                                   │           │ - Contact CTA            │
+ ├──────────────────────────────────────────────────────────────────────────┤
+ │ photography-selected-work.html    │ CREATED   │ Editorial curated page   │
+ │                                   │           │ with all 24 shortlist    │
+ │                                   │           │ images                   │
+ ├──────────────────────────────────────────────────────────────────────────┤
+ │ photography-portrait-narratives.. │ CREATED   │ Category page: Hero,     │
+ │   html                            │           │ intro, gallery container,│
+ │                                   │           │ back/prev-next nav, CTA, │
+ │                                   │           │ SEO metadata             │
+ ├──────────────────────────────────────────────────────────────────────────┤
+ │ photography-posters-key-art.html  │ CREATED   │ Same template            │
+ ├──────────────────────────────────────────────────────────────────────────┤
+ │ photography-product-commercial..  │ CREATED   │ Same template            │
+ │   html                            │           │                          │
+ ├──────────────────────────────────────────────────────────────────────────┤
+ │ photography-editorial-still-life. │ CREATED   │ Same template            │
+ │   html                            │           │                          │
+ ├──────────────────────────────────────────────────────────────────────────┤
+ │ photography-conceptual-portraits. │ CREATED   │ Same template            │
+ │   html                            │           │                          │
+ ├──────────────────────────────────────────────────────────────────────────┤
+ │ photography-night-neon.html       │ CREATED   │ Same template            │
+ ├──────────────────────────────────────────────────────────────────────────┤
+ │ photography-architecture-place..  │ CREATED   │ Same template            │
+ │   html                            │           │                          │
+ ├──────────────────────────────────────────────────────────────────────────┤
+ │ photography-machines-motion.html  │ CREATED   │ Same template            │
+ ├──────────────────────────────────────────────────────────────────────────┤
+ │ photography-experimental-objects. │ CREATED   │ Same template            │
+ │   html                            │           │                          │
+ ├──────────────────────────────────────────────────────────────────────────┤
+ │ photography-nature-animals.html   │ CREATED   │ Same template            │
+ ├──────────────────────────────────────────────────────────────────────────┤
+ │ style.css                         │ MODIFIED  │ Added CSS for:           │
+ │                                   │           │ - .featured-link         │
+ │                                   │           │ - .category-section-label│
+ │                                   │           │ - .contact-mini          │
+ │                                   │           │ - .cat-nav               │
+ └──────────────────────────────────────────────────────────────────────────┘
+
+ Category navigation order (circular loop):
+     Portrait Narratives ↔ Posters And Key Art ↔ Product And Commercial
+     ↔ Editorial Still Life ↔ Conceptual Portraits ↔ Night And Neon
+     ↔ Architecture And Place ↔ Machines And Motion
+     ↔ Experimental Object Studies ↔ Nature And Animal Details
+     → (back to Portrait Narratives)
+
+ Primary categories (featured first):
+     Portrait Narratives, Posters And Key Art, Product And Commercial,
+     Editorial Still Life, Conceptual Portraits
+
+ Secondary categories (extended):
+     Night And Neon, Architecture And Place, Machines And Motion,
+     Experimental Object Studies, Nature And Animal Details
+
+==============================================================================
+ PHASE 2 — POPULATE IMAGES (completed)
+==============================================================================
+ Prompt file: images-section-populate.md
+ Description: Copy all images from AI classification archive into the website,
+              wire into gallery pages with proper ordering.
+
+ Files created/modified:
+ ┌──────────────────────────────────────────────────────────────────────────┐
+ │ FILE                              │ ACTION    │ DESCRIPTION              │
+ ├──────────────────────────────────────────────────────────────────────────┤
+ │ js/images-data.js                 │ MODIFIED  │ Added image arrays for   │
+ │                                   │           │ all 10 categories +      │
+ │                                   │           │ selectedWorkImages,      │
+ │                                   │           │ categoryCoverImages,     │
+ │                                   │           │ categoryImages map.      │
+ │                                   │           │ Total: 298 image entries │
+ ├──────────────────────────────────────────────────────────────────────────┤
+ │ js/gallery-render.js              │ CREATED   │ 3 functions:             │
+ │                                   │           │ - renderGallery()        │
+ │                                   │           │ - renderSelectedWork-    │
+ │                                   │           │   Preview()              │
+ │                                   │           │ - setCategoryCover()     │
+ ├──────────────────────────────────────────────────────────────────────────┤
+ │ portfolio-photography.html        │ MODIFIED  │ Added:                   │
+ │                                   │           │ - Selected Work preview  │
+ │                                   │           │   grid (first 12 images) │
+ │                                   │           │ - Category card cover    │
+ │                                   │           │   images                 │
+ │                                   │           │ - Script includes for    │
+ │                                   │           │   gallery-render.js      │
+ ├──────────────────────────────────────────────────────────────────────────┤
+ │ photography-*.html (11 pages)     │ MODIFIED  │ Added renderGallery()    │
+ │                                   │           │ call + script includes   │
+ ├──────────────────────────────────────────────────────────────────────────┤
+ │ style.css                         │ MODIFIED  │ Added CSS for:           │
+ │                                   │           │ - .selected-work-preview │
+ │                                   │           │ - .preview-link          │
+ └──────────────────────────────────────────────────────────────────────────┘
+
+ Image counts per category:
+ ┌──────────────────────────────────┬────────┬──────────────┐
+ │ CATEGORY                         │ FILES  │ SOURCE FOLDER│
+ ├──────────────────────────────────┼────────┼──────────────┤
+ │ Selected Work                    │     24 │ 00_Shortlist │
+ │ Portrait Narratives              │     53 │ 02_Portrait_ │
+ │                                  │        │   Narratives │
+ │ Posters And Key Art              │     23 │ 06_Posters_  │
+ │                                  │        │   And_Key_Art│
+ │ Product And Commercial           │     11 │ 04_Product_  │
+ │                                  │        │   And_Comm.. │
+ │ Editorial Still Life             │     36 │ 03_Editorial_│
+ │                                  │        │   Still_Life │
+ │ Conceptual Portraits             │     39 │ 01_Conceptual│
+ │                                  │        │   _Portraits │
+ │ Night And Neon                   │     22 │ 05_Night_And_│
+ │                                  │        │   Neon       │
+ │ Architecture And Place           │     32 │ 09_Architec..│
+ │                                  │        │   _And_Place │
+ │ Machines And Motion              │     27 │ 07_Machines_ │
+ │                                  │        │   _And_Motion│
+ │ Experimental Object Studies      │     31 │ 08_Experimen │
+ │                                  │        │   tal_Object │
+ │ Nature And Animal Details        │     10 │ 10_Nature_   │
+ │                                  │        │   _And_Animal│
+ ├──────────────────────────────────┼────────┼──────────────┤
+ │ TOTAL                            │    308 │ (unique)     │
+ └──────────────────────────────────┴────────┴──────────────┘
+
+ Image ordering logic:
+     1. Shortlist-ranked images first (sorted by shortlist_rank)
+     2. Remaining images sorted by numeric prefix in filename
+     3. Cover image = best-ranked shortlist image in each category
+
+ Image serving:
+     Symlinks from assets/images/{slug}/ → external drive {source_folder}/
+     (These are symlinks committed to git — for local dev only.)
+     For GitHub Pages deployment, symlinks won't resolve.
+
+==============================================================================
+ EXISTING PAGES (unchanged, still accessible)
+==============================================================================
+     index.html                          — Home page
+     portfolio.html                      — Portfolio hub
+     portfolio-videos.html               — Video projects
+     portfolio-logos.html                — Logo carousel
+     social.html                         — Social links
+     photography-portrait.html           — Old portrait gallery
+     photography-commercial.html         — Old commercial gallery
+     photography-personal.html           — Old personal gallery
+     photography-manipulation.html       — Old photo manipulation gallery
+
+==============================================================================
+ SITE MAP (21 pages total)
+==============================================================================
+     Home (index.html)
+     ├── Portfolio (portfolio.html)
+     │   ├── Videos (portfolio-videos.html)
+     │   ├── Images (portfolio-photography.html) ← NEW HUB
+     │   │   ├── Selected Work (photography-selected-work.html)
+     │   │   ├── Portrait Narratives
+     │   │   ├── Posters And Key Art
+     │   │   ├── Product And Commercial
+     │   │   ├── Editorial Still Life
+     │   │   ├── Conceptual Portraits
+     │   │   ├── Night And Neon
+     │   │   ├── Architecture And Place
+     │   │   ├── Machines And Motion
+     │   │   ├── Experimental Object Studies
+     │   │   ├── Nature And Animal Details
+     │   │   └── (old: Portrait, Commercial, Personal, Manipulation)
+     │   └── Logo Design (portfolio-logos.html)
+     └── Social (social.html)
+
+==============================================================================
+ COMMITS
+==============================================================================
+ Commit 1 (e6da12e):
+     "restructure Photography into Images section with 10 curated category
+      pages, data layer, and Selected Work shortlist"
+     19 files, +1793 lines
+
+ Commit 2 (99a7dc6):
+     "populate Images section with 322 photos from AI classification archive"
+     26 files, +516 lines
+
+==============================================================================
+ PENDING / NEXT STEPS
+==============================================================================
+ ☐ GitHub Pages deployment — symlinks won't resolve images on GitHub Pages.
+     Options:
+       1. Commit actual image files (needs ~1.6 GB disk space + git LFS)
+       2. Host images elsewhere (CDN, S3, etc.) and update paths
+       3. Reduce image resolution/compress before committing
+
+ ☐ The old 4 photography pages (portrait, commercial, personal, manipulation)
+    still exist with empty asset directories. Consider removing or updating.
+
+ ☐ Branding & Illustration categories (11, 12) are excluded per scope rules.
+    The prompt says "add low-priority Extended Visual Work area or leave hooks"
+    for these later.
+
+ ☐ Contact form has a placeholder Formspree ID — not functional.
+
+ ☐ Directory assets/images/old-categories/ (commercial, manipulation,
+    personal, portrait) are empty — old page references point to no files.
+
+==============================================================================
+ DATA LAYER REFERENCE (js/images-data.js)
+==============================================================================
+     Object: imagesData
+     ├── .selectedWork     — { title, slug, heroText, webDescription, ... }
+     ├── .categories[]     — 10 category objects with metadata
+     ├── .selectedWorkImages[] — 24 ordered shortlist entries
+     ├── .categoryImages{} — map: slug → image array
+     ├── .categoryCoverImages{} — map: slug → cover filename
+     ├── .getCategory(id)
+     ├── .getPrimary()
+     ├── .getSecondary()
+     ├── .getPrev(id)
+     └── .getNext(id)
+
+==============================================================================
+ GALLERY RENDERER (js/gallery-render.js)
+==============================================================================
+     Functions:
+     - renderGallery(containerId, categoryId)
+         → builds .gallery-item divs from categoryImages[categoryId]
+     - renderSelectedWorkPreview(containerId, count)
+         → renders first `count` images from selectedWorkImages
+     - setCategoryCover(cardElement, categoryId)
+         → sets background image on a category card element
+
+==============================================================================
+ DESIGN SYSTEM
+==============================================================================
+     Theme: Cinematic dark (black bg, red #e50914 accent)
+     Fonts: Playfair Display (serif), Inter (sans), Rajdhani (mono)
+     Galleries: .gallery-masonry (CSS column-count: 3)
+     Lightbox: Dynamic JS (created by script.js on .gallery-item elements)
+==============================================================================
