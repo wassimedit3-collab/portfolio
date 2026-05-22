@@ -692,6 +692,41 @@ body {
     height: auto;
 }
 
+.sec-work .sec-headline,
+.sec-portfolio .sec-headline,
+.sec-skills .sec-headline,
+.sec-comp .sec-headline,
+.sec-edu .sec-headline,
+.sec-lang .sec-headline,
+.sec-contact .sec-headline {
+    font-size: clamp(12px, 1.4vw, 15px);
+}
+
+.sec-work .sec-headline,
+.sec-portfolio .sec-headline {
+    background: linear-gradient(90deg, var(--accent), #ff6b6b, var(--accent));
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: 0% center; }
+    50% { background-position: 100% center; }
+    100% { background-position: 0% center; }
+}
+
+.sec-contact .sec-headline {
+    animation: breathPulse 3s ease-in-out infinite;
+}
+
+@keyframes breathPulse {
+    0%, 100% { opacity: 1; text-shadow: 0 0 0 transparent; }
+    50% { opacity: 0.85; text-shadow: 0 0 20px var(--accent-glow); }
+}
+
 .about-text {
     font-family: var(--font-serif);
     font-size: clamp(18px, 2.2vw, 28px);
