@@ -44,6 +44,7 @@ body {
     min-height: 100vh;
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
+    padding-bottom: 72px;
 }
 
 ::selection {
@@ -162,17 +163,23 @@ body {
 .hero-nav-link {
     font-family: var(--font-sans);
     font-size: 11px;
-    font-weight: 500;
-    color: var(--text-muted);
+    font-weight: 600;
+    color: #000;
     text-decoration: none;
     text-transform: uppercase;
-    letter-spacing: 4px;
-    transition: color 0.3s;
+    letter-spacing: 3px;
+    background: var(--accent);
+    padding: 10px 24px;
+    transition: opacity 0.3s, transform 0.3s;
 }
 
-.hero-nav-link:hover,
+.hero-nav-link:hover {
+    opacity: 0.85;
+    transform: translateY(-2px);
+}
+
 .hero-nav-link.active {
-    color: var(--accent);
+    background: var(--burgundy);
 }
 
 .hero-rec {
@@ -321,12 +328,18 @@ body {
 /* ===== HERO NAV BOTTOM ===== */
 
 .hero-nav-bottom {
-    position: absolute;
-    z-index: 3;
-    bottom: 48px;
-    left: 48px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
     display: flex;
-    gap: 32px;
+    justify-content: center;
+    gap: 16px;
+    padding: 14px 24px;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     animation: heroFadeDown 1s 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     opacity: 0;
 }
@@ -1429,11 +1442,14 @@ body {
     position: relative;
     overflow: hidden;
     background: linear-gradient(135deg, var(--bg-alt) 0%, #0a0a0a 100%);
+    min-height: 160px;
 }
 
 .gallery-thumb-img {
     width: 100%;
     display: block;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
 }
 
 .gallery-caption {
@@ -1905,7 +1921,7 @@ body {
 
     .hero-nav-link {
         font-size: 10px;
-        letter-spacing: 3px;
+        padding: 8px 16px;
     }
 
     .hero-rec {
@@ -1939,9 +1955,8 @@ body {
     }
 
     .hero-nav-bottom {
-        bottom: 28px;
-        left: 24px;
-        gap: 20px;
+        padding: 10px 16px;
+        gap: 12px;
     }
 
     .viewfinder-corner {
@@ -2077,6 +2092,7 @@ body {
 
     .hero-nav-link {
         font-size: 9px;
+        padding: 6px 12px;
         letter-spacing: 2px;
     }
 
@@ -2085,12 +2101,13 @@ body {
     }
 
     .hero-nav-bottom {
-        gap: 14px;
+        padding: 8px 12px;
+        gap: 10px;
     }
 
     .hero-nav-bottom .hero-nav-link {
         font-size: 9px;
-        letter-spacing: 2px;
+        padding: 6px 12px;
     }
 
     .about-text {
