@@ -123,7 +123,7 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('scroll', () => {
             if (!ticking) {
                 requestAnimationFrame(() => {
-                    heroNavHeader.classList.toggle('visible', window.scrollY > 0);
+                    heroNavHeader.classList.toggle('visible', window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 100);
                     ticking = false;
                 });
                 ticking = true;
