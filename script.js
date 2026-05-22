@@ -132,6 +132,33 @@ document.addEventListener('DOMContentLoaded', () => {
         window.dispatchEvent(new Event('scroll'));
     }
 
+    // ===== VISION GLITCH — DECODE EFFECT =====
+    const glitchWord = document.querySelector('.glitch-word');
+    if (glitchWord) {
+        const originalText = glitchWord.getAttribute('data-text') || glitchWord.textContent;
+        const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*';
+        let decodeTimer;
+
+        function triggerDecode() {
+            let count = 0;
+            const maxSteps = 6;
+            decodeTimer = setInterval(() => {
+                let scrambled = '';
+                for (let i = 0; i < originalText.length; i++) {
+                    scrambled += chars[Math.floor(Math.random() * chars.length)];
+                }
+                glitchWord.textContent = scrambled;
+                count++;
+                if (count >= maxSteps) {
+                    clearInterval(decodeTimer);
+                    glitchWord.textContent = originalText;
+                }
+            }, 50);
+        }
+
+        setInterval(triggerDecode, 5000);
+    }
+
     // ===== LIGHTBOX =====
     const galleryItems = document.querySelectorAll('.gallery-item');
     if (galleryItems.length) {
