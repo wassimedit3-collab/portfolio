@@ -1,0 +1,129 @@
+# UI Retouch — Session Log & State
+
+## Session Date
+May 21, 2026
+
+## Files Modified
+- `index.html` — Major restructuring
+- `style.css` — New collapse system, color-mix, glitch animations, layout changes
+- `script.js` — Collapse toggle for Skills & Competencies
+
+## Changes Applied (9 Items)
+
+### 1. About Section
+- **Removed** the "01" number from `.sec-about-headline`
+- **Increased** "ABOUT" headline font-size from `11px` → `clamp(13px, 1.5vw, 17px)`
+- **Reduced** `min-width` on `.sec-about-headline` from `80px` → `auto`
+
+### 2. Work Section — Enriched Descriptions
+- **@ElDhahby**: "Edited rhythm-driven music videos using beat-synced montage across Premiere Pro & DaVinci Resolve. Handled sound design integration, audio sync, and produced thumbnail designs plus social-cut versions for YouTube Shorts/Reels. Managed asset handoffs with remote teams via Google Drive."
+- **@ZZ3EF**: "Owned full post-production pipeline from assembly cut to final export. Performed node-based cinematic colour grading with LUT creation and HDR correction in DaVinci Resolve. Built VFX composites including green screen, particle systems, and motion tracking in After Effects. Created motion graphics, lyric videos, and animated lower-thirds. Integrated AI-assisted tools for upscaling, noise reduction, and automated transcription."
+- **Home of Culture**: "Covered cultural events and performances through documentary and artistic photography with edited delivery under deadline. Retouched and colour-corrected images in Lightroom & Photoshop; produced promotional visuals for social media."
+- **Text color**: `.timeline-desc` changed from `var(--text-muted)` → `var(--text-white)`
+
+### 3. Work Section — Year Numbers Opacity
+- `.tk-year` elements now have `opacity: 0.15` — faded into the background
+
+### 4. Skills — Collapsible Accordion
+- Wrapped `.skill-cloud` in `<div class="collapse-content">`
+- Starts **collapsed** (`max-height: 0; overflow: hidden`)
+- Click "SKILLS" headline to toggle open/closed (`max-height: 2000px`)
+- `+` indicator after headline text, rotates `45deg` when open
+- Stagger delay (60ms per tag) applied on open
+
+### 5. Competencies — Collapsible Accordion
+- Same system as Skills
+- `.comp-grid` wrapped in `<div class="collapse-content">`
+- 40ms stagger per tag on open
+
+### 6. Portfolio — Moved & Glitch Hook
+- **Moved** from position #5 to position #3 (after Work, before Skills)
+- Section numbers reordered: Portfolio→03, Skills→04, Competencies→05
+- "View My Work" text has **continuous glitch animation** `glitchLoop`:
+  - Runs every 3s, infinite
+  - Position shifts (translate/skew) + red color flashes
+  - Designed as a visual hook to drive clicks to YouTube
+- `.port-link-text` has `animation: glitchLoop 3s ease-in-out infinite`
+
+### 7. Education — Enriched Descriptions
+- **Bachelor Photography**: "Relevant modules include video editing & post-production, cinematic language, colour grading, art direction, sound & montage theory, and multimedia creation."
+- **E-Commerce Certificate**: "Covered Meta Ads, SEO, content strategy, analytics, AI content tools, social media growth, and personal branding."
+
+### 8. Languages — Aligned Row + Color by Proficiency
+- Changed from `.lang-scatter` (absolute positioned, scattered) → `.lang-row` (flex row, centered)
+- All three language pills aligned in one horizontal row
+- Color-coded via `--level` custom property:
+  - Arabic (Native) → `--level:1.0` — strongest red (border + background tint)
+  - English (B2/C1) → `--level:0.6` — medium red
+  - French (A2) → `--level:0.3` — muted/dark
+- Uses `color-mix()` for dynamic coloring (with `@supports` fallback)
+- Responsive: wraps on small screens via `flex-wrap: wrap`
+
+### 9. Skills — Color by Percentage
+- Added `--pct` custom property to each `.cloud-tag` (e.g., `--pct:99`)
+- CSS `color-mix()` dynamically computes:
+  - **Text**: blends between `--text-muted` (at low %) and `--text-white` (at high %)
+  - **Border**: blends between `--border` (at low %) and `--accent` (at high %)
+- 99% (Photoshop, Lightroom) → nearly full red
+- 27% (Motion Graphics) → mostly muted gray
+- Wrapped in `@supports (color: color-mix(in srgb, red, blue))` for browser fallback
+
+## CSS Changes Summary
+
+### New CSS Variables
+- `--text-white: #f0f0f0` — bright white for hero, titles, CTAs
+- `--text: #c0c0c0` — soft gray (changed from `#f0f0f0`)
+
+### New CSS Blocks
+- **Collapse system** (`.collapse-content`, `.collapse-content.open`, headline toggle styles)
+- **Portfolio glitch** (`@keyframes glitchLoop`, `.port-link-text` animation)
+- **Lang row** (`.lang-row` replaces `.lang-scatter`)
+- **Lang pill color-mix** (inside `@supports` block)
+- **Cloud tag color-mix** (inside `@supports` block)
+
+### Elements Overridden to `--text-white`
+- `.hero-name`, `.glitch-word`, `@keyframes glitchOnce` (0%, 58%, 100%)
+- `.hero-timer`, `.port-link-text`, `.sub-name`
+- `.category-name`, `.project-title`, `.social-item-name`
+- `.subcat-info h3`, `.logo-info h3`
+- `.timeline-desc`
+
+## JS Changes
+- Added Skills & Competencies collapse toggle click handlers
+- Stagger delays applied on open (60ms for skills, 40ms for comp)
+
+## Current Section Order (top to bottom)
+1. About (no number)
+2. Work (02)
+3. Portfolio (03) — moved here from #5
+4. Skills (04) — collapsible, starts hidden
+5. Competencies (05) — collapsible, starts hidden
+6. Education (06)
+7. Languages (07)
+8. Contact (08)
+
+## CSS File Stats
+- Total lines: ~1879
+- Media queries: 768px and 480px breakpoints present
+- `color-mix()` used for Skills (`--pct`) and Languages (`--level`)
+
+## Notes for Next Session
+- The user mentioned a "Visual" direction (suggestion #4 from earlier) but hadn't shared it yet
+- The user asked about starting with soft gray text → it's been applied. Can switch to white if requested
+- Contact form HTML not yet added (CSS + JS are ready)
+- Sub-pages (portfolio.html, social.html, photography-*.html) may need verification for theme consistency
+- The hero-logo.svg file exists but was not modified this session
+- No contact form in index.html yet — CSS `.contact-form` and JS handler are ready to use
+- The `--text-white` variable could be used elsewhere if needed
+- Consider adding a Formspree form ID to the contact form when implemented
+
+## Color Palette (Current)
+- Background: `#000000`
+- Alt background: `#050505`
+- Card background: `#0a0a0a`
+- Primary accent: `#e50914` (red)
+- Secondary accent: `#800020` (burgundy)
+- Text body: `#c0c0c0` (soft gray)
+- Text bright: `#f0f0f0` (white)
+- Text muted: `#6a6a7a`
+- Borders: `#1a1a1a`

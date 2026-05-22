@@ -1,0 +1,175 @@
+# Pushed UI — Complete Session Log
+
+## Session Date
+May 21, 2026
+
+## Last Commit
+`b9bf2c0` — "UI retouch: enrich CV content, collapsible skills/comp, portfolio glitch, soft gray text, language alignment, sub-page cleanup"
+Pushed to `origin/main`
+
+## Git Log (last 10)
+```
+b9bf2c0 UI retouch: enrich CV content, collapsible skills/comp, portfolio glitch, soft gray text, language alignment, sub-page cleanup
+a33e6a6 Perfect center hero name, absolute bottom CTA with 200px logo
+63564dd Push name up, increase gap to 100px, grow CTA logo to 140px
+94175e6 Shift hero-center up -3vh
+daed7bf Wrap name + CTA in centered flex group, absolute position top bar, perfect vertical center
+b56e988 Vertically center hero name within viewfinder frame
+7b0e2dc Center hero name as single line, enlarge CTA logo to 100px
+eeb97bc Move nav to bottom-left, move Portfolio label to center-bottom above timer, add SVG logo as CTA arrow above Portfolio
+f9dcded Asymmetrical full-bleed layout: each section unique, staggered reveals, skill cloud, variable-width grid, scattered languages, bleeding contact
+9c1cf65 Complete cinematic redesign: viewfinder hero, recording timer, dark theme, full-bleed asymmetrical layout
+```
+
+## File Structure
+```
+portfolio/
+├── index.html                      (main page — updated this session)
+├── style.css                       (main styles — ~1879 lines, updated)
+├── script.js                       (updated — collapse toggle added)
+├── portfolio.html                  (cleaned up this session)
+├── social.html                     (cleaned up this session)
+├── portfolio-videos.html           (cleaned up this session)
+├── portfolio-photography.html      (cleaned up this session)
+├── portfolio-logos.html            (cleaned up this session)
+├── photography-portrait.html       (cleaned up this session)
+├── photography-commercial.html     (cleaned up this session)
+├── photography-personal.html       (cleaned up this session)
+├── photography-manipulation.html   (cleaned up this session)
+├── hero-logo.svg
+├── .nojekyll
+├── .github/workflows/deploy.yml
+├── README.md
+├── Final UI design.txt             (original design spec — untracked)
+├── UI retouch.txt                  (first session log — untracked)
+├── contact-form-report.md          (previous audit — untracked)
+├── subpages-audit-report.md        (previous audit — untracked)
+└── Pushed UI.txt                   (this file — untracked)
+```
+
+## Section Order (top to bottom)
+1. **About** (no number) — removed "01", bigger "ABOUT" text
+2. **Work** (02) — enriched CV descriptions in white, year numbers faded to 15% opacity
+3. **Portfolio** (03) — MOVED here from #5, "View My Work" has continuous glitch loop
+4. **Skills** (04) — COLLAPSIBLE (starts hidden), click "SKILLS" to expand, + indicator
+5. **Competencies** (05) — COLLAPSIBLE (starts hidden), click to expand, + indicator
+6. **Education** (06) — added module descriptions
+7. **Languages** (07) — horizontal row, color-coded by proficiency
+8. **Contact** (08) — has contact form with Formspree (placeholder ID)
+
+## All Changes Applied This Session
+
+### 1. About Section
+- Removed "01" number
+- `font-size` increased: `11px` → `clamp(13px, 1.5vw, 17px)`
+- `min-width` reduced: `80px` → `auto`
+
+### 2. Work Section — Enriched Descriptions
+- **@ElDhahby**: Beat-sync montage, Premiere Pro & DaVinci Resolve, sound design, thumbnail designs, social-cut versions, asset handoffs via Google Drive
+- **@ZZ3EF**: Full pipeline ownership, node-based grading, LUT creation, HDR correction, VFX composites (green screen, particles, tracking), motion graphics, lyric videos, AI tools (upscaling, noise reduction, transcription)
+- **Home of Culture**: Documentary/artistic photography, Lightroom & Photoshop retouching, promotional visuals
+- `.timeline-desc` color: `var(--text-muted)` → `var(--text-white)`
+
+### 3. Work Section — Year Numbers Opacity
+- `.tk-year` now has `opacity: 0.15` — faded, subtle
+
+### 4. Skills — Collapsible Accordion
+- Wrapped `.skill-cloud` in `<div class="collapse-content">`
+- Starts **collapsed** (`max-height: 0; overflow: hidden`)
+- Click "SKILLS" toggles `.open` class → slides down (`max-height: 2000px`)
+- `+` after headline text, rotates `45deg` on open
+- Stagger delays applied (60ms per tag) on open
+
+### 5. Competencies — Collapsible Accordion
+- Same system as Skills
+- `.comp-grid` wrapped in `<div class="collapse-content">`
+- 40ms stagger per tag on open
+
+### 6. Portfolio — Moved + Glitch Hook
+- Moved from #5 to #3 (after Work, before Skills)
+- Section numbers reordered: Portfolio=03, Skills=04, Competencies=05
+- `@keyframes glitchLoop` — continuous 3s cycle with translate/skew shifts + red flashes
+- Applied to `.port-link-text` — designed as click hook for YouTube link
+
+### 7. Education — Enriched Descriptions
+- **Bachelor Photography**: "Relevant modules include video editing & post-production, cinematic language, colour grading, art direction, sound & montage theory, and multimedia creation."
+- **E-Commerce Certificate**: "Covered Meta Ads, SEO, content strategy, analytics, AI content tools, social media growth, and personal branding."
+
+### 8. Languages — Aligned Row + Color by Proficiency
+- Replaced `.lang-scatter` (absolute, scattered) with `.lang-row` (flex, centered)
+- Color via `--level` custom property:
+  - Arabic (Native) → `--level:1.0` — strongest red
+  - English (B2/C1) → `--level:0.6` — medium red
+  - French (A2) → `--level:0.3` — muted/dark
+- Uses `color-mix()` with `@supports` fallback
+- Responsive: `flex-wrap: wrap`
+
+### 9. Skills — Color by Percentage
+- Added `--pct` to each `.cloud-tag` (e.g., `--pct:99`)
+- `color-mix()` blends text between `--text-muted` and `--text-white`
+- Border blends between `--border` and `--accent`
+- 99% → near-full red, 27% → mostly muted gray
+- Wrapped in `@supports (color: color-mix(...))`
+
+### 10. Contact Form Added to index.html
+- `<form id="contact-form">` with name, email, message fields
+- Action: `https://formspree.io/f/PLACEHOLDER` — needs real Formspree ID
+- Submit button with loading state, validation, success/error messages
+- CSS and JS were already ready — just needed the HTML
+
+### 11. Soft Gray Body Text
+- `--text: #f0f0f0` → `--text: #c0c0c0` (soft gray)
+- New `--text-white: #f0f0f0` for hero, titles, CTAs
+
+### 12. Sub-Page Cleanup
+- All sub-pages (photography-*.html, portfolio-*.html, social.html):
+  - Old `sub-header` replaced with `hero-nav-bottom` nav
+  - Section titles converted to `sec-headline` + `sec-inner` system
+  - Footers updated to use `footer-inner`
+
+## CSS Variables (Current)
+```css
+:root {
+    --bg: #000000;
+    --bg-alt: #050505;
+    --bg-card: #0a0a0a;
+    --accent: #e50914;
+    --accent-dim: rgba(229, 9, 20, 0.15);
+    --accent-glow: rgba(229, 9, 20, 0.3);
+    --accent-muted: rgba(229, 9, 20, 0.06);
+    --burgundy: #800020;
+    --burgundy-dim: rgba(128, 0, 32, 0.2);
+    --text: #c0c0c0;            /* soft gray */
+    --text-white: #f0f0f0;       /* bright white */
+    --text-muted: #6a6a7a;
+    --text-dim: #333333;
+    --border: #1a1a1a;
+    --font-serif: 'Playfair Display', serif;
+    --font-sans: 'Inter', ...;
+    --font-mono: 'Rajdhani', monospace;
+}
+```
+
+## Animations (Current)
+| Animation | Duration | Element |
+|-----------|----------|---------|
+| `cornerAppear` | 0.8s | Viewfinder corners |
+| `heroFadeDown` | 1s | Hero elements (staggered delays) |
+| `heroFadeIn` | 1s | CTA logo, label |
+| `recPulse` | 1.5s infinite | REC dot, timer dot |
+| `glitchOnce` | 4s | "Vision" word (hero) |
+| `glitchLoop` | 3s infinite | "View My Work" (portfolio CTA) |
+| Section reveal | 0.8s | All `.section` on scroll |
+| Stagger | 60ms/40ms/120ms/150ms | Skills/Comp/Work/Lang items |
+
+## Responsive Breakpoints
+- 768px: reduced padding, stacked grids, smaller fonts
+- 480px: tighter nav, smaller hero pieces
+
+## Pending / Next Session Notes
+1. **Formspree ID** — The contact form has a placeholder (`PLACEHOLDER`). Replace with real Formspree form ID
+2. **User mentioned "Visual" direction** (suggestion #4 from earlier) — not yet shared
+3. **Soft gray text** — currently applied (`#c0c0c0`). User said "if I don't like I'll tell you to change it to white"
+4. **Sub-pages** — Cleaned up structurally but may need content review
+5. **New features planned by user** — not yet discussed (the "Visual" thing)
+6. **Deploy** — GitHub Pages auto-deploys via `.github/workflows/deploy.yml`

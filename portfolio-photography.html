@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Photography | Wassim Vision</title>
-    <meta name="description" content="Photography — Portrait, commercial, personal, and photo manipulation work by Wassim Vision.">
-    <meta property="og:title" content="Photography | Wassim Vision">
-    <meta property="og:description" content="Portrait, commercial, personal, and photo manipulation work by Wassim Vision.">
+    <title>Images | Wassim Vision</title>
+    <meta name="description" content="Portrait, commercial, editorial, and atmospheric photography by Wassim Vision — curated for hire.">
+    <meta property="og:title" content="Images | Wassim Vision">
+    <meta property="og:description" content="Portrait, commercial, editorial, and atmospheric photography by Wassim Vision.">
     <meta property="og:url" content="https://wassimedit3-collab.github.io/portfolio/portfolio-photography.html">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
@@ -29,47 +29,28 @@
         <div class="sub-page-inner">
             <section class="section reveal">
                 <div class="sec-inner">
-                    <span class="sec-headline">Photography</span>
-                    <p class="section-desc">Capturing moments through the lens</p>
+                    <span class="sec-headline">Images</span>
+                    <p class="section-desc">Portraiture, editorial imagery, atmosphere, and commercial-ready visual work. Every category below is ordered to show client-facing range first.</p>
 
-                <div class="subcategory-grid">
-                    <a href="photography-portrait.html" class="subcategory-card">
-                        <div class="subcat-visual">&#128247;</div>
-                        <div class="subcat-info">
-                            <h3>Portrait</h3>
-                            <p>Capturing personality and emotion</p>
+                    <a href="photography-selected-work.html" class="featured-link">
+                        <div class="featured-link-inner">
+                            <span class="featured-label">Featured</span>
+                            <span class="featured-title">Selected Work</span>
+                            <span class="featured-arrow">&rarr;</span>
                         </div>
-                        <div class="subcat-arrow">&rarr;</div>
                     </a>
 
-                    <a href="photography-commercial.html" class="subcategory-card">
-                        <div class="subcat-visual">&#127970;</div>
-                        <div class="subcat-info">
-                            <h3>Commercial</h3>
-                            <p>Product &amp; brand photography</p>
-                        </div>
-                        <div class="subcat-arrow">&rarr;</div>
-                    </a>
+                    <div class="category-section-label">Primary</div>
+                    <div class="category-grid" id="primaryGrid"></div>
 
-                    <a href="photography-personal.html" class="subcategory-card">
-                        <div class="subcat-visual">&#127912;</div>
-                        <div class="subcat-info">
-                            <h3>Personal Projects</h3>
-                            <p>Artistic &amp; creative expressions</p>
-                        </div>
-                        <div class="subcat-arrow">&rarr;</div>
-                    </a>
+                    <div class="category-section-label secondary-label">Extended</div>
+                    <div class="category-grid" id="secondaryGrid"></div>
 
-                    <a href="photography-manipulation.html" class="subcategory-card">
-                        <div class="subcat-visual">&#10024;</div>
-                        <div class="subcat-info">
-                            <h3>Photo Manipulation</h3>
-                            <p>Digital art &amp; visual transformations</p>
-                        </div>
-                        <div class="subcat-arrow">&rarr;</div>
-                    </a>
+                    <div class="contact-mini">
+                        <p>Interested in working together?</p>
+                        <a href="mailto:wassimedit3@gmail.com" class="contact-mini-link">wassimedit3@gmail.com &rarr;</a>
+                    </div>
                 </div>
-            </div>
             </section>
 
             <div class="back-nav">
@@ -84,6 +65,33 @@
             <p>&copy; 2025 Wassim Vision</p>
         </div>
     </footer>
+    <script src="js/images-data.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        function renderGrid(containerId, list) {
+            const grid = document.getElementById(containerId);
+            if (!grid) return;
+            list.forEach(cat => {
+                const card = document.createElement('a');
+                card.className = 'category-card';
+                card.href = cat.slug + '.html';
+                card.innerHTML =
+                    '<div class="category-info">' +
+                        '<div class="category-name">' + cat.title + '</div>' +
+                        '<div class="category-desc">' +
+                            (cat.webDescription.length > 120
+                                ? cat.webDescription.slice(0, 120) + '...'
+                                : cat.webDescription) +
+                        '</div>' +
+                    '</div>';
+                grid.appendChild(card);
+            });
+        }
+
+        renderGrid('primaryGrid', imagesData.getPrimary());
+        renderGrid('secondaryGrid', imagesData.getSecondary());
+    });
+    </script>
     <script src="script.js"></script>
 </body>
 </html>

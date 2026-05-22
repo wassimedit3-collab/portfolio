@@ -1,0 +1,150 @@
+# Final UI Design — Wassim Vision Portfolio
+
+## Color Palette
+- Background: #000000 (pure black)
+- Alt background: #050505
+- Card background: #0a0a0a
+- Primary accent: #e50914 (cinematic red)
+- Secondary accent: #800020 (burgundy)
+- Text: #f0f0f0
+- Muted text: #6a6a7a
+- Borders: #1a1a1a
+- Red glow: rgba(229, 9, 20, 0.3)
+- Red dim: rgba(229, 9, 20, 0.15)
+
+## Typography
+- Headings: 'Playfair Display', serif
+- Body/meta: 'Inter', sans-serif
+- Timer/monospace: 'Rajdhani', monospace
+
+## Hero / Header Layout
+
++--  Viewfinder corner brackets (TL, TR, BL, BR) ------+
+|  [LOGO top-left]                REC 00:00:00 top-right|
+|  Scanlines overlay                                    |
+|                                                       |
+|                 Wassim Vision (dead center)            |
+|                                                       |
+|                     [△ 200px SVG logo]                |
+|                       Portfolio                       |
+|                      [● 00:00:00]                     |
+|                                                       |
+|  [Home] [Portfolio] [Social]                          |
++-------------------------------------------------------+
+
+### Key CSS Concepts
+- .hero: display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh
+- .hero-top: position: absolute; top: 0; left: 0; right: 0 -- logo at top
+- .hero-rec: position: absolute; top: 104px; right: 48px -- REC indicator
+- .hero-nav-bottom: position: absolute; bottom: 48px; left: 48px -- nav at bottom-left
+- .hero-bottom: position: absolute; bottom: 120px; left: 50%; transform: translateX(-50%) -- CTA cluster
+- .hero-main is the ONLY flex child -> perfectly centered by justify-content: center
+- .hero-cta-logo img: height: 200px -- big arrow pointing to Portfolio
+- .rec-dot / .timer-dot: pulsing animation recPulse
+- .glitch-word: 4s glitch animation on "Vision"
+- .viewfinder-corner: 4 corners with cornerAppear animation
+- .hero-scanlines: repeating-linear-gradient overlay
+- Film grain overlay at 0.02 opacity
+
+## Section Layouts (below the fold)
+
+Each section is full-bleed (no centered container). Each has a unique layout.
+
+### Section Base
+- .section: padding: 100px 48px; border-bottom: 1px solid var(--border); opacity: 0; transform: translateY(30px)
+- .section.visible: opacity: 1; transform: translateY(0)
+- .sec-headline: 10px Inter, red, uppercase, 6px letter-spacing
+- .sec-number-bg: massive transparent number with -webkit-text-stroke: 1px rgba(229,9,20,0.06)
+- .text-highlight: red accent on keywords
+
+### About (.sec-about)
+- grid-template-columns: auto 1.8fr -- left column: vertical "ABOUT" + "01" number, right: text
+- .about-text: Playfair Display, clamp(18px, 2.2vw, 28px)
+
+### Work (.sec-work)
+- Timeline with .tl-line (red gradient vertical line)
+- Items staggered: nth-child(odd) left, nth-child(even) right with padding-left: 25%
+- .tk-year: hollow serif years at clamp(36px, 6vw, 80px)
+- Red dot on each item, grows + glows on hover
+- Items stagger-reveal from alternating directions
+
+### Skills (.sec-skills)
+- .skill-cloud: flex wrap with gap: 12px
+- .cloud-tag: size controlled by --sz custom property:
+  --sz:1.2 = Davinci Resolve (biggest)
+  --sz:1 = Premiere Pro
+  --sz:0.95 = After Effects
+  --sz:0.65-0.8 = others
+- Hover: scale(1.06) translateY(-4px) + red glow
+- Tags pop in with 60ms stagger delay
+
+### Competencies (.sec-comp)
+- .comp-grid: CSS grid repeat(auto-fill, minmax(180px, 1fr)), gap: 1px with border
+- .comp-tag: grid-column: span var(--w, 1) -- some span 2 columns
+- Red left border on each cell
+
+### Portfolio (.sec-portfolio)
+- Full-width: .port-link-lg with clamp(28px, 5vw, 56px) serif text
+- Arrow animates on hover: translateX(12px)
+- .port-link-line: red underline draws 60% across on scroll reveal
+
+### Education (.sec-edu)
+- Same timeline pattern as Work, condensed
+
+### Languages (.sec-lang)
+- .lang-scatter: position: relative; height: 200px
+- .lang-pill: absolute at --x, --y, --r -- scattered diagonally
+- Each fades in from different direction (left, up, right) with stagger
+
+### Contact (.sec-contact)
+- Right-aligned: email at clamp(28px, 4.5vw, 56px) Playfair, red
+- .contact-tagline: small "Available worldwide" below
+
+## Sub-pages
+- Same dark cinematic theme
+- .sub-header with .sub-header-inner, .sub-name, .sub-tagline, .sub-nav
+- .sub-page with .sub-page-inner
+- All grid components: category, subcategory, project, logo, gallery, social list
+
+## JavaScript Features
+- Recording timer: updates every second, displays in both .rec-time and .timer-display
+- Scroll reveal: IntersectionObserver with staggered per-section animations
+- Back to top: button appears after 300px scroll
+- Lightbox: full-screen image gallery navigation
+- Video modal: YouTube embed with autoplay
+- Portfolio filter: category filter buttons
+- Contact form: POST to Formspree with validation
+
+## Animations Summary
+
+| Element              | Animation                                            |
+|----------------------|------------------------------------------------------|
+| Viewfinder corners   | cornerAppear -- scale from 0.5                       |
+| Hero top/logo        | heroFadeDown -- translateY(-20px)                    |
+| REC indicator        | heroFadeDown at 0.2s delay                           |
+| Hero name            | heroFadeDown at 0.3s delay                           |
+| CTA logo             | heroFadeIn at 0.3s delay                             |
+| Timer                | heroFadeDown at 0.9s delay                           |
+| Nav bottom           | heroFadeDown at 0.6s delay                           |
+| REC dot              | recPulse -- scale + glow infinite                    |
+| Timer dot            | recPulse infinite                                    |
+| Glitch word          | glitchOnce -- 4s, red flashes + skew                 |
+| Section reveal       | translateY(30px) -> 0 + opacity                      |
+| Skill tags           | 60ms stagger delay per tag                           |
+| Comp tags            | 40ms stagger delay per cell                          |
+| Timeline items       | 120ms stagger, alternating left/right entrance       |
+| Language pills       | 150ms stagger from different directions              |
+| Portfolio line       | width 0 -> 60% on section visible                    |
+
+## Responsive
+- 768px breakpoint: reduced padding, stacked layouts, smaller gaps
+- 480px breakpoint: smaller fonts, tighter nav
+- All grids collapse to 1 column on mobile
+- Hero maintains viewfinder + timer on all sizes
+
+## Current git log (latest commits)
+b56e988 Vertically center hero name within viewfinder frame
+7b0e2dc Center hero name as single line, enlarge CTA logo to 100px
+eeb97bc Move nav to bottom-left, move Portfolio label to center-bottom above timer, add SVG logo as CTA arrow above Portfolio
+f9dcded Asymmetrical full-bleed layout: each section unique, staggered reveals, skill cloud, variable-width grid, scattered languages, bleeding contact
+9c1cf65 Complete cinematic redesign: viewfinder hero, recording timer, dark theme, full-bleed asymmetrical layout
