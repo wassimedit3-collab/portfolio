@@ -177,6 +177,10 @@ document.addEventListener('DOMContentLoaded', () => {
     const glitchWord = document.querySelector('.glitch-word');
     if (glitchWord) triggerDecode(glitchWord);
 
+    // ===== PORTFOLIO LABEL DECODE =====
+    const decryptTarget = document.querySelector('.decrypt-target');
+    if (decryptTarget) triggerDecode(decryptTarget);
+
     // ===== LIGHTBOX =====
     const galleryItems = document.querySelectorAll('.gallery-item');
     if (galleryItems.length) {

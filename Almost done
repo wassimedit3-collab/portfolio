@@ -1,0 +1,244 @@
+================================================================================
+ ALMOST DONE — Complete Session Handoff
+ Generated: 2026-05-23
+================================================================================
+
+This file captures the full state of the portfolio project so you can continue
+in a new session with a single prompt. Every change, commit, and remaining task
+is documented below.
+
+================================================================================
+ 1. COMMIT HISTORY (this session, newest first)
+================================================================================
+
+a7a8632 Faster decode on View My Work (2.5x speed)
+b9896ba Bigger section titles, shimmer on Proven Track Record & Selected Works,
+        pulse on Let's Collaborate
+ab4651d Same decode+glitch effect on 'View My Work', removed old glitchLoop
+8a13d39 Decode phase uses cyber-tech font (Rajdhani + cyan glow), reverts to
+        Playfair before glitch
+692391b Crazier flickier glitch: 6 bursts per 3s, steps(1) timing, flicker
+        stutter, ±16px offsets
+f9c5538 Decode effect fires instantly on page load
+c7af3f1 Decode-once sequence then hard cyberpunk glitch loop
+9afc679 Force scroll to top on page refresh
+8d31e47 Section titles redesigned for client impact, Vision glitch now looping
+        with decode+tear effect
+a113869 Nav buttons appear at bottom of page, remove email from contact & footer
+1828ea1 REC timer up, nav to bottom-right, hidden-until-scroll, outline frame
+        style
+f3ba20f Add heroFadeDown entrance animation to nav buttons in header
+1a2384f Move nav buttons into hero header bottom-left on index.html, keep fixed
+        nav on all other pages
+
+Undo shortcut: prompt "Go-Back-To-Previews-Version" = revert to f3ba20f.
+
+================================================================================
+ 2. FILES CHANGED
+================================================================================
+
+All files: index.html, style.css, script.js (all under /home/dablu/Desktop/my-port/portfolio/)
+
+----------------------------------------------------------------------
+ 2a. index.html
+----------------------------------------------------------------------
+
+- Nav buttons: moved from <nav class="hero-nav-bottom"> (fixed bottom bar)
+  into <header class="hero"> as <div class="hero-nav-header">.
+  Buttons use class="nav-pill" (pill-style, not outline frames).
+  Markup (lines ~77-81):
+    <div class="hero-nav-header">
+        <a href="index.html" class="nav-pill active" aria-label="Home" tabindex="0">Home</a>
+        <a href="portfolio.html" class="nav-pill" aria-label="Portfolio" tabindex="0">Portfolio</a>
+        <a href="social.html" class="nav-pill" aria-label="Social" tabindex="0">Social</a>
+    </div>
+
+- Section titles renamed:
+  About       → The Story
+  Work        → Proven Track Record
+  Portfolio   → Selected Works
+  Skills      → Technical Arsenal
+  Competencies→ Core Expertise
+  Education   → Foundation
+  Languages   → Global Reach
+  Contact     → Let's Collaborate
+
+- Glitch: data-text="Vision" on .glitch-word span (line 61)
+  data-text="View My Work" on .port-link-text inside sec-portfolio
+
+- Contact form: email removed from contact section and footer
+
+- Portfolio label: <a> in .hero-label now has class="decrypt-target"
+  data-text="Portfolio" (line 69)
+
+- All 20 other sub-pages (portfolio.html, commercial.html, etc.) remain
+  untouched — they still use class="hero-nav-link" in .hero-nav-bottom.
+
+----------------------------------------------------------------------
+ 2b. style.css (~2350 lines total)
+----------------------------------------------------------------------
+
+HERO NAV HEADER / NAV-PILL (replaces old .hero-nav-link outline style):
+- .hero-nav-header:
+    position: absolute; z-index: 3; bottom: 18px; right: 18px;
+    display: flex; flex-direction: column; gap: 6px; align-items: flex-end;
+    opacity: 0; visibility: hidden;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+- .hero-nav-header.visible { opacity: 1; visibility: visible; }
+- .nav-pill:
+    width: clamp(84px, 12vw, 120px); height: 28px; border-radius: 4px;
+    background: rgba(0,0,0,0.85); border: 1px solid rgba(255,255,255,0.2);
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-sans); font-size: 12px; font-weight: 500;
+    color: #fff; text-transform: uppercase; letter-spacing: 2px;
+    text-decoration: none; cursor: pointer; transition: all 0.3s;
+- .nav-pill.active { border-color: var(--accent); }
+- .nav-pill:hover { transform: translateY(-2px); border-color: var(--accent); }
+- .nav-pill:active { transform: scale(0.98); box-shadow: inset ...; }
+- .nav-pill:focus-visible { outline: 2px solid #fff; outline-offset: 3px; }
+
+GLITCH SYSTEM (3 keyframes, all steps(1), 3s loop, 1.8s delay):
+- @keyframes hardGlitch: 6 aggressive bursts per cycle, ±14px translate,
+  ±7° skew, 1.06/0.94 scale, opacity flicker stutter, clip-path tears
+- @keyframes glitchTopRGB: cyan (#00ffff) ::before, mix-blend-mode: screen
+- @keyframes glitchBottomRGB: magenta (#ff00ff) ::after, mix-blend-mode: screen
+- .glitch-word.decoding:
+    font-family: var(--font-mono) (Rajdhani); color: #00ffff;
+    text-shadow: cyan glow; animation: none; ::before/::after: display:none
+- .glitch-link (View My Work, line ~520-565):
+    Same animation as .glitch-word but on .port-link-text element
+    .glitch-link.decoding same as .glitch-word.decoding
+
+DECRYPT-TARGET (Portfolio label):
+- .decrypt-target.decoding:
+    font-family: var(--font-mono); letter-spacing: 6px; color: #00ffff;
+    text-shadow: cyan glow; animation: none; ::before/::after: display:none
+
+SECTION TITLES:
+- .sec-{work,portfolio,skills,comp,edu,lang,contact} .sec-headline:
+    font-size: clamp(12px, 1.4vw, 15px) (up from 10px)
+- .sec-work .sec-headline, .sec-portfolio .sec-headline:
+    shimmer gradient (background:linear-gradient, background-clip:text,
+    -webkit-text-fill-color:transparent, animation:shimmer 4s ease-in-out infinite)
+- .sec-contact .sec-headline:
+    breathPulse animation (3s ease-in-out infinite: opacity + text-shadow)
+
+HERO LABEL:
+- .hero-label a: font-size: clamp(14px, 1.8vw, 22px) (up from 11px)
+
+RESPONSIVE (768px):
+- .hero-nav-header: bottom:12px; right:12px; gap:4px
+- .nav-pill: width:clamp(72px,20vw,100px); height:24px; font-size:10px
+- .hero-nav-link (.hero-nav-bottom): font-size:10px; padding:8px 16px
+- .hero-label a: font-size:10px; letter-spacing:5px
+
+RESPONSIVE (480px):
+- .hero-nav-header: bottom:10px; right:10px; gap:3px
+- .nav-pill: width:clamp(60px,25vw,90px); height:22px; font-size:9px
+- .hero-nav-link (.hero-nav-bottom): font-size:9px; padding:6px 12px
+
+AVAILABLE KEYFRAMES: hardGlitch, glitchTopRGB, glitchBottomRGB, shimmer,
+breathPulse, heroFadeDown, cornerAppear, heroFadeIn, recPulse
+
+----------------------------------------------------------------------
+ 2c. script.js (~390 lines)
+----------------------------------------------------------------------
+
+- history.scrollRestoration = 'manual' + window.scrollTo(0,0) at top
+- triggerDecode(el, speedMul): reusable function
+    - adds 'decoding' class, 10-step scramble with accelerating speed, removes
+      'decoding' on finish
+    - speedMul controls speed: 1=normal, 0.4=2.5x faster
+- .glitch-word decode fires immediately on DOMContentLoaded
+- .decrypt-target (Portfolio label) decode fires immediately on DOMContentLoaded
+  (just after .glitch-word decode)
+- .glitch-link decode fires when .sec-portfolio becomes visible in
+  IntersectionObserver: setTimeout(() => triggerDecode(glitchLink, 0.4), 400)
+  (2.5x faster)
+- Nav header visibility: classList.toggle('visible') when
+  scrollY + innerHeight >= scrollHeight - 100
+- Back-to-top button, lightbox, collapse toggles, recording timer
+
+================================================================================
+ 3. DEPLOYMENT
+================================================================================
+
+- GitHub Pages: https://wassimedit3-collab.github.io/portfolio/
+- Auto-deploy via .github/workflows/deploy.yml (push to main triggers action)
+- May need hard refresh or incognito (CDN cache)
+
+================================================================================
+ 4. REMAINING WORK
+================================================================================
+
+4a. Upload images to 4 empty gallery folders:
+    /home/dablu/Desktop/my-port/portfolio/assets/images/portrait/
+    /home/dablu/Desktop/my-port/portfolio/assets/images/commercial/
+    /home/dablu/Desktop/my-port/portfolio/assets/images/personal/
+    /home/dablu/Desktop/my-port/portfolio/assets/images/manipulation/
+
+4b. Upload 3 video thumbnail images (for video sub-pages).
+
+4c. Replace Formspree PLACEHOLDER in contact form (index.html line ~240):
+    <form class="contact-form" action="https://formspree.io/f/PLACEHOLDER"
+    Replace PLACEHOLDER with actual Formspree form ID.
+
+4d. Logo carousel click-to-fullsize: wire up lightbox to carousel images
+    in sub-pages.
+
+4e. Split images-data.js into per-category files (optional refactor).
+
+================================================================================
+ 5. CRITICAL CONTEXT
+================================================================================
+
+- Two nav systems coexist:
+  * .hero-nav-header + .nav-pill → ONLY on index.html (main page)
+  * .hero-nav-bottom + .hero-nav-link → ALL other 20 sub-pages
+  They are visually and structurally different. Do NOT change sub-pages when
+  modifying index.html nav.
+
+- .hero-nav-header uses .nav-pill (pill style); .hero-nav-bottom still uses
+  .hero-nav-link (old style). Do not confuse them.
+
+- triggerDecode() is reusable: call it on any element with data-text attribute.
+  The 'decoding' class switches font to Rajdhani + cyan glow. Add
+  .target.decoding CSS for any new element you want to decode.
+
+- Font stack already loaded:
+  Playfair Display (serif), Inter (sans), Rajdhani (mono)
+
+- Undo shortcut: "Go-Back-To-Previews-Version" reverts to commit f3ba20f.
+
+- CSS variables available:
+  --accent (#e50914), --accent-glow (rgba(229,9,20,0.3)), --accent-dim,
+  --burgundy (#8b0000), --bg (#0a0a0a), --bg-card, --text, --text-muted,
+  --text-dim, --text-white, --border, --font-sans, --font-serif, --font-mono
+
+================================================================================
+ 6. KEY FILES
+================================================================================
+
+index.html      — Main page (256 lines, ~10KB)
+style.css       — All styles (~2350 lines, ~55KB)
+script.js       — All JS (~390 lines, ~10KB)
+Progress.txt    — Session 2 log (previous session: sub-pages, SEO, speed)
+Almost done     — This file
+
+Sub-pages (all under /home/dablu/Desktop/my-port/portfolio/):
+  portfolio.html, music_video.html, commercial.html, personal.html,
+  manipulation.html, portrait.html, wedding.html, documentary.html,
+  social.html, ads.html, education.html, fitness.html, fashion.html,
+  short_film.html, behind_scenes.html, color_grading.html,
+  motion_graphics.html, vfx_compositing.html, photo.html, mixed_media.html
+
+Assets:
+  /assets/images/ (with category sub-folders)
+  /assets/videos/ (with category sub-folders)
+  hero-logo.svg, images-data.js, videos-data.js
+  robots.txt, sitemap.xml
+  .github/workflows/deploy.yml
+
+================================================================================
+ END OF HANDFOFF
+================================================================================
