@@ -343,11 +343,12 @@ body {
 .hero-nav-header {
     position: absolute;
     z-index: 3;
-    bottom: 18px;
-    right: 18px;
+    top: 58%;
+    right: 50px;
+    transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 10px;
     align-items: flex-end;
     opacity: 0;
     visibility: hidden;
@@ -360,32 +361,37 @@ body {
 }
 
 .nav-pill {
-    width: clamp(84px, 12vw, 120px);
-    height: 28px;
+    width: clamp(90px, 10vw, 110px);
+    height: 36px;
     border-radius: 4px;
-    background: rgba(0, 0, 0, 0.85);
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.35);
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: var(--font-sans);
-    font-size: 12px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 600;
     color: #fff;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    letter-spacing: 3px;
     text-decoration: none;
     cursor: pointer;
     transition: all 0.3s;
 }
 
 .nav-pill.active {
-    border-color: var(--accent);
+    background: var(--burgundy);
+    border-color: var(--burgundy);
 }
 
 .nav-pill:hover {
     transform: translateY(-2px);
-    border-color: var(--accent);
+    border-color: rgba(255, 255, 255, 0.7);
+}
+
+.nav-pill.active:hover {
+    border-color: var(--burgundy);
 }
 
 .nav-pill:active {
@@ -2212,15 +2218,15 @@ body {
     .viewfinder-br { bottom: 12px; right: 12px; }
 
     .hero-nav-header {
-        bottom: 12px;
-        right: 12px;
-        gap: 4px;
+        top: 54%;
+        right: 30px;
+        gap: 8px;
     }
 
     .nav-pill {
-        width: clamp(72px, 20vw, 100px);
-        height: 24px;
-        font-size: 10px;
+        width: clamp(72px, 18vw, 90px);
+        height: 30px;
+        font-size: 11px;
     }
 
     .section {
@@ -2355,15 +2361,15 @@ body {
     }
 
     .hero-nav-header {
-        bottom: 10px;
-        right: 10px;
-        gap: 3px;
+        top: 50%;
+        right: 16px;
+        gap: 6px;
     }
 
     .nav-pill {
-        width: clamp(60px, 25vw, 90px);
-        height: 22px;
-        font-size: 9px;
+        width: clamp(60px, 22vw, 78px);
+        height: 26px;
+        font-size: 10px;
     }
 
     .hero-nav-bottom {
