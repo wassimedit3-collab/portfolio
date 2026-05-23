@@ -60,6 +60,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     });
                 }
 
+                if (cls.includes('hero')) {
+                    const nav = document.querySelector('.hero-nav-header');
+                    if (nav) nav.classList.add('visible');
+                }
+
                 if (cls.includes('sec-portfolio')) {
                     const glitchLink = section.querySelector('.glitch-link');
                     if (glitchLink && !glitchLink.dataset.decoded) {
@@ -130,23 +135,8 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // ===== HERO NAV HEADER VISIBLE ON SCROLL =====
-    const heroNavHeader = document.querySelector('.hero-nav-header');
-    if (heroNavHeader) {
-        window.addEventListener('scroll', () => {
-            if (!ticking) {
-                requestAnimationFrame(() => {
-                    heroNavHeader.classList.toggle('visible', window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 100);
-                    ticking = false;
-                });
-                ticking = true;
-            }
-        });
-        window.dispatchEvent(new Event('scroll'));
-    }
-
     // ===== DECODE EFFECT (reusable) =====
-    function triggerDecode(el, speedMul) {
+    function triggerDecode(el, speedMul, callback) {
         const originalText = el.getAttribute('data-text') || el.textContent;
         const chars = '!@#$%^&*0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ';
         el.classList.add('decoding');
@@ -169,17 +159,67 @@ document.addEventListener('DOMContentLoaded', () => {
                 clearInterval(decodeTimer);
                 el.textContent = originalText;
                 el.classList.remove('decoding');
+                if (callback) callback();
             }
         }, speeds[count] || 50);
     }
 
-    // ===== VISION GLITCH — fire decode on load =====
+    // ===== DECODE SEQUENCE: Vision → Logo Ripple → Portfolio → Glitch =====
     const glitchWord = document.querySelector('.glitch-word');
-    if (glitchWord) triggerDecode(glitchWord);
-
-    // ===== PORTFOLIO LABEL DECODE =====
     const decryptTarget = document.querySelector('.decrypt-target');
-    if (decryptTarget) triggerDecode(decryptTarget);
+
+    if (glitchWord) {
+        triggerDecode(glitchWord, 1, function() {
+            const ctaLogo = document.querySelector('.hero-cta-logo');
+            if (ctaLogo) {
+                ctaLogo.classList.add('chromatic');
+                setTimeout(function() {
+                    if (decryptTarget) {
+                        triggerDecode(decryptTarget, 1, function() {
+                            glitchWord.classList.add('glitch-active');
+                        });
+                    } else {
+                        glitchWord.classList.add('glitch-active');
+                    }
+                }, 1000);
+            } else if (decryptTarget) {
+                triggerDecode(decryptTarget, 1, function() {
+                    glitchWord.classList.add('glitch-active');
+                });
+            } else {
+                glitchWord.classList.add('glitch-active');
+            }
+        });
+    }
+
+    // ===== NAV LABEL CYCLE (1.7s camera / 0.3s scan / 1s clickable) =====
+    const navHeader = document.querySelector('.hero-nav-header');
+    if (navHeader) {
+        const pills = navHeader.querySelectorAll('.nav-pill');
+        let cycleTimer;
+
+        function showCameraLabels() {
+            pills.forEach(function(p) {
+                p.textContent = p.getAttribute('aria-label');
+                p.style.pointerEvents = 'none';
+            });
+            cycleTimer = setTimeout(showRealLabels, 1700);
+        }
+
+        function showRealLabels() {
+            navHeader.classList.add('scanning', 'fill-wave');
+            pills.forEach(function(p) {
+                p.textContent = p.dataset.real;
+                p.style.pointerEvents = 'auto';
+            });
+            cycleTimer = setTimeout(function() {
+                navHeader.classList.remove('scanning', 'fill-wave');
+                showCameraLabels();
+            }, 1000);
+        }
+
+        showCameraLabels();
+    }
 
     // ===== LIGHTBOX =====
     const galleryItems = document.querySelectorAll('.gallery-item');

@@ -245,7 +245,7 @@ body {
 
 .hero-label a {
     font-family: var(--font-sans);
-    font-size: clamp(14px, 1.8vw, 22px);
+    font-size: clamp(11px, 1.3vw, 16px);
     font-weight: 500;
     color: var(--accent);
     text-decoration: none;
@@ -338,17 +338,35 @@ body {
     opacity: 0.6;
 }
 
+.hero-cta-logo.chromatic {
+    position: relative;
+}
+
+.hero-cta-logo.chromatic img {
+    animation: chromaticShift 1s ease-out forwards;
+}
+
+@keyframes chromaticShift {
+    0% { filter: none; transform: translateY(0); }
+    10% { filter: drop-shadow(-10px 0 0 rgba(255,0,0,0.7)) drop-shadow(10px 0 0 rgba(0,255,255,0.7)); transform: translateY(-2px); }
+    20% { filter: drop-shadow(-3px 0 0 rgba(255,0,0,0.3)) drop-shadow(3px 0 0 rgba(0,255,255,0.3)); transform: translateY(0); }
+    30% { filter: none; transform: translateY(0); }
+    45% { filter: drop-shadow(-8px 0 0 rgba(255,0,0,0.6)) drop-shadow(8px 0 0 rgba(0,255,255,0.6)); transform: translateY(-2px); }
+    55% { filter: drop-shadow(-2px 0 0 rgba(255,0,0,0.2)) drop-shadow(2px 0 0 rgba(0,255,255,0.2)); transform: translateY(0); }
+    65% { filter: none; transform: translateY(0); }
+    100% { filter: none; transform: translateY(0); }
+}
+
 /* ===== HERO NAV HEADER (main page only) ===== */
 
 .hero-nav-header {
     position: absolute;
     z-index: 3;
-    top: 58%;
-    right: 50px;
-    transform: translateY(-50%);
+    bottom: 30px;
+    right: 30px;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
     align-items: flex-end;
     opacity: 0;
     visibility: hidden;
@@ -360,9 +378,30 @@ body {
     visibility: visible;
 }
 
+.hero-nav-header.scanning::after {
+    content: '';
+    position: absolute;
+    left: -8%;
+    width: 116%;
+    height: 2px;
+    background: rgba(229, 9, 20, 0.7);
+    box-shadow: 0 0 10px rgba(229, 9, 20, 0.5), 0 0 25px rgba(229, 9, 20, 0.2);
+    top: -4%;
+    animation: pillSweep 0.3s ease-in-out forwards;
+    pointer-events: none;
+}
+
+@keyframes pillSweep {
+    0% { top: -4%; opacity: 0; }
+    15% { opacity: 1; }
+    50% { top: 48%; opacity: 1; }
+    85% { opacity: 0.5; }
+    100% { top: 104%; opacity: 0; }
+}
+
 .nav-pill {
-    width: clamp(90px, 10vw, 110px);
-    height: 36px;
+    width: clamp(100px, 11vw, 130px);
+    height: 42px;
     border-radius: 4px;
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.35);
@@ -370,7 +409,7 @@ body {
     align-items: center;
     justify-content: center;
     font-family: var(--font-sans);
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
     color: #fff;
     text-transform: uppercase;
@@ -381,6 +420,7 @@ body {
 }
 
 .nav-pill.active {
+    width: clamp(120px, 14vw, 150px);
     background: var(--burgundy);
     border-color: var(--burgundy);
 }
@@ -392,6 +432,20 @@ body {
 
 .nav-pill.active:hover {
     border-color: var(--burgundy);
+}
+
+.hero-nav-header.fill-wave .nav-pill {
+    animation: waveFlash 0.5s ease-out forwards;
+}
+
+.hero-nav-header.fill-wave .nav-pill:nth-child(1) { animation-delay: 0s; }
+.hero-nav-header.fill-wave .nav-pill:nth-child(2) { animation-delay: 0.12s; }
+.hero-nav-header.fill-wave .nav-pill:nth-child(3) { animation-delay: 0.24s; }
+
+@keyframes waveFlash {
+    0% { box-shadow: 0 0 0 0 rgba(128, 0, 32, 0); }
+    40% { box-shadow: 0 0 20px 5px var(--burgundy-dim); }
+    100% { box-shadow: 0 0 0 0 rgba(128, 0, 32, 0); }
 }
 
 .nav-pill:active {
@@ -429,8 +483,10 @@ body {
     position: relative;
     display: inline-block;
     color: var(--text-white);
+}
+
+.glitch-word.glitch-active {
     animation: hardGlitch 3s steps(1) infinite;
-    animation-delay: 1.8s;
 }
 
 .glitch-word.decoding {
@@ -462,15 +518,21 @@ body {
 .glitch-word::before {
     color: #00ffff;
     z-index: -1;
-    animation: glitchTopRGB 3s steps(1) infinite;
-    animation-delay: 1.8s;
+    animation: none;
 }
 
 .glitch-word::after {
     color: #ff00ff;
     z-index: -2;
+    animation: none;
+}
+
+.glitch-word.glitch-active::before {
+    animation: glitchTopRGB 3s steps(1) infinite;
+}
+
+.glitch-word.glitch-active::after {
     animation: glitchBottomRGB 3s steps(1) infinite;
-    animation-delay: 1.8s;
 }
 
 @keyframes hardGlitch {
@@ -2218,15 +2280,15 @@ body {
     .viewfinder-br { bottom: 12px; right: 12px; }
 
     .hero-nav-header {
-        top: 54%;
-        right: 30px;
+        bottom: 16px;
+        right: 16px;
         gap: 8px;
     }
 
     .nav-pill {
-        width: clamp(72px, 18vw, 90px);
-        height: 30px;
-        font-size: 11px;
+        width: clamp(82px, 20vw, 100px);
+        height: 34px;
+        font-size: 12px;
     }
 
     .section {
@@ -2361,15 +2423,15 @@ body {
     }
 
     .hero-nav-header {
-        top: 50%;
-        right: 16px;
+        bottom: 12px;
+        right: 12px;
         gap: 6px;
     }
 
     .nav-pill {
-        width: clamp(60px, 22vw, 78px);
-        height: 26px;
-        font-size: 10px;
+        width: clamp(70px, 24vw, 88px);
+        height: 28px;
+        font-size: 11px;
     }
 
     .hero-nav-bottom {
