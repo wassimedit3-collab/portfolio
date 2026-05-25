@@ -181,7 +181,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     } else {
                         glitchWord.classList.add('glitch-active');
                     }
-                }, 1000);
+            }, 1900);
             } else if (decryptTarget) {
                 triggerDecode(decryptTarget, 1, function() {
                     glitchWord.classList.add('glitch-active');

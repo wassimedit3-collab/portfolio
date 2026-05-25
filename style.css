@@ -218,8 +218,12 @@ body {
 }
 
 .hero-main {
+    position: absolute;
     z-index: 3;
     text-align: center;
+    top: 33.33%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .hero-name {
@@ -309,9 +313,9 @@ body {
 .hero-bottom {
     position: absolute;
     z-index: 3;
-    bottom: 120px;
+    top: 66.66%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -400,8 +404,8 @@ body {
 }
 
 .nav-pill {
-    width: clamp(100px, 11vw, 130px);
-    height: 42px;
+    width: clamp(110px, 12vw, 140px);
+    height: 46px;
     border-radius: 4px;
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.35);
@@ -420,7 +424,7 @@ body {
 }
 
 .nav-pill.active {
-    width: clamp(120px, 14vw, 150px);
+    width: clamp(130px, 15vw, 160px);
     background: var(--burgundy);
     border-color: var(--burgundy);
 }
@@ -2256,7 +2260,7 @@ body {
     }
 
     .hero-bottom {
-        bottom: 80px;
+        top: 66.66%;
         gap: 10px;
     }
 
@@ -2286,8 +2290,8 @@ body {
     }
 
     .nav-pill {
-        width: clamp(82px, 20vw, 100px);
-        height: 34px;
+        width: clamp(90px, 22vw, 110px);
+        height: 38px;
         font-size: 12px;
     }
 
@@ -2409,7 +2413,7 @@ body {
     .carousel-next { right: 0; }
 
     .hero-main {
-        margin-top: auto;
+        top: 33.33%;
     }
 
     .hero-nav-link {
@@ -2429,8 +2433,8 @@ body {
     }
 
     .nav-pill {
-        width: clamp(70px, 24vw, 88px);
-        height: 28px;
+        width: clamp(76px, 26vw, 94px);
+        height: 30px;
         font-size: 11px;
     }
 
