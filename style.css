@@ -273,7 +273,7 @@ body {
     height: 0;
     border-top: 7px solid transparent;
     border-bottom: 7px solid transparent;
-    border-right: 11px solid #ffd700;
+    border-left: 11px solid #ffd700;
     filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.5));
     animation: arrowDescend 0.5s 1.2s both cubic-bezier(0.34, 1.56, 0.64, 1), arrowFloat 1.8s 1.7s ease-in-out infinite;
 }
@@ -285,7 +285,7 @@ body {
     height: 0;
     border-top: 7px solid transparent;
     border-bottom: 7px solid transparent;
-    border-left: 11px solid #1e90ff;
+    border-right: 11px solid #1e90ff;
     filter: drop-shadow(0 0 6px rgba(30, 144, 255, 0.5));
     animation: arrowDescend 0.5s 1.6s both cubic-bezier(0.34, 1.56, 0.64, 1), arrowFloat 1.8s 2.1s ease-in-out infinite;
 }
