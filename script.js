@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     updateTimer();
-    setInterval(updateTimer, 1000);
+    let timerInterval = setInterval(updateTimer, 1000);
 
     // ===== SCROLL REVEAL - STAGGERED PER SECTION =====
     const sections = document.querySelectorAll('.reveal');
@@ -219,6 +219,93 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         showCameraLabels();
+
+        // ===== NAV INDICATOR ARROW =====
+        const indicatorArrow = document.querySelector('.nav-indicator-arrow');
+        if (indicatorArrow) {
+            function positionArrow(pill) {
+                const y = pill.offsetTop + pill.offsetHeight / 2;
+                indicatorArrow.style.top = (y - 5) + 'px';
+            }
+
+            function freezeAndNavigate(href, steps) {
+                if (cycleTimer) clearTimeout(cycleTimer);
+                clearInterval(timerInterval);
+                document.querySelector('.hero').classList.add('paused', 'focus-lock');
+                pills.forEach(function(p) {
+                    p.textContent = p.dataset.real;
+                });
+                setTimeout(function() {
+                    document.querySelector('.hero').classList.remove('focus-lock');
+                    const duration = steps * 0.3;
+                    const targetPill = Array.from(pills).find(function(p) {
+                        return p.getAttribute('href') === href;
+                    });
+                    if (targetPill) {
+                        indicatorArrow.style.transition = 'top ' + duration + 's cubic-bezier(0.34, 1.56, 0.64, 1)';
+                        positionArrow(targetPill);
+                    }
+                    setTimeout(function() {
+                        window.location.href = href;
+                    }, duration * 1000);
+                }, 300);
+            }
+
+            // Initial position
+            positionArrow(pills[0]);
+
+            // Nav pill clicks
+            pills.forEach(function(pill) {
+                pill.addEventListener('click', function(e) {
+                    if (pill.classList.contains('active')) return;
+                    e.preventDefault();
+                    const activeIndex = Array.from(pills).findIndex(function(p) {
+                        return p.classList.contains('active');
+                    });
+                    const targetIndex = Array.from(pills).indexOf(pill);
+                    const steps = Math.abs(targetIndex - activeIndex);
+                    freezeAndNavigate(pill.getAttribute('href'), steps);
+                });
+            });
+
+            // Portfolio word click (under logo) — no freeze
+            const heroLabelLink = document.querySelector('.hero-label a');
+            if (heroLabelLink) {
+                heroLabelLink.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const href = this.getAttribute('href');
+                    const portfolioPill = pills[1];
+
+                    indicatorArrow.style.transition = 'top 0.3s cubic-bezier(0.34, 1.56, 0.64, 1)';
+                    positionArrow(portfolioPill);
+                    this.classList.add('selecting');
+                    playSelectSound();
+
+                    setTimeout(function() {
+                        window.location.href = href;
+                    }, 300);
+                });
+            }
+        }
+
+        // ===== SFX: CYBORG SELECTION =====
+        function playSelectSound() {
+            try {
+                var ctx = new (window.AudioContext || window.webkitAudioContext)();
+                var osc = ctx.createOscillator();
+                var gain = ctx.createGain();
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(600, ctx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.1);
+                osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.18);
+                gain.gain.setValueAtTime(0.25, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.start();
+                osc.stop(ctx.currentTime + 0.2);
+            } catch(e) {}
+        }
     }
 
     // ===== LIGHTBOX =====
