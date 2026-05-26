@@ -31,49 +31,51 @@
         <div class="sub-page-inner">
             <section class="section reveal">
                 <div class="sec-inner">
-                    <span class="sec-headline">Select Category</span>
-                    <p class="section-desc">Explore my creative work across different disciplines</p>
+                    <span class="sec-headline">Choose Your Medium</span>
+                    <p class="section-desc">Navigate through my creative disciplines</p>
 
-                <div class="filter-bar">
-                    <button class="filter-btn active" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="videos">Videos</button>
-                    <button class="filter-btn" data-filter="photography">Photography</button>
-                    <button class="filter-btn" data-filter="logos">Logos</button>
-                </div>
+                <div class="mindmap-wrap">
+                    <div class="mindmap-canvas">
+                        <svg class="mindmap-svg" viewBox="0 0 700 500" preserveAspectRatio="xMidYMid meet">
+                            <line class="map-line" x1="350" y1="82" x2="110" y2="280" />
+                            <line class="map-line" x1="350" y1="82" x2="590" y2="280" />
+                            <line class="map-line" x1="350" y1="82" x2="350" y2="420" />
+                        </svg>
 
-                <div class="category-grid">
-                    <a href="portfolio-videos.html" class="category-card" data-category="videos">
-                        <div class="category-visual">
-                            <div class="visual-icon">&#9654;</div>
-                            <div class="visual-overlay"></div>
+                        <div class="mindmap-hub">
+                            <div class="hub-ring">
+                                <span class="hub-initials">WV</span>
+                            </div>
+                            <span class="hub-label">Explore My Work</span>
                         </div>
-                        <div class="category-info">
-                            <h3 class="category-name">Videos</h3>
-                            <p class="category-desc">Music Videos &amp; Visual Productions</p>
-                        </div>
-                    </a>
 
-                    <a href="portfolio-photography.html" class="category-card" data-category="photography">
-                        <div class="category-visual photography">
-                            <div class="visual-icon">&#128247;</div>
-                            <div class="visual-overlay"></div>
-                        </div>
-                        <div class="category-info">
-                            <h3 class="category-name">Photography</h3>
-                            <p class="category-desc">Portrait &bull; Commercial &bull; Personal &bull; Manipulation</p>
-                        </div>
-                    </a>
+                        <a href="portfolio-videos.html" class="map-node node-videos">
+                            <div class="map-node-visual"><span class="map-node-icon">&#9654;</span></div>
+                            <div class="map-node-body">
+                                <h3 class="map-node-name">Videos</h3>
+                                <p class="map-node-desc">Music Videos &amp; Visual Productions</p>
+                            </div>
+                            <span class="map-node-arrow">&rarr;</span>
+                        </a>
 
-                    <a href="portfolio-logos.html" class="category-card" data-category="logos">
-                        <div class="category-visual logos">
-                            <div class="visual-icon">&#9672;</div>
-                            <div class="visual-overlay"></div>
-                        </div>
-                        <div class="category-info">
-                            <h3 class="category-name">Logo Design</h3>
-                            <p class="category-desc">Brand Identity &amp; Visual Design</p>
-                        </div>
-                    </a>
+                        <a href="portfolio-photography.html" class="map-node node-photography">
+                            <div class="map-node-visual"><span class="map-node-icon">&#128247;</span></div>
+                            <div class="map-node-body">
+                                <h3 class="map-node-name">Photography</h3>
+                                <p class="map-node-desc">Portrait &bull; Commercial &bull; Personal &bull; Manipulation</p>
+                            </div>
+                            <span class="map-node-arrow">&rarr;</span>
+                        </a>
+
+                        <a href="portfolio-logos.html" class="map-node node-logos">
+                            <div class="map-node-visual"><span class="map-node-icon">&#9672;</span></div>
+                            <div class="map-node-body">
+                                <h3 class="map-node-name">Logo Design</h3>
+                                <p class="map-node-desc">Brand Identity &amp; Visual Design</p>
+                            </div>
+                            <span class="map-node-arrow">&rarr;</span>
+                        </a>
+                    </div>
                 </div>
             </div>
             </section>
