@@ -806,6 +806,18 @@ body {
     border-bottom: none;
 }
 
+.section.sec-mindmap {
+    min-height: calc(100vh - 72px);
+    padding: 0 48px;
+    display: flex;
+    align-items: center;
+    border-bottom: none;
+}
+
+.section.sec-mindmap .sec-inner {
+    width: 100%;
+}
+
 .sec-inner {
     position: relative;
     z-index: 1;
@@ -1950,9 +1962,185 @@ body {
 /* ===== MIND MAP PORTFOLIO ===== */
 
 .mindmap-wrap {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 0 auto;
-    padding: 30px 0;
+}
+
+.mindmap-canvas {
+    position: relative;
+    height: calc(100vh - 200px);
+    min-height: 580px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mindmap-svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.map-line {
+    stroke: rgba(229, 9, 20, 0.2);
+    stroke-width: 3;
+    stroke-dasharray: 8 14;
+    fill: none;
+}
+
+/* Hub */
+.mindmap-hub {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 2;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 22px;
+}
+
+.hub-ring {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    border: 3px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: hubSpin 16s linear infinite;
+    box-shadow: 0 0 70px rgba(229, 9, 20, 0.3), inset 0 0 40px rgba(229, 9, 20, 0.06);
+}
+
+.hub-initials {
+    font-family: var(--font-serif);
+    font-size: 40px;
+    font-weight: 700;
+    color: var(--accent);
+    letter-spacing: 2px;
+}
+
+.hub-label {
+    font-family: var(--font-sans);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 6px;
+}
+
+@keyframes hubSpin {
+    100% { transform: rotate(360deg); }
+}
+
+/* Nodes */
+.map-node {
+    position: absolute;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 32px 40px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    text-decoration: none;
+    color: inherit;
+    min-width: 360px;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    animation: nodeFadeIn 0.8s both;
+}
+
+.node-videos {
+    top: 340px;
+    left: 0;
+    animation-delay: 0.3s;
+}
+
+.node-photography {
+    top: 340px;
+    right: 0;
+    animation-delay: 0.5s;
+}
+
+.node-logos {
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-delay: 0.7s;
+}
+
+.map-node:hover {
+    border-color: var(--accent);
+    transform: translateY(-8px);
+    box-shadow: 0 16px 50px rgba(229, 9, 20, 0.18);
+}
+
+.node-logos:hover {
+    transform: translateX(-50%) translateY(-8px);
+}
+
+@keyframes nodeFadeIn {
+    0% { opacity: 0; transform: translateY(30px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
+
+.node-videos .map-node-visual { background: linear-gradient(135deg, #1a0a0a, #0a0a1a); }
+.node-photography .map-node-visual { background: linear-gradient(135deg, #0a1a0a, #1a0a0a); }
+.node-logos .map-node-visual { background: linear-gradient(135deg, #0a0a1a, #1a1a0a); }
+
+.map-node-visual {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1.5px solid var(--border);
+}
+
+.map-node-icon {
+    font-size: 30px;
+    opacity: 0.85;
+}
+
+.map-node-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.map-node-name {
+    font-family: var(--font-serif);
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-white);
+    letter-spacing: 1px;
+}
+
+.map-node-desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+.map-node-arrow {
+    font-size: 24px;
+    color: var(--accent);
+    opacity: 0;
+    transform: translateX(-12px);
+    transition: all 0.3s;
+}
+
+.map-node:hover .map-node-arrow {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 .mindmap-canvas {
@@ -2274,6 +2462,11 @@ body {
 
     .sub-header {
         padding: 48px 24px 32px;
+    }
+
+    .section.sec-mindmap {
+        padding: 0 24px;
+        min-height: auto;
     }
 
     .sub-page {
