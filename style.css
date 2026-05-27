@@ -2053,19 +2053,19 @@ body {
 }
 
 .node-videos {
-    top: 10%;
+    top: 8%;
     left: 3%;
     animation-delay: 0.3s;
 }
 
 .node-photography {
-    top: 10%;
+    top: 8%;
     right: 3%;
     animation-delay: 0.5s;
 }
 
 .node-logos {
-    bottom: 10%;
+    top: 8%;
     left: 50%;
     transform: translateX(-50%);
     animation-delay: 0.7s;
