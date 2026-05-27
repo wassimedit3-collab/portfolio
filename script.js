@@ -3,16 +3,23 @@ if ('scrollRestoration' in history) {
 }
 window.scrollTo(0, 0);
 
-// Fix hero height to actual visible viewport (reliable across mobile browsers)
+// Fix hero height to actual visible viewport
 function fixHeroHeight() {
     const hero = document.querySelector('.hero');
-    if (hero) {
-        hero.style.height = window.innerHeight + 'px';
-        hero.style.minHeight = window.innerHeight + 'px';
-    }
+    if (!hero) return;
+    const h = window.visualViewport
+        ? window.visualViewport.height
+        : window.innerHeight;
+    hero.style.height = h + 'px';
+    hero.style.minHeight = h + 'px';
 }
 fixHeroHeight();
 window.addEventListener('resize', fixHeroHeight);
+if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', fixHeroHeight);
+}
+document.addEventListener('DOMContentLoaded', fixHeroHeight);
+window.addEventListener('load', fixHeroHeight);
 
 document.addEventListener('DOMContentLoaded', () => {
 

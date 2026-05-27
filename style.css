@@ -2072,10 +2072,88 @@ body {
 
 @media (max-width: 768px) {
     .hero {
-        height: 100vh;
+        height: 100svh;
         height: 100dvh;
-        min-height: 100vh;
+        min-height: 100svh;
         min-height: 100dvh;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .hero-top {
+        padding: 16px 24px 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .hero-logo img {
+        height: 48px;
+    }
+
+    .hero-nav-link {
+        font-size: 10px;
+        padding: 8px 16px;
+    }
+
+    .hero-label {
+        bottom: 80px;
+    }
+
+    .hero-label a {
+        letter-spacing: 5px;
+        font-size: 9px;
+    }
+
+    .hero-timer {
+        bottom: 22px;
+        font-size: 11px;
+        padding: 4px 10px;
+        gap: 6px;
+    }
+
+    .hero-bottom {
+        top: 58%;
+        gap: 6px;
+    }
+
+    .hero-cta-logo img {
+        height: 80px;
+    }
+
+    .hero-rec {
+        top: auto;
+        right: 16px;
+        bottom: 60px;
+        font-size: 9px;
+        gap: 5px;
+    }
+
+    .hero-nav-bottom {
+        padding: 10px 16px;
+        gap: 12px;
+    }
+
+    .viewfinder-corner {
+        width: 40px;
+        height: 40px;
+    }
+
+    .viewfinder-tl { top: 12px; left: 12px; }
+    .viewfinder-tr { top: 12px; right: 12px; }
+    .viewfinder-bl { bottom: 12px; left: 12px; }
+    .viewfinder-br { bottom: 12px; right: 12px; }
+
+    .hero-nav-header {
+        bottom: 14px;
+        right: 14px;
+        gap: 6px;
+    }
+
+    .nav-pill {
+        width: clamp(80px, 20vw, 100px);
+        height: 34px;
+        font-size: 11px;
     }
 
     .hero-top {
@@ -2307,17 +2385,18 @@ body {
     .carousel-next { right: 0; }
 
     .hero-main {
-        top: 33.33%;
+        top: 30%;
     }
 
     .hero-label {
-        bottom: 78px;
+        bottom: 66px;
     }
 
     .hero-timer {
-        bottom: 22px;
-        font-size: 10px;
-        padding: 3px 10px;
+        bottom: 18px;
+        font-size: 9px;
+        padding: 2px 8px;
+        gap: 4px;
     }
 
     .hero-nav-link {
@@ -2327,39 +2406,37 @@ body {
     }
 
     .hero-rec {
-        right: 14px;
-        bottom: 60px;
-        font-size: 9px;
+        right: 12px;
+        bottom: 52px;
+        font-size: 8px;
+        gap: 4px;
     }
 
     .hero-cta-logo img {
-        height: 70px;
-    }
-
-    .hero-main {
-        top: 30%;
+        height: 56px;
     }
 
     .hero-nav-header {
-        bottom: 14px;
-        right: 14px;
-        gap: 6px;
+        bottom: 12px;
+        right: 12px;
+        gap: 4px;
     }
 
     .nav-pill {
-        width: clamp(76px, 26vw, 94px);
-        height: 30px;
-        font-size: 11px;
+        width: clamp(68px, 22vw, 84px);
+        height: 26px;
+        font-size: 10px;
+        letter-spacing: 2px;
     }
 
     .hero-nav-bottom {
-        padding: 8px 12px;
-        gap: 10px;
+        padding: 6px 10px;
+        gap: 8px;
     }
 
     .hero-nav-bottom .hero-nav-link {
-        font-size: 9px;
-        padding: 6px 12px;
+        font-size: 8px;
+        padding: 4px 10px;
     }
 
     .about-text {
