@@ -808,7 +808,7 @@ body {
 
 .section.sec-mindmap {
     min-height: calc(100vh - 72px);
-    padding: 0 48px;
+    padding: 80px 48px;
     display: flex;
     align-items: center;
     border-bottom: none;
@@ -1965,9 +1965,9 @@ body {
 .category-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 120px;
-    max-width: 1280px;
-    margin: 40px auto 0;
+    gap: 160px;
+    max-width: 1400px;
+    margin: 80px auto 0;
 }
 
 .category-card {
@@ -2032,10 +2032,10 @@ body {
 
 /* Body */
 .category-body {
-    padding: 24px;
+    padding: 32px 28px;
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
 }
 
 .category-name {
