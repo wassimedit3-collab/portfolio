@@ -1965,8 +1965,8 @@ body {
 .category-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
-    max-width: 960px;
+    gap: 40px;
+    max-width: 1040px;
     margin: 40px auto 0;
 }
 
