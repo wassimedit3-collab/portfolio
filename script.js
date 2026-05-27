@@ -3,15 +3,18 @@ if ('scrollRestoration' in history) {
 }
 window.scrollTo(0, 0);
 
-// Fix hero height to actual visible viewport
+function getViewportHeight() {
+    if (window.visualViewport && window.visualViewport.height > 0) {
+        return Math.round(window.visualViewport.height);
+    }
+    return Math.round(window.innerHeight);
+}
+
 function fixHeroHeight() {
     const hero = document.querySelector('.hero');
     if (!hero) return;
-    const h = window.visualViewport
-        ? window.visualViewport.height
-        : window.innerHeight;
+    const h = getViewportHeight();
     hero.style.height = h + 'px';
-    hero.style.minHeight = h + 'px';
 }
 fixHeroHeight();
 window.addEventListener('resize', fixHeroHeight);
