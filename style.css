@@ -67,6 +67,7 @@ body {
 
 .hero {
     height: 100vh;
+    height: 100dvh;
     min-height: 600px;
     position: relative;
     overflow: hidden;
@@ -2089,7 +2090,7 @@ body {
     .hero-rec {
         top: auto;
         right: 24px;
-        bottom: 100px;
+        bottom: 84px;
         font-size: 11px;
     }
 
@@ -2098,7 +2099,7 @@ body {
     }
 
     .hero-label {
-        bottom: 127px;
+        bottom: 110px;
     }
 
     .hero-label a {
@@ -2107,7 +2108,7 @@ body {
     }
 
     .hero-timer {
-        bottom: 35px;
+        bottom: 30px;
         font-size: 13px;
         padding: 6px 14px;
     }
@@ -2127,18 +2128,18 @@ body {
     }
 
     .viewfinder-corner {
-        width: 36px;
-        height: 36px;
+        width: 44px;
+        height: 44px;
     }
 
-    .viewfinder-tl { top: 12px; left: 12px; }
-    .viewfinder-tr { top: 12px; right: 12px; }
-    .viewfinder-bl { bottom: 12px; left: 12px; }
-    .viewfinder-br { bottom: 12px; right: 12px; }
+    .viewfinder-tl { top: 16px; left: 16px; }
+    .viewfinder-tr { top: 16px; right: 16px; }
+    .viewfinder-bl { bottom: 16px; left: 16px; }
+    .viewfinder-br { bottom: 16px; right: 16px; }
 
     .hero-nav-header {
-        bottom: 16px;
-        right: 16px;
+        bottom: 18px;
+        right: 18px;
         gap: 8px;
     }
 
@@ -2276,11 +2277,11 @@ body {
     }
 
     .hero-label {
-        bottom: 99px;
+        bottom: 92px;
     }
 
     .hero-timer {
-        bottom: 27px;
+        bottom: 26px;
         font-size: 11px;
         padding: 4px 12px;
     }
@@ -2296,8 +2297,8 @@ body {
     }
 
     .hero-nav-header {
-        bottom: 12px;
-        right: 12px;
+        bottom: 14px;
+        right: 14px;
         gap: 6px;
     }
 
