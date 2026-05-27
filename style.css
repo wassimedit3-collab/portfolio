@@ -2099,7 +2099,7 @@ body {
     }
 
     .hero-label {
-        bottom: 80px;
+        bottom: 92px;
     }
 
     .hero-label a {
@@ -2108,25 +2108,25 @@ body {
     }
 
     .hero-timer {
-        bottom: 22px;
+        bottom: 52px;
         font-size: 11px;
         padding: 4px 10px;
         gap: 6px;
     }
 
     .hero-bottom {
-        top: 58%;
+        top: 46%;
         gap: 6px;
     }
 
     .hero-cta-logo img {
-        height: 80px;
+        height: 72px;
     }
 
     .hero-rec {
-        top: auto;
+        top: 64px;
         right: 16px;
-        bottom: 60px;
+        bottom: auto;
         font-size: 9px;
         gap: 5px;
     }
@@ -2391,11 +2391,11 @@ body {
     }
 
     .hero-label {
-        bottom: 66px;
+        bottom: 74px;
     }
 
     .hero-timer {
-        bottom: 18px;
+        bottom: 42px;
         font-size: 9px;
         padding: 2px 8px;
         gap: 4px;
@@ -2408,14 +2408,19 @@ body {
     }
 
     .hero-rec {
+        top: 52px;
         right: 12px;
-        bottom: 52px;
+        bottom: auto;
         font-size: 8px;
         gap: 4px;
     }
 
     .hero-cta-logo img {
-        height: 56px;
+        height: 48px;
+    }
+
+    .hero-bottom {
+        top: 44%;
     }
 
     .hero-nav-header {
