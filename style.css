@@ -278,16 +278,20 @@ body {
 
 .hero-label a {
     font-family: var(--font-sans);
-    font-size: clamp(11px, 1.3vw, 16px);
-    font-weight: 600;
-    color: var(--accent);
+    font-size: 32px;
+    font-weight: 800;
+    color: #ffffff !important;
     text-decoration: none;
     text-transform: uppercase;
-    letter-spacing: 8px;
+    letter-spacing: 12px;
     transition: opacity 0.3s;
     display: inline-flex;
     align-items: center;
     gap: 80px;
+    text-shadow: 0 0 30px rgba(255, 255, 255, 0.3), 0 0 60px rgba(255, 255, 255, 0.15);
+    background: rgba(0,0,0,0.3);
+    padding: 8px 16px;
+    border-radius: 4px;
 }
 
 .hero-label a::before {
@@ -2009,6 +2013,22 @@ body {
     overflow: hidden;
 }
 
+.category-thumb::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.65));
+    pointer-events: none;
+}
+
+.category-thumb-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
 .category-card:nth-child(1) .category-thumb { background: linear-gradient(135deg, #1a0a0a, #0a0a1a); }
 .category-card:nth-child(2) .category-thumb { background: linear-gradient(135deg, #0a1a0a, #1a0a0a); }
 .category-card:nth-child(3) .category-thumb { background: linear-gradient(135deg, #0a0a1a, #1a1a0a); }
@@ -2099,37 +2119,41 @@ body {
     }
 
     .hero-label {
-        bottom: 92px;
+        bottom: 96px;
     }
 
     .hero-label a {
-        letter-spacing: 5px;
-        font-size: 9px;
+        letter-spacing: 6px;
+        font-size: 14px;
     }
 
     .hero-timer {
-        bottom: 52px;
+        bottom: 70px;
         font-size: 11px;
         padding: 4px 10px;
         gap: 6px;
     }
 
     .hero-bottom {
-        top: 46%;
+        top: 28%;
         gap: 6px;
     }
 
     .hero-cta-logo img {
-        height: 72px;
+        height: 56px;
     }
 
     .hero-rec {
-        top: 64px;
+        top: 60px;
         right: 16px;
         bottom: auto;
         font-size: 9px;
         gap: 5px;
     }
+    .hero-main {
+        top: 16vh;
+    }
+
 
     .hero-nav-bottom {
         padding: 10px 16px;
@@ -2137,8 +2161,8 @@ body {
     }
 
     .viewfinder-corner {
-        width: 40px;
-        height: 40px;
+        width: 36px;
+        height: 36px;
     }
 
     .viewfinder-tl { top: 12px; left: 12px; }
@@ -2147,223 +2171,15 @@ body {
     .viewfinder-br { bottom: 12px; right: 12px; }
 
     .hero-nav-header {
-        bottom: 14px;
+        bottom: 18px;
         right: 14px;
         gap: 6px;
     }
 
     .nav-pill {
         width: clamp(80px, 20vw, 100px);
-        height: 34px;
+        height: 28px;
         font-size: 11px;
-    }
-
-    .hero-top {
-        padding: 20px 24px 0;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 16px;
-    }
-
-    .hero-logo img {
-        height: 56px;
-    }
-
-    .hero-nav-link {
-        font-size: 10px;
-        padding: 8px 16px;
-    }
-
-    .hero-rec {
-        top: auto;
-        right: 24px;
-        bottom: 84px;
-        font-size: 11px;
-    }
-
-    .hero-main {
-        padding: 0 24px;
-    }
-
-    .hero-label {
-        bottom: 95px;
-    }
-
-    .hero-label a {
-        letter-spacing: 5px;
-        font-size: 10px;
-    }
-
-    .hero-timer {
-        bottom: 26px;
-        font-size: 12px;
-        padding: 5px 12px;
-    }
-
-    .hero-bottom {
-        top: 62%;
-        gap: 8px;
-    }
-
-    .hero-cta-logo img {
-        height: 90px;
-    }
-
-    .hero-rec {
-        top: auto;
-        right: 20px;
-        bottom: 72px;
-        font-size: 10px;
-    }
-
-    .hero-label a {
-        letter-spacing: 5px;
-        font-size: 10px;
-    }
-
-    .hero-timer {
-        bottom: 30px;
-        font-size: 13px;
-        padding: 6px 14px;
-    }
-
-    .hero-bottom {
-        top: 66.66%;
-        gap: 10px;
-    }
-
-    .hero-cta-logo img {
-        height: 120px;
-    }
-
-    .hero-nav-bottom {
-        padding: 10px 16px;
-        gap: 12px;
-    }
-
-    .viewfinder-corner {
-        width: 44px;
-        height: 44px;
-    }
-
-    .viewfinder-tl { top: 16px; left: 16px; }
-    .viewfinder-tr { top: 16px; right: 16px; }
-    .viewfinder-bl { bottom: 16px; left: 16px; }
-    .viewfinder-br { bottom: 16px; right: 16px; }
-
-    .hero-nav-header {
-        bottom: 18px;
-        right: 18px;
-        gap: 8px;
-    }
-
-    .nav-pill {
-        width: clamp(90px, 22vw, 110px);
-        height: 38px;
-        font-size: 12px;
-    }
-
-    .section {
-        padding: 60px 24px;
-    }
-
-    .sec-about-inner {
-        grid-template-columns: 1fr;
-        gap: 24px;
-    }
-
-    .sec-about-headline {
-        flex-direction: row;
-        align-items: center;
-        gap: 16px;
-    }
-
-    .sec-about-headline .sec-headline {
-        writing-mode: horizontal-tb;
-        font-size: 10px;
-        letter-spacing: 6px;
-        height: auto;
-    }
-
-    .sec-work .timeline-item:nth-child(odd),
-    .sec-work .timeline-item:nth-child(even) {
-        padding-left: 30px;
-        padding-right: 0;
-    }
-
-    .sec-work .timeline-item:nth-child(even) {
-        padding-left: 30px;
-    }
-
-    .timeline-item::before {
-        left: -24px;
-    }
-
-    .tl-line {
-        left: 22px;
-    }
-
-    .sec-skills .skill-cloud {
-        gap: 8px;
-    }
-
-    .comp-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .comp-tag {
-        grid-column: span 1 !important;
-    }
-
-    .lang-row {
-        gap: 10px;
-    }
-
-    .port-link-line {
-        margin-top: 12px;
-    }
-
-    .sub-header {
-        padding: 48px 24px 32px;
-    }
-
-    .section.sec-mindmap {
-        padding: 0 24px;
-        min-height: auto;
-    }
-
-    .sub-page {
-        padding: 24px;
-    }
-
-    .sub-nav {
-        gap: 16px;
-        flex-wrap: wrap;
-    }
-
-    .category-grid,
-    .subcategory-grid,
-    .project-grid,
-    .gallery-grid {
-        grid-template-columns: 1fr;
-    }
-
-    .gallery-masonry {
-        column-count: 2;
-    }
-
-    .sub-name {
-        font-size: 28px;
-    }
-
-    .footer {
-        padding: 32px 24px;
-    }
-
-    .footer-inner {
-        flex-direction: column;
-        gap: 8px;
-        text-align: center;
     }
 
 }
@@ -2391,11 +2207,11 @@ body {
     }
 
     .hero-label {
-        bottom: 74px;
+        bottom: 72px;
     }
 
     .hero-timer {
-        bottom: 42px;
+        bottom: 56px;
         font-size: 9px;
         padding: 2px 8px;
         gap: 4px;
@@ -2420,7 +2236,7 @@ body {
     }
 
     .hero-bottom {
-        top: 44%;
+        top: 26%;
     }
 
     .hero-nav-header {
@@ -2429,9 +2245,14 @@ body {
         gap: 4px;
     }
 
+    .viewfinder-corner {
+        width: 30px;
+        height: 30px;
+    }
+
     .nav-pill {
         width: clamp(68px, 22vw, 84px);
-        height: 26px;
+        height: 22px;
         font-size: 10px;
         letter-spacing: 2px;
     }
