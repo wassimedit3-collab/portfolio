@@ -1970,7 +1970,7 @@ body {
 .mindmap-canvas {
     position: relative;
     height: calc(100vh - 200px);
-    min-height: 580px;
+    min-height: 620px;
 }
 
 .mindmap-svg {
@@ -1983,41 +1983,41 @@ body {
 }
 
 .map-line {
-    stroke: rgba(229, 9, 20, 0.18);
-    stroke-width: 3;
-    stroke-dasharray: 8 14;
+    stroke: rgba(229, 9, 20, 0.2);
+    stroke-width: 2.5;
+    stroke-dasharray: 6 12;
     fill: none;
 }
 
-/* Hub */
+/* Hub — centered */
 .mindmap-hub {
     position: absolute;
-    top: 6%;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
+    transform: translate(-50%, -50%);
     z-index: 2;
     text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 18px;
+    gap: 16px;
 }
 
 .hub-ring {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+    height: 90px;
     border-radius: 50%;
     border: 3px solid var(--accent);
     display: flex;
     align-items: center;
     justify-content: center;
     animation: hubSpin 16s linear infinite;
-    box-shadow: 0 0 60px rgba(229, 9, 20, 0.25), inset 0 0 30px rgba(229, 9, 20, 0.05);
+    box-shadow: 0 0 50px rgba(229, 9, 20, 0.25), inset 0 0 25px rgba(229, 9, 20, 0.05);
 }
 
 .hub-initials {
     font-family: var(--font-serif);
-    font-size: 34px;
+    font-size: 30px;
     font-weight: 700;
     color: var(--accent);
     letter-spacing: 2px;
@@ -2025,7 +2025,7 @@ body {
 
 .hub-label {
     font-family: var(--font-sans);
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 500;
     color: var(--text-muted);
     text-transform: uppercase;
@@ -2036,13 +2036,13 @@ body {
     100% { transform: rotate(360deg); }
 }
 
-/* Nodes */
+/* Nodes — radial around hub */
 .map-node {
     position: absolute;
     z-index: 2;
     display: flex;
     flex-direction: column;
-    width: 300px;
+    width: 280px;
     background: var(--bg-card);
     border: 1px solid var(--border);
     text-decoration: none;
@@ -2053,42 +2053,50 @@ body {
 }
 
 .node-videos {
-    top: 35%;
-    left: 2%;
+    top: 10%;
+    left: 3%;
     animation-delay: 0.3s;
 }
 
 .node-photography {
-    top: 35%;
-    right: 2%;
+    top: 10%;
+    right: 3%;
     animation-delay: 0.5s;
 }
 
 .node-logos {
-    bottom: 6%;
+    bottom: 10%;
     left: 50%;
     transform: translateX(-50%);
     animation-delay: 0.7s;
 }
 
-.map-node:hover {
+.node-videos:hover {
     border-color: var(--accent);
-    transform: translateY(-8px);
+    transform: translate(4px, -8px);
+    box-shadow: 0 20px 60px rgba(229, 9, 20, 0.18);
+}
+
+.node-photography:hover {
+    border-color: var(--accent);
+    transform: translate(-4px, -8px);
     box-shadow: 0 20px 60px rgba(229, 9, 20, 0.18);
 }
 
 .node-logos:hover {
+    border-color: var(--accent);
     transform: translateX(-50%) translateY(-8px);
+    box-shadow: 0 20px 60px rgba(229, 9, 20, 0.18);
 }
 
 @keyframes nodeFadeIn {
-    0% { opacity: 0; transform: translateY(24px); }
-    100% { opacity: 1; transform: translateY(0); }
+    0% { opacity: 0; }
+    100% { opacity: 1; }
 }
 
 /* Thumb */
 .map-node-thumb {
-    height: 180px;
+    height: 160px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -2101,8 +2109,8 @@ body {
 .node-logos .map-node-thumb { background: linear-gradient(135deg, #0a0a1a, #1a1a0a); }
 
 .map-node-visual {
-    width: 64px;
-    height: 64px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -2114,12 +2122,12 @@ body {
 }
 
 .map-node-icon {
-    font-size: 26px;
+    font-size: 24px;
     opacity: 0.9;
 }
 
 .map-node-body {
-    padding: 20px 24px;
+    padding: 18px 22px;
     display: flex;
     flex-direction: column;
     gap: 4px;
@@ -2127,7 +2135,7 @@ body {
 
 .map-node-name {
     font-family: var(--font-serif);
-    font-size: 22px;
+    font-size: 20px;
     font-weight: 700;
     color: var(--text-white);
     letter-spacing: 0.5px;
@@ -2140,7 +2148,7 @@ body {
 }
 
 .map-node-arrow {
-    font-size: 20px;
+    font-size: 18px;
     color: var(--accent);
     opacity: 0;
     transform: translateX(-10px);
