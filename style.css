@@ -2071,6 +2071,13 @@ body {
 /* ===== RESPONSIVE ===== */
 
 @media (max-width: 768px) {
+    .hero {
+        height: 100vh;
+        height: 100dvh;
+        min-height: 100vh;
+        min-height: 100dvh;
+    }
+
     .hero-top {
         padding: 20px 24px 0;
         flex-direction: column;
