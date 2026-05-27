@@ -1989,12 +1989,12 @@ body {
     fill: none;
 }
 
-/* Hub — centered */
+/* Hub — top */
 .mindmap-hub {
     position: absolute;
-    top: 50%;
+    top: 8%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     z-index: 2;
     text-align: center;
     display: flex;
@@ -2053,19 +2053,19 @@ body {
 }
 
 .node-videos {
-    top: 8%;
+    top: 42%;
     left: 3%;
     animation-delay: 0.3s;
 }
 
 .node-photography {
-    top: 8%;
+    top: 42%;
     right: 3%;
     animation-delay: 0.5s;
 }
 
 .node-logos {
-    top: 8%;
+    top: 42%;
     left: 50%;
     transform: translateX(-50%);
     animation-delay: 0.7s;
