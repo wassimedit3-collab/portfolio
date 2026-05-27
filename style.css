@@ -2119,7 +2119,9 @@ body {
     }
 
     .hero-label {
-        bottom: 140px;
+        top: 66.66%;
+        bottom: auto;
+        transform: translate(-50%, -50%);
     }
 
     .hero-label a {
@@ -2128,14 +2130,14 @@ body {
     }
 
     .hero-timer {
-        bottom: 80px;
+        bottom: 60px;
         font-size: 11px;
         padding: 4px 10px;
         gap: 6px;
     }
 
     .hero-bottom {
-        top: 38%;
+        top: 33.33%;
         gap: 6px;
     }
 
@@ -2203,15 +2205,17 @@ body {
     .carousel-next { right: 0; }
 
     .hero-main {
-        top: 30%;
+        top: 16vh;
     }
 
     .hero-label {
-        bottom: 110px;
+        top: 66.66%;
+        bottom: auto;
+        transform: translate(-50%, -50%);
     }
 
     .hero-timer {
-        bottom: 70px;
+        bottom: 52px;
         font-size: 9px;
         padding: 2px 8px;
         gap: 4px;
@@ -2236,7 +2240,7 @@ body {
     }
 
     .hero-bottom {
-        top: 35%;
+        top: 33.33%;
     }
 
     .hero-nav-header {
