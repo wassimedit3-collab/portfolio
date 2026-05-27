@@ -12,9 +12,11 @@ function getViewportHeight() {
 
 function fixHeroHeight() {
     const hero = document.querySelector('.hero');
+    const main = document.querySelector('main');
     if (!hero) return;
     const h = getViewportHeight();
     hero.style.height = h + 'px';
+    if (main) main.style.paddingTop = h + 'px';
 }
 fixHeroHeight();
 window.addEventListener('resize', fixHeroHeight);

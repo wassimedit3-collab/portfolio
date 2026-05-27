@@ -2072,14 +2072,14 @@ body {
 
 @media (max-width: 768px) {
     .hero {
-        height: 100svh;
         height: 100dvh;
-        height: 100vh;
-        min-height: 100svh;
         min-height: 100dvh;
-        min-height: 100vh;
         position: relative;
         overflow: hidden;
+    }
+
+    main {
+        padding-top: 0;
     }
 
     .hero-top {
