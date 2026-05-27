@@ -2119,7 +2119,7 @@ body {
     }
 
     .hero-label {
-        top: 66.66%;
+        top: 70%;
         bottom: auto;
         transform: translate(-50%, -50%);
     }
@@ -2130,15 +2130,23 @@ body {
     }
 
     .hero-timer {
-        bottom: 60px;
+        bottom: 50px;
         font-size: 11px;
         padding: 4px 10px;
         gap: 6px;
     }
 
+    .hero-main {
+        top: 12vh;
+    }
+
     .hero-bottom {
-        top: 33.33%;
+        top: 50%;
         gap: 6px;
+    }
+
+    .hero-name {
+        font-size: 48px;
     }
 
     .hero-cta-logo img {
@@ -2152,10 +2160,6 @@ body {
         font-size: 9px;
         gap: 5px;
     }
-    .hero-main {
-        top: 16vh;
-    }
-
 
     .hero-nav-bottom {
         padding: 10px 16px;
@@ -2205,17 +2209,17 @@ body {
     .carousel-next { right: 0; }
 
     .hero-main {
-        top: 16vh;
+        top: 10vh;
     }
 
     .hero-label {
-        top: 66.66%;
+        top: 72%;
         bottom: auto;
         transform: translate(-50%, -50%);
     }
 
     .hero-timer {
-        bottom: 52px;
+        bottom: 42px;
         font-size: 9px;
         padding: 2px 8px;
         gap: 4px;
@@ -2240,7 +2244,7 @@ body {
     }
 
     .hero-bottom {
-        top: 33.33%;
+        top: 50%;
     }
 
     .hero-nav-header {
