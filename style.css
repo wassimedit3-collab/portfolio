@@ -2106,7 +2106,34 @@ body {
     }
 
     .hero-label {
-        bottom: 110px;
+        bottom: 95px;
+    }
+
+    .hero-label a {
+        letter-spacing: 5px;
+        font-size: 10px;
+    }
+
+    .hero-timer {
+        bottom: 26px;
+        font-size: 12px;
+        padding: 5px 12px;
+    }
+
+    .hero-bottom {
+        top: 62%;
+        gap: 8px;
+    }
+
+    .hero-cta-logo img {
+        height: 90px;
+    }
+
+    .hero-rec {
+        top: auto;
+        right: 20px;
+        bottom: 72px;
+        font-size: 10px;
     }
 
     .hero-label a {
@@ -2284,13 +2311,13 @@ body {
     }
 
     .hero-label {
-        bottom: 92px;
+        bottom: 78px;
     }
 
     .hero-timer {
-        bottom: 26px;
-        font-size: 11px;
-        padding: 4px 12px;
+        bottom: 22px;
+        font-size: 10px;
+        padding: 3px 10px;
     }
 
     .hero-nav-link {
@@ -2300,7 +2327,17 @@ body {
     }
 
     .hero-rec {
-        right: 16px;
+        right: 14px;
+        bottom: 60px;
+        font-size: 9px;
+    }
+
+    .hero-cta-logo img {
+        height: 70px;
+    }
+
+    .hero-main {
+        top: 30%;
     }
 
     .hero-nav-header {
