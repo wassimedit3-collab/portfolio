@@ -265,8 +265,8 @@ body {
     position: absolute;
     z-index: 3;
     left: 50%;
-    transform: translateX(-50%);
-    bottom: 220px;
+    transform: translate(-50%, -50%);
+    top: 76%;
     animation: heroFadeIn 1s 0.4s forwards;
     opacity: 0;
 }
@@ -289,9 +289,12 @@ body {
     align-items: center;
     gap: 80px;
     text-shadow: 0 0 30px rgba(255, 255, 255, 0.3), 0 0 60px rgba(255, 255, 255, 0.15);
-    background: rgba(0,0,0,0.3);
+    background: rgba(160, 160, 160, 0.25);
     padding: 8px 16px;
     border-radius: 4px;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
 }
 
 .hero-label a::before {
@@ -411,7 +414,7 @@ body {
 .hero-bottom {
     position: absolute;
     z-index: 3;
-    top: 72%;
+    top: 55%;
     left: 50%;
     transform: translate(-50%, -50%);
     display: flex;
