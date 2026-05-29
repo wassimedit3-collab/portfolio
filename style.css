@@ -2137,7 +2137,7 @@ body {
     }
 
     .hero-main {
-        top: 18vh;
+        top: 24vh;
     }
 
     .hero-bottom {
@@ -2147,10 +2147,6 @@ body {
 
     .hero-name {
         font-size: 40px;
-    }
-
-    .hero-cta-logo img {
-        height: 56px;
     }
 
     .hero-rec {
@@ -2209,7 +2205,7 @@ body {
     .carousel-next { right: 0; }
 
     .hero-main {
-        top: 18vh;
+        top: 24vh;
     }
 
     .hero-name {
