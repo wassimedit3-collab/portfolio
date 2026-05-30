@@ -751,8 +751,8 @@ body {
     display: inline-block;
     animation: hardGlitch 2s steps(1) infinite;
     animation-delay: 1s;
-    text-decoration: none;
-    border-bottom: none;
+    text-decoration: none !important;
+    border-bottom: none !important;
 }
 
 .glitch-link::before,
@@ -1190,16 +1190,17 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 80px;
-    text-decoration: none;
-    border-bottom: none;
+    text-decoration: none !important;
+    border-bottom: none !important;
     color: var(--text-white);
 }
 
 .port-link-text {
     font-family: var(--font-serif);
     font-size: clamp(37px, 5vw, 64px);
-    text-decoration: none;
-    border-bottom: none;
+    font-weight: 800;
+    text-decoration: none !important;
+    border-bottom: none !important;
 }
 
 .social-item {
