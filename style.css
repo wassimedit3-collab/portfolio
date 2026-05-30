@@ -1199,6 +1199,7 @@ body {
     font-family: var(--font-serif);
     font-size: clamp(37px, 5vw, 64px);
     font-weight: 800;
+    letter-spacing: -1px;
     text-decoration: none !important;
     border-bottom: none !important;
 }
@@ -2127,14 +2128,15 @@ body {
 
 @media (max-width: 768px) {
     .hero {
-        height: 100dvh;
-        min-height: 100dvh;
+        height: 100vh !important;
+        height: 100dvh !important;
+        min-height: 100dvh !important;
         position: relative;
         overflow: hidden;
     }
 
     main {
-        padding-top: 0;
+        padding-top: 0 !important;
     }
 
     .hero-top {
