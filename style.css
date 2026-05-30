@@ -1182,7 +1182,8 @@ body {
     max-width: none;
 }
 
-.port-link-lg {
+.port-link-lg,
+.port-link-lg:visited {
     display: inline-flex;
     align-items: center;
     gap: 80px;
