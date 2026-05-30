@@ -29,6 +29,7 @@ html {
     scrollbar-color: var(--accent) var(--bg);
     background: var(--bg);
     scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
 }
 
 html::-webkit-scrollbar { width: 4px; }
@@ -76,6 +77,8 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 .hero.paused .hero-scanlines,
@@ -809,6 +812,8 @@ body {
 
 .sec-about {
     padding-top: 20px;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
 }
 
 .section.visible {
