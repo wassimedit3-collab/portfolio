@@ -37,7 +37,7 @@ html::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
 
 body {
     font-family: var(--font-sans);
-    font-size: 15px;
+    font-size: 16px;
     line-height: 1.7;
     color: var(--text);
     background: var(--bg);
@@ -749,8 +749,8 @@ body {
 .glitch-link {
     position: relative;
     display: inline-block;
-    animation: hardGlitch 3s steps(1) infinite;
-    animation-delay: 1.8s;
+    animation: hardGlitch 2s steps(1) infinite;
+    animation-delay: 1s;
 }
 
 .glitch-link::before,
@@ -769,15 +769,15 @@ body {
 .glitch-link::before {
     color: #00ffff;
     z-index: -1;
-    animation: glitchTopRGB 3s steps(1) infinite;
-    animation-delay: 1.8s;
+    animation: glitchTopRGB 2s steps(1) infinite;
+    animation-delay: 1s;
 }
 
 .glitch-link::after {
     color: #ff00ff;
     z-index: -2;
-    animation: glitchBottomRGB 3s steps(1) infinite;
-    animation-delay: 1.8s;
+    animation: glitchBottomRGB 2s steps(1) infinite;
+    animation-delay: 1s;
 }
 
 .glitch-link.decoding {
@@ -803,6 +803,10 @@ body {
     opacity: 0;
     transform: translateY(30px);
     transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.sec-about {
+    padding-top: 20px;
 }
 
 .section.visible {
@@ -833,7 +837,7 @@ body {
 
 .sec-headline {
     font-family: var(--font-sans);
-    font-size: 10px;
+    font-size: clamp(14px, 1.8vw, 20px);
     font-weight: 600;
     color: var(--accent);
     text-transform: uppercase;
@@ -927,7 +931,7 @@ body {
 
 .sec-about-headline .sec-headline {
     writing-mode: vertical-rl;
-    font-size: clamp(13px, 1.5vw, 17px);
+    font-size: clamp(16px, 2vw, 22px);
     letter-spacing: 8px;
     margin-bottom: 0;
     height: auto;
@@ -940,7 +944,7 @@ body {
 .sec-edu .sec-headline,
 .sec-lang .sec-headline,
 .sec-contact .sec-headline {
-    font-size: clamp(12px, 1.4vw, 15px);
+    font-size: clamp(16px, 2vw, 22px);
 }
 
 .sec-work .sec-headline,
@@ -970,7 +974,7 @@ body {
 
 .about-text {
     font-family: var(--font-serif);
-    font-size: clamp(18px, 2.2vw, 28px);
+    font-size: clamp(20px, 2.6vw, 34px);
     font-weight: 400;
     color: var(--text);
     line-height: 1.55;
@@ -1040,15 +1044,7 @@ body {
 }
 
 .tk-year {
-    font-family: var(--font-serif);
-    font-size: clamp(36px, 6vw, 80px);
-    font-weight: 900;
-    color: transparent;
-    -webkit-text-stroke: 1px rgba(229, 9, 20, 0.2);
-    line-height: 0.9;
-    display: block;
-    margin-bottom: 8px;
-    opacity: 0.15;
+    display: none;
 }
 
 .timeline-content {
@@ -1059,14 +1055,14 @@ body {
 
 .timeline-role {
     font-family: var(--font-sans);
-    font-size: 15px;
-    font-weight: 500;
-    color: var(--text);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-white);
 }
 
 .timeline-org {
     font-family: var(--font-sans);
-    font-size: 15px;
+    font-size: 19px;
     font-weight: 400;
     color: var(--text-muted);
 }
@@ -1084,10 +1080,10 @@ body {
 
 .timeline-desc {
     font-family: var(--font-sans);
-    font-size: 13px;
+    font-size: 19px;
     color: var(--text-white);
-    margin-top: 8px;
-    line-height: 1.5;
+    margin-top: 12px;
+    line-height: 1.6;
     max-width: 65ch;
 }
 
@@ -1108,9 +1104,9 @@ body {
 
 .cloud-tag {
     font-family: var(--font-sans);
-    font-size: calc(12px + (var(--sz, 0.5) * 16px));
+    font-size: calc(15px + (var(--sz, 0.5) * 18px));
     font-weight: 400;
-    padding: calc(8px + (var(--sz, 0.5) * 10px)) calc(16px + (var(--sz, 0.5) * 16px));
+    padding: calc(10px + (var(--sz, 0.5) * 12px)) calc(18px + (var(--sz, 0.5) * 18px));
     background: transparent;
     border: 1px solid var(--border);
     color: var(--text-muted);
@@ -1158,7 +1154,7 @@ body {
 
 .comp-tag {
     font-family: var(--font-sans);
-    font-size: 12px;
+    font-size: 17px;
     font-weight: 400;
     padding: 20px 24px;
     background: var(--bg);
@@ -1190,6 +1186,13 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 80px;
+    text-decoration: none;
+    color: var(--text-white);
+}
+
+.port-link-text {
+    font-family: var(--font-serif);
+    font-size: clamp(37px, 5vw, 64px);
 }
 
 .social-item {
@@ -1724,6 +1727,20 @@ body {
 
 /* ===== BACK TO TOP ===== */
 
+.footer {
+    padding: 32px 48px;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 16px;
+    color: var(--text-muted);
+}
+
+.footer-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
 .back-to-top {
     position: fixed;
     bottom: 32px;
@@ -1881,6 +1898,13 @@ body {
 
 /* ===== CONTACT FORM ===== */
 
+.contact-tagline {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    color: var(--text-muted);
+    margin-bottom: 28px;
+}
+
 .contact-form {
     display: flex;
     flex-direction: column;
@@ -1895,7 +1919,7 @@ body {
 }
 
 .contact-field label {
-    font-size: 11px;
+    font-size: 15px;
     font-weight: 500;
     color: var(--text-muted);
     text-transform: uppercase;
@@ -1905,7 +1929,7 @@ body {
 .contact-field input,
 .contact-field textarea {
     font-family: var(--font-sans);
-    font-size: 15px;
+    font-size: 16px;
     padding: 12px 16px;
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -1926,7 +1950,7 @@ body {
 }
 
 .contact-submit {
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 600;
     padding: 14px 32px;
     background: transparent;
@@ -2279,7 +2303,7 @@ body {
     }
 
     .about-text {
-        font-size: 16px;
+        font-size: 18px;
     }
 
     .contact-email-lg a {
