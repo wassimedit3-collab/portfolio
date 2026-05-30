@@ -751,6 +751,8 @@ body {
     display: inline-block;
     animation: hardGlitch 2s steps(1) infinite;
     animation-delay: 1s;
+    text-decoration: none;
+    border-bottom: none;
 }
 
 .glitch-link::before,
@@ -1183,17 +1185,21 @@ body {
 }
 
 .port-link-lg,
-.port-link-lg:visited {
+.port-link-lg:visited,
+.port-link-lg:-webkit-any-link {
     display: inline-flex;
     align-items: center;
     gap: 80px;
     text-decoration: none;
+    border-bottom: none;
     color: var(--text-white);
 }
 
 .port-link-text {
     font-family: var(--font-serif);
     font-size: clamp(37px, 5vw, 64px);
+    text-decoration: none;
+    border-bottom: none;
 }
 
 .social-item {
