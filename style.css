@@ -29,7 +29,7 @@ html {
     scrollbar-color: var(--accent) var(--bg);
     background: var(--bg);
     scroll-behavior: smooth;
-    scroll-snap-type: y mandatory;
+    scroll-snap-type: y proximity;
 }
 
 html::-webkit-scrollbar { width: 4px; }

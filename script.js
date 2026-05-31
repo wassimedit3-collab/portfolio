@@ -28,30 +28,20 @@ window.addEventListener('load', fixHeroHeight);
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // ===== BIDIRECTIONAL SNAP: HERO ↔ ABOUT, FREE SCROLL BELOW =====
+    // ===== DISABLE ABOUT SNAP AFTER FIRST USE =====
     const aboutSection = document.querySelector('.sec-about');
-    const workSection = document.querySelector('.sec-work');
-    let snapDisabled = false;
-    let lastScrollY = window.scrollY;
-
-    function updateSnap() {
-        if (!aboutSection) return;
-        const aboutBottom = aboutSection.getBoundingClientRect().bottom;
-        const scrollingDown = window.scrollY > lastScrollY;
-        lastScrollY = window.scrollY;
-
-        // Scrolled DOWN past about → disable snap for free scroll
-        if (scrollingDown && aboutBottom < -50 && !snapDisabled) {
-            snapDisabled = true;
-            document.documentElement.style.scrollSnapType = 'none';
-        }
-        // Scrolled UP and about re-enters viewport → re-enable snap
-        else if (!scrollingDown && aboutBottom > 50 && snapDisabled) {
-            snapDisabled = false;
-            document.documentElement.style.scrollSnapType = '';
-        }
+    if (aboutSection) {
+        const aboutSnapObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.boundingClientRect.top <= 0) {
+                    aboutSection.style.scrollSnapAlign = 'none';
+                    aboutSection.style.scrollSnapStop = 'normal';
+                    aboutSnapObserver.disconnect();
+                }
+            });
+        }, { threshold: 0 });
+        aboutSnapObserver.observe(aboutSection);
     }
-    window.addEventListener('scroll', updateSnap, { passive: true });
 
     // ===== RECORDING TIMER =====
     const timerDisplay = document.getElementById('timerDisplay');
