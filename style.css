@@ -30,6 +30,7 @@ html {
     background: var(--bg);
     scroll-behavior: smooth;
     scroll-snap-type: y proximity;
+    overflow-anchor: none;
 }
 
 html::-webkit-scrollbar { width: 4px; }

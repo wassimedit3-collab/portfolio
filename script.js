@@ -14,6 +14,8 @@ function fixHeroHeight() {
     if (main) main.style.paddingTop = h + 'px';
 }
 fixHeroHeight();
+if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
+window.scrollTo(0, 0);
 window.addEventListener('resize', fixHeroHeight);
 if (window.visualViewport) {
     window.visualViewport.addEventListener('resize', fixHeroHeight);
@@ -22,6 +24,10 @@ document.addEventListener('DOMContentLoaded', fixHeroHeight);
 window.addEventListener('load', fixHeroHeight);
 
 document.addEventListener('DOMContentLoaded', () => {
+    window.addEventListener('pageshow', () => {
+        fixHeroHeight();
+        window.scrollTo(0, 0);
+    });
 
     // ===== DISABLE ABOUT SNAP AFTER FIRST USE =====
     const aboutSection = document.querySelector('.sec-about');
