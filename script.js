@@ -316,6 +316,100 @@ document.addEventListener('DOMContentLoaded', () => {
         } catch(e) {}
     }
 
+    // ===== SFX: CINEMATIC INTRO TRANSITION =====
+    function playCinematicSound() {
+        try {
+            var ctx = new (window.AudioContext || window.webkitAudioContext)();
+            var t = ctx.currentTime;
+
+            var osc1 = ctx.createOscillator();
+            var gain1 = ctx.createGain();
+            osc1.type = 'sine';
+            osc1.frequency.setValueAtTime(60, t);
+            osc1.frequency.exponentialRampToValueAtTime(30, t + 0.5);
+            gain1.gain.setValueAtTime(0.5, t);
+            gain1.gain.exponentialRampToValueAtTime(0.01, t + 0.5);
+            osc1.connect(gain1);
+            gain1.connect(ctx.destination);
+            osc1.start(t);
+            osc1.stop(t + 0.5);
+
+            var osc2 = ctx.createOscillator();
+            var gain2 = ctx.createGain();
+            osc2.type = 'sawtooth';
+            osc2.frequency.setValueAtTime(150, t);
+            osc2.frequency.exponentialRampToValueAtTime(2500, t + 0.4);
+            gain2.gain.setValueAtTime(0.06, t);
+            gain2.gain.linearRampToValueAtTime(0.12, t + 0.2);
+            gain2.gain.exponentialRampToValueAtTime(0.01, t + 0.6);
+            osc2.connect(gain2);
+            gain2.connect(ctx.destination);
+            osc2.start(t);
+            osc2.stop(t + 0.6);
+
+            var osc3 = ctx.createOscillator();
+            var gain3 = ctx.createGain();
+            osc3.type = 'triangle';
+            osc3.frequency.setValueAtTime(500, t + 0.35);
+            osc3.frequency.exponentialRampToValueAtTime(80, t + 0.7);
+            gain3.gain.setValueAtTime(0, t);
+            gain3.gain.linearRampToValueAtTime(0.25, t + 0.38);
+            gain3.gain.exponentialRampToValueAtTime(0.01, t + 0.8);
+            osc3.connect(gain3);
+            gain3.connect(ctx.destination);
+            osc3.start(t + 0.35);
+            osc3.stop(t + 0.8);
+        } catch(e) {}
+    }
+
+    // ===== SFX: CAMERA SHUTTER =====
+    function playShutterSound() {
+        try {
+            var ctx = new (window.AudioContext || window.webkitAudioContext)();
+            var t = ctx.currentTime;
+
+            var osc1 = ctx.createOscillator();
+            var gain1 = ctx.createGain();
+            osc1.type = 'square';
+            osc1.frequency.setValueAtTime(1500, t);
+            osc1.frequency.exponentialRampToValueAtTime(400, t + 0.03);
+            gain1.gain.setValueAtTime(0.15, t);
+            gain1.gain.exponentialRampToValueAtTime(0.01, t + 0.04);
+            osc1.connect(gain1);
+            gain1.connect(ctx.destination);
+            osc1.start(t);
+            osc1.stop(t + 0.04);
+
+            var osc2 = ctx.createOscillator();
+            var gain2 = ctx.createGain();
+            osc2.type = 'square';
+            osc2.frequency.setValueAtTime(700, t + 0.05);
+            osc2.frequency.exponentialRampToValueAtTime(200, t + 0.08);
+            gain2.gain.setValueAtTime(0.12, t + 0.05);
+            gain2.gain.exponentialRampToValueAtTime(0.01, t + 0.1);
+            osc2.connect(gain2);
+            gain2.connect(ctx.destination);
+            osc2.start(t + 0.05);
+            osc2.stop(t + 0.1);
+
+            var bufferSize = ctx.sampleRate * 0.12;
+            var buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate);
+            var data = buffer.getChannelData(0);
+            for (var i = 0; i < bufferSize; i++) {
+                data[i] = (Math.random() * 2 - 1) * Math.pow(1 - i / bufferSize, 4);
+            }
+            var noise = ctx.createBufferSource();
+            noise.buffer = buffer;
+            var gain3 = ctx.createGain();
+            gain3.gain.setValueAtTime(0.08, t);
+            gain3.gain.exponentialRampToValueAtTime(0.01, t + 0.1);
+            noise.connect(gain3);
+            gain3.connect(ctx.destination);
+            noise.start(t);
+            noise.stop(t + 0.12);
+        } catch(e) {}
+    }
+
     // ===== SFX: MGS V MENU CLICK =====
     function playSelectSound() {
         try {
@@ -563,6 +657,9 @@ document.addEventListener('DOMContentLoaded', () => {
         var a = e.target.closest('a');
         if (a && a.href) {
             if (a.closest('.hero-label')) return;
+            var sfx = a.getAttribute('data-sfx');
+            if (sfx === 'cinematic') { playCinematicSound(); return; }
+            if (sfx === 'shutter') { playShutterSound(); return; }
             playCyborgSound();
         }
     });
