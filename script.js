@@ -297,6 +297,25 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
+    // ===== SFX: CYBORG SELECTION (old) =====
+    function playCyborgSound() {
+        try {
+            var ctx = new (window.AudioContext || window.webkitAudioContext)();
+            var osc = ctx.createOscillator();
+            var gain = ctx.createGain();
+            osc.type = 'square';
+            osc.frequency.setValueAtTime(600, ctx.currentTime);
+            osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.1);
+            osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.18);
+            gain.gain.setValueAtTime(0.25, ctx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start();
+            osc.stop(ctx.currentTime + 0.2);
+        } catch(e) {}
+    }
+
     // ===== SFX: MGS V MENU CLICK =====
     function playSelectSound() {
         try {
@@ -543,7 +562,8 @@ document.addEventListener('DOMContentLoaded', () => {
     document.addEventListener('click', function(e) {
         var a = e.target.closest('a');
         if (a && a.href) {
-            playSelectSound();
+            if (a.closest('.hero-label')) return;
+            playCyborgSound();
         }
     });
 
