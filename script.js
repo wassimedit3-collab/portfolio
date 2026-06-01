@@ -1,8 +1,3 @@
-if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-}
-window.scrollTo(0, 0);
-
 function getViewportHeight() {
     if (window.visualViewport && window.visualViewport.height > 0) {
         return Math.round(window.visualViewport.height);
