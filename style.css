@@ -29,8 +29,6 @@ html {
     scrollbar-color: var(--accent) var(--bg);
     background: var(--bg);
     scroll-behavior: smooth;
-    scroll-snap-type: y proximity;
-    overflow-anchor: none;
 }
 
 html::-webkit-scrollbar { width: 4px; }
@@ -47,7 +45,6 @@ body {
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
     padding-bottom: 72px;
-    scroll-snap-type: y proximity;
 }
 
 ::selection {
@@ -79,8 +76,6 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
 }
 
 .hero.paused .hero-scanlines,
@@ -478,14 +473,6 @@ body {
     flex-direction: column;
     gap: 12px;
     align-items: flex-end;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.5s ease, visibility 0.5s ease;
-}
-
-.hero-nav-header.visible {
-    opacity: 1;
-    visibility: visible;
 }
 
 .nav-indicator-arrow {
@@ -807,20 +794,10 @@ body {
     border-bottom: 1px solid var(--border);
     position: relative;
     overflow: hidden;
-    opacity: 0;
-    transform: translateY(30px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 .sec-about {
     padding-top: 20px;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-}
-
-.section.visible {
-    opacity: 1;
-    transform: translateY(0);
 }
 
 .section:last-of-type {

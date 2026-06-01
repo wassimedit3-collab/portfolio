@@ -29,20 +29,58 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo(0, 0);
     });
 
-    // ===== DISABLE ABOUT SNAP AFTER FIRST USE =====
-    const aboutSection = document.querySelector('.sec-about');
-    if (aboutSection) {
-        const aboutSnapObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.boundingClientRect.top <= 0) {
-                    aboutSection.style.scrollSnapAlign = 'none';
-                    aboutSection.style.scrollSnapStop = 'normal';
-                    aboutSnapObserver.disconnect();
+    // ===== HERO-CONTENT-PORTFOLIO SNAP CHAIN =====
+    (function() {
+        let prevY = window.scrollY;
+        let lastSnap = 0;
+        let contentTop = 0;
+        let portfolioTop = 0;
+
+        function calcTargets() {
+            const vh = window.innerHeight;
+            const hero = document.querySelector('.hero');
+            const heroH = hero ? hero.offsetHeight : vh;
+            contentTop = heroH + vh;
+            const portfolio = document.querySelector('.sec-portfolio');
+            portfolioTop = portfolio ? portfolio.offsetTop : contentTop + vh * 3;
+        }
+
+        calcTargets();
+        window.addEventListener('resize', calcTargets);
+        window.addEventListener('load', calcTargets);
+
+        window.addEventListener('scroll', function() {
+            const y = window.scrollY;
+            const vh = window.innerHeight;
+            const goingDown = y > prevY;
+            const goingUp = y < prevY;
+            const now = Date.now();
+
+            if (now - lastSnap < 300) return;
+
+            if (goingDown) {
+                if (y > 20 && y < contentTop) {
+                    lastSnap = now;
+                    window.scrollTo(0, contentTop);
+                } else if (y >= contentTop && y < portfolioTop) {
+                    lastSnap = now;
+                    window.scrollTo(0, portfolioTop);
                 }
-            });
-        }, { threshold: 0 });
-        aboutSnapObserver.observe(aboutSection);
-    }
+            }
+
+            if (goingUp) {
+                if (y < portfolioTop && y > contentTop) {
+                    lastSnap = now;
+                    window.scrollTo(0, contentTop);
+                } else if (y <= contentTop && y > 20) {
+                    lastSnap = now;
+                    window.scrollTo(0, 0);
+                }
+            }
+
+            prevY = y;
+        }, { passive: true });
+    })();
 
     // ===== RECORDING TIMER =====
     const timerDisplay = document.getElementById('timerDisplay');
@@ -61,75 +99,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     updateTimer();
     let timerInterval = setInterval(updateTimer, 1000);
-
-    // ===== SCROLL REVEAL - STAGGERED PER SECTION =====
-    const sections = document.querySelectorAll('.reveal');
-
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const section = entry.target;
-                section.classList.add('visible');
-
-                // Stagger children based on section type
-                const cls = section.className;
-
-                if (cls.includes('sec-skills')) {
-                    section.querySelectorAll('.cloud-tag').forEach((t, i) => {
-                        t.style.transitionDelay = (i * 60) + 'ms';
-                    });
-                }
-
-                if (cls.includes('sec-comp')) {
-                    section.querySelectorAll('.comp-tag').forEach((t, i) => {
-                        t.style.transitionDelay = (i * 40) + 'ms';
-                    });
-                }
-
-                if (cls.includes('sec-work') || cls.includes('sec-edu')) {
-                    section.querySelectorAll('.timeline-item').forEach((t, i) => {
-                        t.style.transitionDelay = (i * 120) + 'ms';
-                        t.style.opacity = '0';
-                        t.style.transform = i % 2 === 0 ? 'translateX(-20px)' : 'translateX(20px)';
-                        t.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                        requestAnimationFrame(() => {
-                            t.style.opacity = '1';
-                            t.style.transform = 'translateX(0)';
-                        });
-                    });
-                }
-
-                if (cls.includes('hero')) {
-                    const nav = document.querySelector('.hero-nav-header');
-                    if (nav) nav.classList.add('visible');
-                }
-
-                if (cls.includes('sec-portfolio')) {
-                    const glitchLink = section.querySelector('.glitch-link');
-                    if (glitchLink && !glitchLink.dataset.decoded) {
-                        glitchLink.dataset.decoded = 'true';
-                        setTimeout(() => triggerDecode(glitchLink, 0.4), 400);
-                    }
-                }
-
-                if (cls.includes('sec-lang')) {
-                    section.querySelectorAll('.lang-pill').forEach((t, i) => {
-                        const dirs = ['translateX(-20px)', 'translateY(-20px)', 'translateX(20px)'];
-                        t.style.opacity = '0';
-                        t.style.transform = t.style.transform + ' ' + dirs[i];
-                        t.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-                        t.style.transitionDelay = (i * 150) + 'ms';
-                        requestAnimationFrame(() => {
-                            t.style.opacity = '1';
-                            t.style.transform = t.style.transform.replace(dirs[i], '');
-                        });
-                    });
-                }
-            }
-        });
-    }, { threshold: 0.1 });
-
-    sections.forEach(s => revealObserver.observe(s));
 
     // ===== SKILLS & COMPETENCIES COLLAPSE TOGGLE =====
     document.querySelectorAll('.sec-skills .sec-headline, .sec-comp .sec-headline').forEach(headline => {
