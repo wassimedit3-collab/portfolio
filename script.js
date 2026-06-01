@@ -295,25 +295,41 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
             }
         }
+    }
 
-        // ===== SFX: CYBORG SELECTION =====
-        function playSelectSound() {
-            try {
-                var ctx = new (window.AudioContext || window.webkitAudioContext)();
-                var osc = ctx.createOscillator();
-                var gain = ctx.createGain();
-                osc.type = 'square';
-                osc.frequency.setValueAtTime(600, ctx.currentTime);
-                osc.frequency.exponentialRampToValueAtTime(1200, ctx.currentTime + 0.1);
-                osc.frequency.exponentialRampToValueAtTime(800, ctx.currentTime + 0.18);
-                gain.gain.setValueAtTime(0.25, ctx.currentTime);
-                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.2);
-                osc.connect(gain);
-                gain.connect(ctx.destination);
-                osc.start();
-                osc.stop(ctx.currentTime + 0.2);
-            } catch(e) {}
-        }
+    // ===== SFX: MGS V MENU CLICK =====
+    function playSelectSound() {
+        try {
+            var ctx = new (window.AudioContext || window.webkitAudioContext)();
+            var t = ctx.currentTime;
+
+            var osc = ctx.createOscillator();
+            var gain = ctx.createGain();
+            osc.type = 'sine';
+            osc.frequency.setValueAtTime(300, t);
+            osc.frequency.exponentialRampToValueAtTime(1400, t + 0.08);
+            osc.frequency.exponentialRampToValueAtTime(1000, t + 0.18);
+            gain.gain.setValueAtTime(0.3, t);
+            gain.gain.exponentialRampToValueAtTime(0.25, t + 0.05);
+            gain.gain.exponentialRampToValueAtTime(0.01, t + 0.2);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(t);
+            osc.stop(t + 0.2);
+
+            var osc2 = ctx.createOscillator();
+            var gain2 = ctx.createGain();
+            osc2.type = 'sine';
+            osc2.frequency.setValueAtTime(450, t);
+            osc2.frequency.exponentialRampToValueAtTime(2100, t + 0.06);
+            osc2.frequency.exponentialRampToValueAtTime(1500, t + 0.15);
+            gain2.gain.setValueAtTime(0.12, t);
+            gain2.gain.exponentialRampToValueAtTime(0.01, t + 0.18);
+            osc2.connect(gain2);
+            gain2.connect(ctx.destination);
+            osc2.start(t);
+            osc2.stop(t + 0.18);
+        } catch(e) {}
     }
 
     // ===== LIGHTBOX =====
@@ -522,4 +538,43 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => msg.remove(), 4000);
         }
     }
+
+    // ===== GLOBAL LINK CLICK SFX =====
+    document.addEventListener('click', function(e) {
+        var a = e.target.closest('a');
+        if (a && a.href) {
+            playSelectSound();
+        }
+    });
+
+    // ===== SUPER MARIO EASTER EGG (speaker toggle) =====
+    (function() {
+        var btn = document.getElementById('musicToggle');
+        var iconMuted = document.getElementById('musicIconMuted');
+        var iconOn = document.getElementById('musicIconOn');
+        var audio = null;
+        var isPlaying = false;
+
+        if (!btn) return;
+
+        btn.addEventListener('click', function() {
+            if (!isPlaying) {
+                if (!audio) {
+                    audio = new Audio('assets/super-mario-theme.mp3');
+                    audio.loop = true;
+                    audio.volume = 0.5;
+                }
+                audio.play().then(function() {
+                    isPlaying = true;
+                    iconMuted.classList.add('hidden');
+                    iconOn.classList.remove('hidden');
+                }).catch(function() {});
+            } else {
+                audio.pause();
+                isPlaying = false;
+                iconOn.classList.add('hidden');
+                iconMuted.classList.remove('hidden');
+            }
+        });
+    })();
 });
