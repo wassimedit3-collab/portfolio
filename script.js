@@ -597,4 +597,60 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     })();
+
+    // ===== PAGE TRANSITION: BRAND STAMP =====
+    (function() {
+        var overlay = null;
+        var logoImg = null;
+        var transitioning = false;
+
+        function getOverlay() {
+            if (!overlay) {
+                overlay = document.createElement('div');
+                overlay.className = 'page-transition-overlay';
+                logoImg = document.createElement('img');
+                logoImg.src = 'hero-logo.svg';
+                logoImg.alt = 'Wassim Vision';
+                overlay.appendChild(logoImg);
+                document.body.appendChild(overlay);
+            }
+            return { overlay: overlay, logoImg: logoImg };
+        }
+
+        function isInternalLink(url) {
+            if (!url) return false;
+            try {
+                var u = new URL(url, location.origin);
+                return u.hostname === location.hostname;
+            } catch(e) { return true; }
+        }
+
+        document.addEventListener('click', function(e) {
+            if (transitioning) return;
+            var a = e.target.closest('a');
+            if (!a || !a.href) return;
+            if (!isInternalLink(a.href)) return;
+            if (a.getAttribute('target') === '_blank') return;
+            var href = a.getAttribute('href');
+            if (href === '#' || href.startsWith('#')) return;
+            var url = new URL(a.href, location.origin);
+            if (url.pathname === location.pathname && url.hostname === location.hostname) return;
+
+            e.preventDefault();
+            transitioning = true;
+
+            var els = getOverlay();
+            els.overlay.classList.add('active');
+
+            requestAnimationFrame(function() {
+                requestAnimationFrame(function() {
+                    els.logoImg.classList.add('shrink');
+                });
+            });
+
+            setTimeout(function() {
+                window.location.href = a.href;
+            }, 550);
+        });
+    })();
 });

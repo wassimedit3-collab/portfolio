@@ -409,6 +409,56 @@ body {
     font-variant-numeric: tabular-nums;
 }
 
+/* ===== PAGE TRANSITION OVERLAY ===== */
+.page-transition-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #050505;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.15s ease;
+    pointer-events: none;
+}
+
+.page-transition-overlay.active {
+    opacity: 1;
+}
+
+.page-transition-overlay img {
+    position: absolute;
+    height: 200px;
+    width: auto;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform, top, left, height;
+}
+
+.page-transition-overlay img.shrink {
+    top: 32px;
+    left: 48px;
+    transform: translate(0, 0);
+    height: 72px;
+}
+
+@media (max-width: 768px) {
+    .page-transition-overlay img.shrink {
+        top: 16px;
+        left: 24px;
+        height: 48px;
+    }
+}
+
+/* ===== SUB-PAGE HERO TOP (brand stamp persist) ===== */
+.sub-page .hero-top {
+    animation: none;
+    opacity: 1;
+}
+
 /* ===== HERO BOTTOM CTA ===== */
 
 .hero-bottom {
