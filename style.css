@@ -46,6 +46,7 @@ body {
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
     padding-bottom: 72px;
+    scroll-snap-type: y proximity;
 }
 
 ::selection {
