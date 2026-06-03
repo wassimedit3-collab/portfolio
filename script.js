@@ -29,20 +29,26 @@ document.addEventListener('DOMContentLoaded', () => {
         window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // ===== HERO-CONTENT-PORTFOLIO SNAP CHAIN (index page only) =====
+    // ===== HERO-STORY-WORK SNAP CHAIN (index page only) =====
     if (document.querySelector('.hero')) (function() {
         let prevY = window.scrollY;
-        let lastSnap = 0;
-        let contentTop = 0;
+        let currentLevel = 0;
+        let snapLock = false;
+        let storyTop = 0;
         let portfolioTop = 0;
 
+        function snapTo(target, level) {
+            currentLevel = level;
+            snapLock = true;
+            window.scrollTo({ top: target, behavior: 'smooth' });
+            setTimeout(() => { snapLock = false; }, 800);
+        }
+
         function calcTargets() {
-            const vh = window.innerHeight;
-            const hero = document.querySelector('.hero');
-            const heroH = hero ? hero.offsetHeight : vh;
-            contentTop = heroH + vh;
+            const story = document.querySelector('.sec-about');
+            storyTop = story ? story.offsetTop : window.innerHeight * 2;
             const portfolio = document.querySelector('.sec-portfolio');
-            portfolioTop = portfolio ? portfolio.offsetTop : contentTop + vh * 3;
+            portfolioTop = portfolio ? portfolio.offsetTop : storyTop + window.innerHeight * 3;
         }
 
         calcTargets();
@@ -51,34 +57,29 @@ document.addEventListener('DOMContentLoaded', () => {
 
         window.addEventListener('scroll', function() {
             const y = window.scrollY;
-            const vh = window.innerHeight;
             const goingDown = y > prevY;
             const goingUp = y < prevY;
-            const now = Date.now();
+            prevY = y;
 
-            if (now - lastSnap < 300) return;
+            if (snapLock) return;
 
             if (goingDown) {
-                if (y > 20 && y < contentTop) {
-                    lastSnap = now;
-                    window.scrollTo({ top: contentTop, behavior: 'smooth' });
-                } else if (y >= contentTop && y < portfolioTop) {
-                    lastSnap = now;
-                    window.scrollTo({ top: portfolioTop, behavior: 'smooth' });
+                if (currentLevel === 0 && y > 20) {
+                    snapTo(storyTop, 1);
+                } else if (currentLevel === 1) {
+                    snapTo(portfolioTop, 2);
                 }
             }
 
             if (goingUp) {
-                if (y < portfolioTop && y > contentTop) {
-                    lastSnap = now;
-                    window.scrollTo({ top: contentTop, behavior: 'smooth' });
-                } else if (y <= contentTop && y > 20) {
-                    lastSnap = now;
-                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                if (y >= portfolioTop) {
+                    snapTo(portfolioTop, 2);
+                } else if (currentLevel === 2) {
+                    snapTo(storyTop, 1);
+                } else if (currentLevel === 1 && y <= storyTop + 200) {
+                    snapTo(0, 0);
                 }
             }
-
-            prevY = y;
         }, { passive: true });
     })();
 

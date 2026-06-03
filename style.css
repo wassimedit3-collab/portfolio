@@ -257,6 +257,7 @@ body {
     color: var(--text-white);
     line-height: 1.1;
     letter-spacing: -1px;
+    white-space: nowrap;
     animation: heroFadeDown 1s 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     opacity: 0;
 }
