@@ -26,11 +26,11 @@ window.addEventListener('load', fixHeroHeight);
 document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('pageshow', () => {
         fixHeroHeight();
-        window.scrollTo(0, 0);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
 
-    // ===== HERO-CONTENT-PORTFOLIO SNAP CHAIN =====
-    (function() {
+    // ===== HERO-CONTENT-PORTFOLIO SNAP CHAIN (index page only) =====
+    if (document.querySelector('.hero')) (function() {
         let prevY = window.scrollY;
         let lastSnap = 0;
         let contentTop = 0;
@@ -61,20 +61,20 @@ document.addEventListener('DOMContentLoaded', () => {
             if (goingDown) {
                 if (y > 20 && y < contentTop) {
                     lastSnap = now;
-                    window.scrollTo(0, contentTop);
+                    window.scrollTo({ top: contentTop, behavior: 'smooth' });
                 } else if (y >= contentTop && y < portfolioTop) {
                     lastSnap = now;
-                    window.scrollTo(0, portfolioTop);
+                    window.scrollTo({ top: portfolioTop, behavior: 'smooth' });
                 }
             }
 
             if (goingUp) {
                 if (y < portfolioTop && y > contentTop) {
                     lastSnap = now;
-                    window.scrollTo(0, contentTop);
+                    window.scrollTo({ top: contentTop, behavior: 'smooth' });
                 } else if (y <= contentTop && y > 20) {
                     lastSnap = now;
-                    window.scrollTo(0, 0);
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
                 }
             }
 
